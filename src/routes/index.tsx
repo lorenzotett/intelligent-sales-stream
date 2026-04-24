@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  ArrowRight, MessageSquare, Calendar, Zap, Sparkles,
+  ArrowRight, MessageSquare, Calendar, Zap,
   Stethoscope, Home, Building2, Briefcase, Smile,
   TrendingUp, Clock, Target,
 } from "lucide-react";
