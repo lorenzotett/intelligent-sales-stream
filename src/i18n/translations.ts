@@ -249,6 +249,6 @@ export const translations = {
       contactDesc: "Habla con el equipo Cooverly. Infraestructura de IA en España y USA. Escríbenos por WhatsApp o reserva una demo.",
     },
   },
-} as const;
+};
 
-export type Translation = typeof translations.en;
+export type Translation = (typeof translations)["en"];
