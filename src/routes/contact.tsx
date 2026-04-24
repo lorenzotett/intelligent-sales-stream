@@ -97,7 +97,7 @@ function ContactPage() {
         </div>
 
         <div className="mt-8">
-          <Logo size={56} />
+          <Logo size={88} />
         </div>
 
         <motion.h1
