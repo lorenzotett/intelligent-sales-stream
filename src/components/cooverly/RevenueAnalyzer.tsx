@@ -650,8 +650,8 @@ export function RevenueAnalyzer() {
                 </select>
               </label>
               <div className="grid gap-4 sm:grid-cols-2">
-                <NumberField label={C.steps[0].fields.leads} value={a.monthlyLeads} onChange={(v) => setA({ ...a, monthlyLeads: v })} />
-                <NumberField label={C.steps[0].fields.value} value={a.avgValue} onChange={(v) => setA({ ...a, avgValue: v })} suffix="$" />
+                <NumberField label={C.steps[0].fields.leads!} value={a.monthlyLeads} onChange={(v) => setA({ ...a, monthlyLeads: v })} />
+                <NumberField label={C.steps[0].fields.value!} value={a.avgValue} onChange={(v) => setA({ ...a, avgValue: v })} suffix="$" />
               </div>
             </>
           )}
@@ -662,15 +662,15 @@ export function RevenueAnalyzer() {
                 <div className="mb-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">{C.steps[1].fields.response}</div>
                 <ChoiceGrid value={a.responseTime} onChange={(v) => setA({ ...a, responseTime: v })} options={C.steps[1].fields.options as { v: Answers["responseTime"]; l: string }[]} />
               </div>
-              <NumberField label={C.steps[1].fields.unanswered} value={a.unansweredPct} onChange={(v) => setA({ ...a, unansweredPct: Math.min(100, v) })} suffix="%" />
+              <NumberField label={C.steps[1].fields.unanswered!} value={a.unansweredPct} onChange={(v) => setA({ ...a, unansweredPct: Math.min(100, v) })} suffix="%" />
             </>
           )}
 
           {step === 2 && (
             <div className="grid gap-4 sm:grid-cols-3">
-              <NumberField label={C.steps[2].fields.conv} value={a.conversionPct} onChange={(v) => setA({ ...a, conversionPct: Math.min(100, v) })} suffix="%" />
-              <NumberField label={C.steps[2].fields.appts} value={a.bookedAppts} onChange={(v) => setA({ ...a, bookedAppts: v })} />
-              <NumberField label={C.steps[2].fields.noshow} value={a.noShowPct} onChange={(v) => setA({ ...a, noShowPct: Math.min(100, v) })} suffix="%" />
+              <NumberField label={C.steps[2].fields.conv!} value={a.conversionPct} onChange={(v) => setA({ ...a, conversionPct: Math.min(100, v) })} suffix="%" />
+              <NumberField label={C.steps[2].fields.appts!} value={a.bookedAppts} onChange={(v) => setA({ ...a, bookedAppts: v })} />
+              <NumberField label={C.steps[2].fields.noshow!} value={a.noShowPct} onChange={(v) => setA({ ...a, noShowPct: Math.min(100, v) })} suffix="%" />
             </div>
           )}
 
@@ -693,7 +693,7 @@ export function RevenueAnalyzer() {
 
           {step === 4 && (
             <>
-              <NumberField label={C.steps[4].fields.desired} value={a.desiredClients} onChange={(v) => setA({ ...a, desiredClients: v })} />
+              <NumberField label={C.steps[4].fields.desired!} value={a.desiredClients} onChange={(v) => setA({ ...a, desiredClients: v })} />
               <div>
                 <div className="mb-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">{C.steps[4].fields.bottleneck}</div>
                 <ChoiceGrid value={a.bottleneck} onChange={(v) => setA({ ...a, bottleneck: v })} options={C.steps[4].fields.bnOpts as { v: Answers["bottleneck"]; l: string }[]} />
