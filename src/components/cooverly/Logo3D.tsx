@@ -75,14 +75,18 @@ export function Logo3D() {
         <motion.div
           animate={{ y: [-8, 8, -8] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="relative grid h-full w-full place-items-center rounded-3xl border border-border bg-white/95 p-8 backdrop-blur-xl"
-          style={{
-            boxShadow:
-              "0 30px 80px -20px oklch(0.55 0.18 258 / 0.6), 0 0 0 1px oklch(0.78 0.13 240 / 0.3)",
-            transform: "translateZ(40px)",
-          }}
+          className="relative grid h-full w-full place-items-center p-8"
+          style={{ transform: "translateZ(40px)" }}
         >
-          <img src={logo} alt="Cooverly" className="h-full w-full object-contain" />
+          <img
+            src={logo}
+            alt="Cooverly"
+            className="h-full w-full object-contain"
+            style={{
+              filter:
+                "drop-shadow(0 24px 60px oklch(0.55 0.18 258 / 0.7)) drop-shadow(0 0 24px oklch(0.78 0.13 240 / 0.5))",
+            }}
+          />
         </motion.div>
       </motion.div>
     </div>
