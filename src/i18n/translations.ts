@@ -1,6 +1,6 @@
 export type Lang = "en" | "es";
 
-const WHATSAPP = "https://wa.me/34600000000";
+const WHATSAPP = "https://wa.me/34625198829";
 
 export const CONTACT = {
   whatsapp: WHATSAPP,
@@ -178,7 +178,7 @@ export const translations = {
       cards: [
         { title: "WhatsApp · MRR plans", value: "Fastest channel for monthly plans", action: "Message on WhatsApp", href: WHATSAPP },
         { title: "Email · Lifetime plans", value: "hello@cooverly.com", action: "Request Lifetime", href: "mailto:hello@cooverly.com?subject=Cooverly%20Lifetime%20Access" },
-        { title: "Phone", value: "+34 · +1 available on request", action: "", href: "" },
+        { title: "Phone", value: "+34 625 19 88 29", action: "Call now", href: "tel:+34625198829" },
         { title: "Offices", value: "Spain 🇪🇸 · USA 🇺🇸 · EU: Digitalizzato 🇮🇹", action: "", href: "" },
       ],
       formTitle: "Send us your details",
@@ -381,7 +381,7 @@ export const translations = {
       cards: [
         { title: "WhatsApp · Planes MRR", value: "Canal más rápido para planes mensuales", action: "Escribir por WhatsApp", href: WHATSAPP },
         { title: "Email · Planes Lifetime", value: "hello@cooverly.com", action: "Solicitar Lifetime", href: "mailto:hello@cooverly.com?subject=Cooverly%20Lifetime" },
-        { title: "Teléfono", value: "+34 · +1 disponibles bajo solicitud", action: "", href: "" },
+        { title: "Teléfono", value: "+34 625 19 88 29", action: "Llamar ahora", href: "tel:+34625198829" },
         { title: "Oficinas", value: "España 🇪🇸 · USA 🇺🇸 · EU: Digitalizzato 🇮🇹", action: "", href: "" },
       ],
       formTitle: "Envíanos tus datos",
