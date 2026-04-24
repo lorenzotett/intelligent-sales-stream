@@ -73,10 +73,10 @@ export function Logo3D() {
         className="absolute inset-16 grid place-items-center"
       >
         <motion.div
-          animate={{ y: [-8, 8, -8] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [-10, 10, -10], rotateZ: [-1.5, 1.5, -1.5] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
           className="relative grid h-full w-full place-items-center p-8"
-          style={{ transform: "translateZ(40px)" }}
+          style={{ transform: "translateZ(60px)" }}
         >
           <img
             src={logo}
@@ -84,7 +84,7 @@ export function Logo3D() {
             className="h-full w-full object-contain"
             style={{
               filter:
-                "drop-shadow(0 24px 60px oklch(0.55 0.18 258 / 0.7)) drop-shadow(0 0 24px oklch(0.78 0.13 240 / 0.5))",
+                "drop-shadow(0 30px 70px oklch(0.55 0.18 258 / 0.75)) drop-shadow(0 0 32px oklch(0.78 0.13 240 / 0.55)) drop-shadow(0 0 18px oklch(0.65 0.22 28 / 0.35))",
             }}
           />
         </motion.div>
