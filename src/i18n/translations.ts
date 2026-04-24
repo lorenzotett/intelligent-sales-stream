@@ -1,6 +1,6 @@
 export type Lang = "en" | "es";
 
-const WHATSAPP = "https://wa.me/34600000000";
+const WHATSAPP = "https://wa.me/34625198829";
 
 export const CONTACT = {
   whatsapp: WHATSAPP,
