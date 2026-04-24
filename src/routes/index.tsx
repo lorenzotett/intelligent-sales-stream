@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight, MessageSquare, Calendar, Zap, Sparkles,
@@ -7,8 +7,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
-import { AINodeNetwork } from "@/components/cooverly/AINodeNetwork";
 import { TiltCard } from "@/components/cooverly/TiltCard";
+import { Logo3D } from "@/components/cooverly/Logo3D";
+import { Logo } from "@/components/cooverly/Logo";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -26,28 +27,28 @@ export const Route = createFileRoute("/")({
 });
 
 const niches = [
-  { icon: Smile, title: "Med Spas & Clinics", result: "+32% booked consultations" },
-  { icon: Stethoscope, title: "Dentists", result: "Zero missed inquiries" },
-  { icon: Home, title: "Home Services", result: "$8K/mo recovered" },
-  { icon: Building2, title: "Real Estate", result: "3× viewings booked" },
-  { icon: Briefcase, title: "Agencies", result: "AI qualifies & books" },
+  { icon: Smile, title: "Med spa & estetica", result: "Più consulenze prenotate" },
+  { icon: Stethoscope, title: "Studi dentistici", result: "Zero richieste perse" },
+  { icon: Home, title: "Servizi casa", result: "Lead caldi gestiti subito" },
+  { icon: Building2, title: "Immobiliare", result: "Più visite in agenda" },
+  { icon: Briefcase, title: "Agenzie & consulenti", result: "Call qualificate in automatico" },
 ];
 
 const services = [
   {
     icon: Zap,
-    title: "AI Lead Conversion",
-    desc: "Instant response, qualification and booking — 24/7.",
+    title: "Risposta immediata ai lead",
+    desc: "Quando arriva un contatto, il sistema risponde in pochi secondi, qualifica e propone l'appuntamento.",
   },
   {
     icon: MessageSquare,
-    title: "AI Follow-Up Engine",
-    desc: "Automated SMS + email sequences that nurture every lead.",
+    title: "Follow-up che non molla",
+    desc: "Sequenze SMS e email automatiche per recuperare chi non ha risposto al primo messaggio.",
   },
   {
     icon: Calendar,
-    title: "Appointment Accelerator",
-    desc: "Cut no-shows, fill the calendar, drive show-up rate.",
+    title: "Agenda sempre piena",
+    desc: "Promemoria, conferme e riprogrammazioni gestiti da soli, per ridurre i no-show.",
   },
 ];
 
@@ -55,20 +56,20 @@ const cases = [
   {
     tag: "Med Spa · Miami",
     metric: "+32%",
-    label: "booked consultations in 30 days",
-    body: "Slow ad-lead replies were killing conversions. We deployed instant AI response + qualification.",
+    label: "consulenze prenotate in 30 giorni",
+    body: "Rispondevano ai lead delle ads ore dopo. Abbiamo attivato la risposta automatica e la qualifica: l'agenda si è riempita.",
   },
   {
-    tag: "HVAC · Dallas",
-    metric: "$8,400",
-    label: "monthly revenue recovered",
-    body: "AI follow-up reactivated cold leads and rebooked missed-call inquiries automatically.",
+    tag: "Servizi casa · Dallas",
+    metric: "$8.400",
+    label: "di fatturato recuperato ogni mese",
+    body: "Le chiamate perse e i lead vecchi sono stati ripresi dal sistema, con prenotazioni dirette in calendario.",
   },
   {
-    tag: "Real Estate · Madrid",
-    metric: "3.1×",
-    label: "more property viewings",
-    body: "AI nurtured leads from portals and booked viewings before competitors replied.",
+    tag: "Immobiliare · Madrid",
+    metric: "3,1×",
+    label: "visite agli immobili",
+    body: "L'AI ha contattato i lead dei portali per primi e ha fissato le visite prima della concorrenza.",
   },
 ];
 
@@ -92,20 +93,19 @@ function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: "var(--gradient-primary)" }}>
-            <Sparkles className="h-4 w-4" />
-          </span>
+        <Link to="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+          <Logo size={36} />
           <span className="text-lg">Cooverly</span>
-        </a>
+        </Link>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#services" className="hover:text-foreground transition">Systems</a>
-          <a href="#niches" className="hover:text-foreground transition">Who it's for</a>
-          <a href="#results" className="hover:text-foreground transition">Results</a>
-          <a href="#offer" className="hover:text-foreground transition">Pricing</a>
+          <a href="#services" className="hover:text-foreground transition">Sistemi</a>
+          <a href="#niches" className="hover:text-foreground transition">Per chi è</a>
+          <a href="#results" className="hover:text-foreground transition">Risultati</a>
+          <a href="#offer" className="hover:text-foreground transition">Prezzi</a>
+          <Link to="/contact" className="hover:text-foreground transition">Contatti</Link>
         </nav>
-        <Button size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
-          Book a demo <ArrowRight className="h-4 w-4" />
+        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
+          <Link to="/contact">Prenota una demo <ArrowRight className="h-4 w-4" /></Link>
         </Button>
       </div>
     </header>
@@ -129,7 +129,7 @@ function Hero() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
           >
             <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_12px_oklch(0.68_0.22_38)]" />
-            AI Revenue Infrastructure
+            AI Solutions · Spain & USA
           </motion.div>
 
           <motion.h1
@@ -138,14 +138,14 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
           >
-            Turn your leads into{" "}
+            Trasforma i tuoi contatti in{" "}
             <span
               className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "var(--gradient-primary)" }}
+              style={{ backgroundImage: "var(--gradient-brand)" }}
             >
-              paying customers
-            </span>{" "}
-            — automatically.
+              clienti paganti
+            </span>
+            , in automatico.
           </motion.h1>
 
           <motion.p
@@ -154,8 +154,8 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 max-w-xl text-lg text-muted-foreground"
           >
-            We install AI systems that respond, follow up and book appointments
-            for your business 24/7. No agency. Pure revenue infrastructure.
+            Installiamo sistemi di AI che rispondono ai tuoi lead, fanno
+            follow-up e fissano appuntamenti per te. Tutti i giorni, a ogni ora.
           </motion.p>
 
           <motion.div
@@ -164,12 +164,16 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.45 }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <Button size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
-              <MessageSquare className="h-4 w-4" />
-              Text us how it works
+            <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
+              <Link to="/contact">
+                <MessageSquare className="h-4 w-4" />
+                Scrivici su WhatsApp
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur hover:bg-card">
-              Book a demo <ArrowRight className="h-4 w-4" />
+            <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur hover:bg-card">
+              <Link to="/contact">
+                Prenota una demo <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
           </motion.div>
 
@@ -180,10 +184,10 @@ function Hero() {
             className="mt-12 flex items-center gap-3 text-sm text-muted-foreground"
           >
             <div className="h-px w-8 bg-border" />
-            Part of an international group ·{" "}
+            Parte di un gruppo internazionale ·{" "}
             <span className="font-medium text-foreground">Digitalizzato</span>
             <span className="rounded-full border border-border bg-card/50 px-2 py-0.5 text-[10px] uppercase tracking-wider">
-              EU AI Division 🇮🇹
+              Divisione AI Europa 🇮🇹
             </span>
           </motion.div>
         </motion.div>
@@ -194,29 +198,29 @@ function Hero() {
           transition={{ duration: 1 }}
           className="relative mx-auto"
         >
-          <AINodeNetwork />
+          <Logo3D />
           {/* Floating mini-cards */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-6 top-12 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
+            className="absolute -left-2 top-8 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
             style={{ boxShadow: "var(--shadow-glow)" }}
           >
             <div className="flex items-center gap-2 text-xs">
               <Clock className="h-3.5 w-3.5 text-primary-glow" />
-              Reply time
+              Risposta media
             </div>
-            <div className="text-2xl font-semibold">7s</div>
+            <div className="text-2xl font-semibold">7 sec</div>
           </motion.div>
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute -right-4 bottom-10 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
+            className="absolute -right-2 bottom-8 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
             style={{ boxShadow: "var(--shadow-accent)" }}
           >
             <div className="flex items-center gap-2 text-xs">
               <TrendingUp className="h-3.5 w-3.5 text-accent" />
-              Conversion
+              Conversione
             </div>
             <div className="text-2xl font-semibold">+32%</div>
           </motion.div>
@@ -227,7 +231,14 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["Instant Response", "AI Qualification", "Smart Follow-Up", "Auto-Booking", "Revenue Recovery", "24/7 Coverage"];
+  const items = [
+    "Risposta in pochi secondi",
+    "Qualifica automatica",
+    "Follow-up senza pause",
+    "Appuntamenti in calendario",
+    "Lead recuperati",
+    "Attivo 24 ore su 24",
+  ];
   return (
     <div className="relative overflow-hidden border-y border-border/50 bg-card/30 py-6 backdrop-blur">
       <motion.div
@@ -251,9 +262,9 @@ function Services() {
     <section id="services" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="The systems"
-          title="Three AI engines. One revenue machine."
-          sub="Plug-and-play infrastructure that captures, nurtures and converts every lead — automatically."
+          eyebrow="I sistemi"
+          title="Tre motori AI. Un'unica macchina che genera fatturato."
+          sub="Si installano sul tuo flusso esistente: catturano, qualificano e convertono ogni contatto."
         />
         <div className="mt-16 grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
           {services.map((s, i) => (
@@ -274,12 +285,12 @@ function Services() {
                   <s.icon className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  System {String(i + 1).padStart(2, "0")}
+                  Sistema {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="mt-2 text-2xl font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
                 <div className="mt-8 flex items-center gap-2 text-sm text-primary-glow">
-                  Learn more <ArrowRight className="h-4 w-4" />
+                  Scopri come funziona <ArrowRight className="h-4 w-4" />
                 </div>
               </TiltCard>
             </motion.div>
@@ -295,8 +306,9 @@ function Niches() {
     <section id="niches" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Who it's for"
-          title="Built for businesses that live or die by lead response."
+          eyebrow="Per chi è"
+          title="Pensato per chi vive di velocità di risposta."
+          sub="Se ogni lead vale, non puoi permetterti di farlo aspettare. Cooverly è già attivo in questi settori."
         />
         <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {niches.map((n, i) => (
@@ -325,8 +337,8 @@ function CaseStudies() {
     <section id="results" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Real results"
-          title="Numbers that move balance sheets."
+          eyebrow="Risultati reali"
+          title="Numeri che spostano davvero il fatturato."
         />
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {cases.map((c, i) => (
@@ -378,28 +390,29 @@ function Offer() {
           <div className="relative">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
               <Target className="h-3 w-3 text-accent" />
-              The Cooverly AI Revenue System
+              Il sistema Cooverly
             </div>
             <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
-              Custom AI infrastructure,<br />
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-primary)" }}>
-                deployed in days.
+              Un sistema AI su misura,<br />
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-brand)" }}>
+                attivo in pochi giorni.
               </span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-              One unified system. Built for your business. Tuned to your funnel.
+              Lo costruiamo intorno alla tua attività e al tuo modo di vendere.
+              Tu ricevi clienti, non lead da rincorrere.
             </p>
             <div className="mt-10 inline-flex items-end gap-2">
-              <span className="text-sm text-muted-foreground">Starting from</span>
+              <span className="text-sm text-muted-foreground">A partire da</span>
               <span className="text-4xl font-semibold">$297</span>
-              <span className="text-sm text-muted-foreground">/month</span>
+              <span className="text-sm text-muted-foreground">/mese</span>
             </div>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
-                Get your custom AI system <ArrowRight className="h-4 w-4" />
+              <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
+                <Link to="/contact">Voglio il mio sistema AI <ArrowRight className="h-4 w-4" /></Link>
               </Button>
-              <Button size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur">
-                <MessageSquare className="h-4 w-4" /> Text us
+              <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur">
+                <Link to="/contact"><MessageSquare className="h-4 w-4" /> Scrivici</Link>
               </Button>
             </div>
           </div>
@@ -413,14 +426,12 @@ function Footer() {
   return (
     <footer className="relative border-t border-border/50 px-6 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
-        <div className="flex items-center gap-2">
-          <span className="grid h-7 w-7 place-items-center rounded-md" style={{ background: "var(--gradient-primary)" }}>
-            <Sparkles className="h-3.5 w-3.5" />
-          </span>
+        <div className="flex items-center gap-3">
+          <Logo size={28} />
           <span className="font-medium text-foreground">Cooverly</span>
           <span>© {new Date().getFullYear()}</span>
         </div>
-        <div>An international AI revenue group · EU division: Digitalizzato 🇮🇹</div>
+        <div>Gruppo internazionale di soluzioni AI · Divisione EU: Digitalizzato 🇮🇹 · Spagna & USA</div>
       </div>
     </footer>
   );
