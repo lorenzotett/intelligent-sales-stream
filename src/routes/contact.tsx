@@ -96,9 +96,8 @@ function ContactPage() {
           <LangSwitch />
         </div>
 
-        <div className="mt-8 flex items-center gap-3">
-          <Logo size={40} />
-          <span className="text-xl font-semibold">Cooverly</span>
+        <div className="mt-8">
+          <Logo size={56} />
         </div>
 
         <motion.h1

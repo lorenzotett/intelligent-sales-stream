@@ -55,9 +55,8 @@ function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
-          <Logo size={36} />
-          <span className="text-lg">Cooverly</span>
+        <Link to="/" aria-label="Cooverly" className="flex items-center">
+          <Logo size={48} />
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
@@ -471,13 +470,16 @@ function Footer() {
   const { t } = useLang();
   return (
     <footer className="relative border-t border-border/50 px-6 py-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
-        <div className="flex items-center gap-3">
-          <Logo size={28} />
-          <span className="font-medium text-foreground">Cooverly</span>
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-sm text-muted-foreground">
+        <Logo size={56} />
+        <div className="text-center text-xs text-muted-foreground">
+          <span className="font-medium text-foreground/90">Cooverly</span>
+          <span className="mx-2">·</span>
+          <span>P.IVA 10904471215</span>
+          <span className="mx-2">·</span>
           <span>© {new Date().getFullYear()}</span>
         </div>
-        <div>{t.footer.tag}</div>
+        <div className="text-center">{t.footer.tag}</div>
       </div>
     </footer>
   );
