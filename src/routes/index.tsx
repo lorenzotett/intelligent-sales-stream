@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight, MessageSquare, Calendar, Zap,
   Stethoscope, Home, Building2, Briefcase, Smile,
-  TrendingUp, Clock, Target,
+  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
@@ -12,6 +12,7 @@ import { Logo3D } from "@/components/cooverly/Logo3D";
 import { Logo } from "@/components/cooverly/Logo";
 import { LangSwitch } from "@/components/cooverly/LangSwitch";
 import { useLang } from "@/i18n/LanguageContext";
+import { CONTACT } from "@/i18n/translations";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -43,7 +44,7 @@ function Index() {
       <Services />
       <Niches />
       <CaseStudies />
-      <Offer />
+      <Pricing />
       <Footer />
     </div>
   );
@@ -62,7 +63,7 @@ function Nav() {
           <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
           <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
           <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
-          <a href="#offer" className="hover:text-foreground transition">{t.nav.pricing}</a>
+          <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
         <div className="flex items-center gap-3">
