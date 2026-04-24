@@ -44,14 +44,14 @@ export function AINodeNetwork() {
         <svg viewBox="0 0 460 420" className="h-full w-full">
           <defs>
             <linearGradient id="edge" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stopColor="oklch(0.62 0.21 255)" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="oklch(0.72 0.18 250)" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="oklch(0.68 0.22 38)" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="oklch(0.55 0.18 258)" stopOpacity="0.15" />
+              <stop offset="50%" stopColor="oklch(0.78 0.13 240)" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="oklch(0.72 0.19 50)" stopOpacity="0.5" />
             </linearGradient>
             <radialGradient id="nodeFill" cx="0.3" cy="0.3">
-              <stop offset="0%" stopColor="oklch(0.95 0.02 250)" />
-              <stop offset="60%" stopColor="oklch(0.62 0.21 255)" />
-              <stop offset="100%" stopColor="oklch(0.32 0.12 258)" />
+              <stop offset="0%" stopColor="oklch(0.99 0.005 250)" />
+              <stop offset="55%" stopColor="oklch(0.78 0.13 240)" />
+              <stop offset="100%" stopColor="oklch(0.18 0.09 260)" />
             </radialGradient>
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="b" />
@@ -72,7 +72,7 @@ export function AINodeNetwork() {
                 />
                 <motion.circle
                   r="3"
-                  fill="oklch(0.74 0.19 55)"
+                  fill="oklch(0.72 0.19 50)"
                   filter="url(#glow)"
                   initial={{ cx: A.x, cy: A.y, opacity: 0 }}
                   animate={{
