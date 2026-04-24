@@ -1,7 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { LanguageProvider } from "@/i18n/LanguageContext";
 
 function NotFoundComponent() {
   return (
@@ -31,13 +30,17 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { name: "description", content: "AI Revenue Engine installs automated AI systems to convert leads into paying customers 24/7." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:description", content: "AI Revenue Engine installs automated AI systems to convert leads into paying customers 24/7." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:description", content: "AI Revenue Engine installs automated AI systems to convert leads into paying customers 24/7." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d93418a3-586a-4ea1-90c2-5eb42129582f/id-preview-928ef00e--cc6bb672-6c94-4cf0-8d27-1f2d623074f6.lovable.app-1777047451724.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d93418a3-586a-4ea1-90c2-5eb42129582f/id-preview-928ef00e--cc6bb672-6c94-4cf0-8d27-1f2d623074f6.lovable.app-1777047451724.png" },
     ],
     links: [
       {
@@ -66,9 +69,5 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return (
-    <LanguageProvider>
-      <Outlet />
-    </LanguageProvider>
-  );
+  return <Outlet />;
 }
