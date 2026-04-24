@@ -10,68 +10,28 @@ import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
 import { TiltCard } from "@/components/cooverly/TiltCard";
 import { Logo3D } from "@/components/cooverly/Logo3D";
 import { Logo } from "@/components/cooverly/Logo";
+import { LangSwitch } from "@/components/cooverly/LangSwitch";
+import { useLang } from "@/i18n/LanguageContext";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Cooverly — Turn Leads Into Customers, Automatically" },
+      { title: "Cooverly — AI Revenue Systems for Service Businesses" },
       {
         name: "description",
         content:
-          "AI revenue systems that respond, follow up, and book appointments 24/7 for med spas, dentists, home services, real estate and agencies.",
+          "We deploy AI systems that respond, qualify and book appointments 24/7 for med spas, dental practices, home services, real estate and agencies.",
       },
+      { property: "og:title", content: "Cooverly — AI Revenue Systems" },
+      { property: "og:description", content: "AI that answers, follows up and books appointments for your business — 24/7." },
     ],
   }),
 });
 
-const niches = [
-  { icon: Smile, title: "Med spa & estetica", result: "Più consulenze prenotate" },
-  { icon: Stethoscope, title: "Studi dentistici", result: "Zero richieste perse" },
-  { icon: Home, title: "Servizi casa", result: "Lead caldi gestiti subito" },
-  { icon: Building2, title: "Immobiliare", result: "Più visite in agenda" },
-  { icon: Briefcase, title: "Agenzie & consulenti", result: "Call qualificate in automatico" },
-];
-
-const services = [
-  {
-    icon: Zap,
-    title: "Risposta immediata ai lead",
-    desc: "Quando arriva un contatto, il sistema risponde in pochi secondi, qualifica e propone l'appuntamento.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Follow-up che non molla",
-    desc: "Sequenze SMS e email automatiche per recuperare chi non ha risposto al primo messaggio.",
-  },
-  {
-    icon: Calendar,
-    title: "Agenda sempre piena",
-    desc: "Promemoria, conferme e riprogrammazioni gestiti da soli, per ridurre i no-show.",
-  },
-];
-
-const cases = [
-  {
-    tag: "Med Spa · Miami",
-    metric: "+32%",
-    label: "consulenze prenotate in 30 giorni",
-    body: "Rispondevano ai lead delle ads ore dopo. Abbiamo attivato la risposta automatica e la qualifica: l'agenda si è riempita.",
-  },
-  {
-    tag: "Servizi casa · Dallas",
-    metric: "$8.400",
-    label: "di fatturato recuperato ogni mese",
-    body: "Le chiamate perse e i lead vecchi sono stati ripresi dal sistema, con prenotazioni dirette in calendario.",
-  },
-  {
-    tag: "Immobiliare · Madrid",
-    metric: "3,1×",
-    label: "visite agli immobili",
-    body: "L'AI ha contattato i lead dei portali per primi e ha fissato le visite prima della concorrenza.",
-  },
-];
+const nicheIcons = [Smile, Stethoscope, Home, Building2, Briefcase];
+const serviceIcons = [Zap, MessageSquare, Calendar];
 
 function Index() {
   return (
@@ -90,6 +50,7 @@ function Index() {
 }
 
 function Nav() {
+  const { t } = useLang();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -98,21 +59,25 @@ function Nav() {
           <span className="text-lg">Cooverly</span>
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#services" className="hover:text-foreground transition">Sistemi</a>
-          <a href="#niches" className="hover:text-foreground transition">Per chi è</a>
-          <a href="#results" className="hover:text-foreground transition">Risultati</a>
-          <a href="#offer" className="hover:text-foreground transition">Prezzi</a>
-          <Link to="/contact" className="hover:text-foreground transition">Contatti</Link>
+          <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
+          <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
+          <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
+          <a href="#offer" className="hover:text-foreground transition">{t.nav.pricing}</a>
+          <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
-        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
-          <Link to="/contact">Prenota una demo <ArrowRight className="h-4 w-4" /></Link>
-        </Button>
+        <div className="flex items-center gap-3">
+          <LangSwitch />
+          <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
+            <Link to="/contact">{t.nav.bookDemo} <ArrowRight className="h-4 w-4" /></Link>
+          </Button>
+        </div>
       </div>
     </header>
   );
 }
 
 function Hero() {
+  const { t } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yText = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -129,7 +94,7 @@ function Hero() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
           >
             <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_12px_oklch(0.68_0.22_38)]" />
-            AI Solutions · Spain & USA
+            {t.hero.badge}
           </motion.div>
 
           <motion.h1
@@ -138,14 +103,14 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
           >
-            Trasforma i tuoi contatti in{" "}
+            {t.hero.titleA}{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "var(--gradient-brand)" }}
             >
-              clienti paganti
+              {t.hero.titleHighlight}
             </span>
-            , in automatico.
+            {t.hero.titleB}
           </motion.h1>
 
           <motion.p
@@ -154,8 +119,7 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 max-w-xl text-lg text-muted-foreground"
           >
-            Installiamo sistemi di AI che rispondono ai tuoi lead, fanno
-            follow-up e fissano appuntamenti per te. Tutti i giorni, a ogni ora.
+            {t.hero.sub}
           </motion.p>
 
           <motion.div
@@ -167,12 +131,12 @@ function Hero() {
             <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
               <Link to="/contact">
                 <MessageSquare className="h-4 w-4" />
-                Scrivici su WhatsApp
+                {t.hero.ctaPrimary}
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur hover:bg-card">
               <Link to="/contact">
-                Prenota una demo <ArrowRight className="h-4 w-4" />
+                {t.hero.ctaSecondary} <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </motion.div>
@@ -181,13 +145,13 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-12 flex items-center gap-3 text-sm text-muted-foreground"
+            className="mt-12 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"
           >
             <div className="h-px w-8 bg-border" />
-            Parte di un gruppo internazionale ·{" "}
+            {t.hero.group}{" "}
             <span className="font-medium text-foreground">Digitalizzato</span>
             <span className="rounded-full border border-border bg-card/50 px-2 py-0.5 text-[10px] uppercase tracking-wider">
-              Divisione AI Europa 🇮🇹
+              {t.hero.groupBadge}
             </span>
           </motion.div>
         </motion.div>
@@ -199,7 +163,6 @@ function Hero() {
           className="relative mx-auto"
         >
           <Logo3D />
-          {/* Floating mini-cards */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -208,9 +171,9 @@ function Hero() {
           >
             <div className="flex items-center gap-2 text-xs">
               <Clock className="h-3.5 w-3.5 text-primary-glow" />
-              Risposta media
+              {t.hero.pillResponse}
             </div>
-            <div className="text-2xl font-semibold">7 sec</div>
+            <div className="text-2xl font-semibold">{t.hero.pillResponseValue}</div>
           </motion.div>
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -220,9 +183,9 @@ function Hero() {
           >
             <div className="flex items-center gap-2 text-xs">
               <TrendingUp className="h-3.5 w-3.5 text-accent" />
-              Conversione
+              {t.hero.pillConversion}
             </div>
-            <div className="text-2xl font-semibold">+32%</div>
+            <div className="text-2xl font-semibold">{t.hero.pillConversionValue}</div>
           </motion.div>
         </motion.div>
       </div>
@@ -231,14 +194,8 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = [
-    "Risposta in pochi secondi",
-    "Qualifica automatica",
-    "Follow-up senza pause",
-    "Appuntamenti in calendario",
-    "Lead recuperati",
-    "Attivo 24 ore su 24",
-  ];
+  const { t } = useLang();
+  const items = t.marquee;
   return (
     <div className="relative overflow-hidden border-y border-border/50 bg-card/30 py-6 backdrop-blur">
       <motion.div
@@ -258,43 +215,41 @@ function Marquee() {
 }
 
 function Services() {
+  const { t } = useLang();
   return (
     <section id="services" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="I sistemi"
-          title="Tre motori AI. Un'unica macchina che genera fatturato."
-          sub="Si installano sul tuo flusso esistente: catturano, qualificano e convertono ogni contatto."
-        />
+        <SectionHeading eyebrow={t.services.eyebrow} title={t.services.title} sub={t.services.sub} />
         <div className="mt-16 grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
-          {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-            >
-              <TiltCard className="h-full" glow={i === 1 ? "accent" : "primary"}>
-                <div
-                  className="mb-6 grid h-12 w-12 place-items-center rounded-xl"
-                  style={{
-                    background: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)",
-                  }}
-                >
-                  <s.icon className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Sistema {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-                <div className="mt-8 flex items-center gap-2 text-sm text-primary-glow">
-                  Scopri come funziona <ArrowRight className="h-4 w-4" />
-                </div>
-              </TiltCard>
-            </motion.div>
-          ))}
+          {t.services.items.map((s, i) => {
+            const Icon = serviceIcons[i];
+            return (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <TiltCard className="h-full" glow={i === 1 ? "accent" : "primary"}>
+                  <div
+                    className="mb-6 grid h-12 w-12 place-items-center rounded-xl"
+                    style={{ background: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
+                  >
+                    <Icon className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    {t.services.systemLabel} {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                  <div className="mt-8 flex items-center gap-2 text-sm text-primary-glow">
+                    {t.services.learn} <ArrowRight className="h-4 w-4" />
+                  </div>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -302,30 +257,30 @@ function Services() {
 }
 
 function Niches() {
+  const { t } = useLang();
   return (
     <section id="niches" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="Per chi è"
-          title="Pensato per chi vive di velocità di risposta."
-          sub="Se ogni lead vale, non puoi permetterti di farlo aspettare. Cooverly è già attivo in questi settori."
-        />
+        <SectionHeading eyebrow={t.niches.eyebrow} title={t.niches.title} sub={t.niches.sub} />
         <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {niches.map((n, i) => (
-            <motion.div
-              key={n.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-xl transition-all hover:border-primary/50 hover:bg-card"
-            >
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all group-hover:bg-primary/20" />
-              <n.icon className="relative h-7 w-7 text-primary-glow" />
-              <div className="relative mt-6 text-base font-semibold">{n.title}</div>
-              <div className="relative mt-2 text-xs text-accent">{n.result}</div>
-            </motion.div>
-          ))}
+          {t.niches.items.map((n, i) => {
+            const Icon = nicheIcons[i];
+            return (
+              <motion.div
+                key={n.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-xl transition-all hover:border-primary/50 hover:bg-card"
+              >
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all group-hover:bg-primary/20" />
+                <Icon className="relative h-7 w-7 text-primary-glow" />
+                <div className="relative mt-6 text-base font-semibold">{n.title}</div>
+                <div className="relative mt-2 text-xs text-accent">{n.result}</div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -333,15 +288,13 @@ function Niches() {
 }
 
 function CaseStudies() {
+  const { t } = useLang();
   return (
     <section id="results" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="Risultati reali"
-          title="Numeri che spostano davvero il fatturato."
-        />
+        <SectionHeading eyebrow={t.cases.eyebrow} title={t.cases.title} />
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {cases.map((c, i) => (
+          {t.cases.items.map((c, i) => (
             <motion.div
               key={c.tag}
               initial={{ opacity: 0, y: 40 }}
@@ -350,10 +303,7 @@ function CaseStudies() {
               transition={{ duration: 0.6, delay: i * 0.12 }}
               className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-8 backdrop-blur-xl"
             >
-              <div
-                className="absolute inset-x-0 top-0 h-px"
-                style={{ background: "var(--gradient-primary)" }}
-              />
+              <div className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--gradient-primary)" }} />
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.tag}</div>
               <div
                 className="mt-6 bg-clip-text text-6xl font-semibold tracking-tight text-transparent"
@@ -372,6 +322,7 @@ function CaseStudies() {
 }
 
 function Offer() {
+  const { t } = useLang();
   return (
     <section id="offer" className="relative px-6 py-32">
       <div className="mx-auto max-w-5xl">
@@ -383,36 +334,30 @@ function Offer() {
           className="relative overflow-hidden rounded-3xl border border-border bg-card/60 p-12 text-center backdrop-blur-2xl md:p-16"
           style={{ boxShadow: "var(--shadow-glow)" }}
         >
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{ background: "var(--gradient-hero)" }}
-          />
+          <div className="absolute inset-0 opacity-30" style={{ background: "var(--gradient-hero)" }} />
           <div className="relative">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
               <Target className="h-3 w-3 text-accent" />
-              Il sistema Cooverly
+              {t.offer.pill}
             </div>
             <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
-              Un sistema AI su misura,<br />
+              {t.offer.titleA}<br />
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                attivo in pochi giorni.
+                {t.offer.titleHighlight}
               </span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-              Lo costruiamo intorno alla tua attività e al tuo modo di vendere.
-              Tu ricevi clienti, non lead da rincorrere.
-            </p>
+            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">{t.offer.sub}</p>
             <div className="mt-10 inline-flex items-end gap-2">
-              <span className="text-sm text-muted-foreground">A partire da</span>
+              <span className="text-sm text-muted-foreground">{t.offer.from}</span>
               <span className="text-4xl font-semibold">$297</span>
-              <span className="text-sm text-muted-foreground">/mese</span>
+              <span className="text-sm text-muted-foreground">{t.offer.perMonth}</span>
             </div>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
-                <Link to="/contact">Voglio il mio sistema AI <ArrowRight className="h-4 w-4" /></Link>
+                <Link to="/contact">{t.offer.ctaPrimary} <ArrowRight className="h-4 w-4" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur">
-                <Link to="/contact"><MessageSquare className="h-4 w-4" /> Scrivici</Link>
+                <Link to="/contact"><MessageSquare className="h-4 w-4" /> {t.offer.ctaSecondary}</Link>
               </Button>
             </div>
           </div>
@@ -423,6 +368,7 @@ function Offer() {
 }
 
 function Footer() {
+  const { t } = useLang();
   return (
     <footer className="relative border-t border-border/50 px-6 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
@@ -431,7 +377,7 @@ function Footer() {
           <span className="font-medium text-foreground">Cooverly</span>
           <span>© {new Date().getFullYear()}</span>
         </div>
-        <div>Gruppo internazionale di soluzioni AI · Divisione EU: Digitalizzato 🇮🇹 · Spagna & USA</div>
+        <div>{t.footer.tag}</div>
       </div>
     </footer>
   );
