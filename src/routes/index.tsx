@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight, MessageSquare, Calendar, Zap,
   Stethoscope, Home, Building2, Briefcase, Smile,
-  TrendingUp, Clock, Target,
+  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
@@ -12,6 +12,7 @@ import { Logo3D } from "@/components/cooverly/Logo3D";
 import { Logo } from "@/components/cooverly/Logo";
 import { LangSwitch } from "@/components/cooverly/LangSwitch";
 import { useLang } from "@/i18n/LanguageContext";
+import { CONTACT } from "@/i18n/translations";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -43,7 +44,7 @@ function Index() {
       <Services />
       <Niches />
       <CaseStudies />
-      <Offer />
+      <Pricing />
       <Footer />
     </div>
   );
@@ -62,7 +63,7 @@ function Nav() {
           <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
           <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
           <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
-          <a href="#offer" className="hover:text-foreground transition">{t.nav.pricing}</a>
+          <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
         <div className="flex items-center gap-3">
@@ -321,49 +322,148 @@ function CaseStudies() {
   );
 }
 
-function Offer() {
+function Pricing() {
   const { t } = useLang();
+  const p = t.pricing;
+
+  const waLink = (planName: string) =>
+    `${CONTACT.whatsapp}?text=${encodeURIComponent(
+      `Hi Cooverly, I'd like to start with the ${planName} plan (MRR).`,
+    )}`;
+  const mailLink = (planName: string) =>
+    `mailto:${CONTACT.email}?subject=${encodeURIComponent(
+      `Cooverly Lifetime — ${planName}`,
+    )}&body=${encodeURIComponent(
+      `Hi Cooverly team,\n\nI'm interested in the ${planName} (Lifetime) plan. Please share next steps.\n\nThanks,`,
+    )}`;
+
   return (
-    <section id="offer" className="relative px-6 py-32">
-      <div className="mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-card/60 p-12 text-center backdrop-blur-2xl md:p-16"
-          style={{ boxShadow: "var(--shadow-glow)" }}
-        >
-          <div className="absolute inset-0 opacity-30" style={{ background: "var(--gradient-hero)" }} />
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-              <Target className="h-3 w-3 text-accent" />
-              {t.offer.pill}
+    <section id="pricing" className="relative px-6 py-32">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading eyebrow={p.eyebrow} title={p.title} sub={p.sub} />
+
+        {/* MRR */}
+        <div className="mt-16">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-primary-glow backdrop-blur">
+              <Sparkles className="h-3 w-3" /> {p.mrrLabel}
             </div>
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
-              {t.offer.titleA}<br />
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                {t.offer.titleHighlight}
-              </span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">{t.offer.sub}</p>
-            <div className="mt-10 inline-flex items-end gap-2">
-              <span className="text-sm text-muted-foreground">{t.offer.from}</span>
-              <span className="text-4xl font-semibold">$297</span>
-              <span className="text-sm text-muted-foreground">{t.offer.perMonth}</span>
-            </div>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
-                <Link to="/contact">{t.offer.ctaPrimary} <ArrowRight className="h-4 w-4" /></Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur">
-                <Link to="/contact"><MessageSquare className="h-4 w-4" /> {t.offer.ctaSecondary}</Link>
-              </Button>
-            </div>
+            <p className="max-w-md text-xs text-muted-foreground">{p.mrrNote}</p>
           </div>
-        </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+            {p.mrrPlans.map((plan, i) => (
+              <PlanCard
+                key={plan.name}
+                index={i}
+                name={plan.name}
+                price={plan.price}
+                period={p.perMonth}
+                tagline={plan.tagline}
+                features={plan.features}
+                highlight={!!plan.highlight}
+                badge={p.mostPopular}
+                ctaLabel={p.mrrCta}
+                ctaHref={waLink(plan.name)}
+                ctaIcon="whatsapp"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Lifetime */}
+        <div className="mt-24">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent backdrop-blur">
+              <InfinityIcon className="h-3 w-3" /> {p.lifetimeLabel}
+            </div>
+            <p className="max-w-md text-xs text-muted-foreground">{p.lifetimeNote}</p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+            {p.lifetimePlans.map((plan, i) => (
+              <PlanCard
+                key={plan.name}
+                index={i}
+                name={plan.name}
+                price={plan.price}
+                period={p.oneTime}
+                tagline={plan.tagline}
+                features={plan.features}
+                highlight={!!plan.highlight}
+                badge={p.mostPopular}
+                ctaLabel={p.lifetimeCta}
+                ctaHref={mailLink(plan.name)}
+                ctaIcon="mail"
+                accent
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function PlanCard({
+  index, name, price, period, tagline, features, highlight, badge, ctaLabel, ctaHref, ctaIcon, accent,
+}: {
+  index: number; name: string; price: string; period: string; tagline: string;
+  features: string[]; highlight: boolean; badge: string;
+  ctaLabel: string; ctaHref: string; ctaIcon: "whatsapp" | "mail"; accent?: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      <TiltCard className="h-full" glow={accent ? "accent" : "primary"}>
+        {highlight && (
+          <div
+            className="mb-4 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground"
+            style={{ background: accent ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
+          >
+            <Sparkles className="h-3 w-3" /> {badge}
+          </div>
+        )}
+        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{name}</div>
+        <div className="mt-3 flex items-end gap-1.5">
+          <span
+            className="bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-5xl"
+            style={{ backgroundImage: accent ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
+          >
+            {price}
+          </span>
+          <span className="pb-1 text-sm text-muted-foreground">{period}</span>
+        </div>
+        <p className="mt-3 text-sm text-muted-foreground">{tagline}</p>
+
+        <ul className="mt-6 space-y-2.5">
+          {features.map((f) => (
+            <li key={f} className="flex items-start gap-2.5 text-sm">
+              <Check className={`mt-0.5 h-4 w-4 shrink-0 ${accent ? "text-accent" : "text-primary-glow"}`} />
+              <span className="text-foreground/85">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Button
+          asChild
+          className={`mt-8 h-11 w-full ${
+            accent
+              ? "border border-accent/40 bg-accent/10 text-accent hover:bg-accent/20"
+              : "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]"
+          }`}
+        >
+          <a href={ctaHref} target={ctaIcon === "whatsapp" ? "_blank" : undefined} rel="noreferrer">
+            {ctaIcon === "whatsapp" ? <MessageSquare className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+            {ctaLabel}
+          </a>
+        </Button>
+      </TiltCard>
+    </motion.div>
   );
 }
 
