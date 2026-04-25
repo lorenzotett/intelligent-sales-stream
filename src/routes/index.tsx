@@ -230,13 +230,21 @@ function Marquee() {
   );
 }
 
-function Services() {
-  return null;
+function Diagnostic() {
+  const ex = useExtras();
+  return (
+    <section id="diagnostic" className="relative px-6 py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
+        <div className="mt-12 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-8">
+          <RevenueAnalyzer />
+        </div>
+      </div>
+    </section>
+  );
 }
 
-function _Services_placeholder() {
-  return null;
-}
+function Services() {
   const { t } = useLang();
   return (
     <section id="services" className="relative px-6 py-32">
