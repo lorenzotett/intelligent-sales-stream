@@ -231,6 +231,12 @@ function Marquee() {
 }
 
 function Services() {
+  return null;
+}
+
+function _Services_placeholder() {
+  return null;
+}
   const { t } = useLang();
   return (
     <section id="services" className="relative px-6 py-32">
