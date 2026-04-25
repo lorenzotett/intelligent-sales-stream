@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight, MessageSquare, Calendar, Zap,
   Stethoscope, Home, Building2, Briefcase, Smile,
-  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon,
+  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon, Activity,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
@@ -13,6 +13,8 @@ import { Logo } from "@/components/cooverly/Logo";
 import { LangSwitch } from "@/components/cooverly/LangSwitch";
 import { useLang } from "@/i18n/LanguageContext";
 import { CONTACT } from "@/i18n/translations";
+import { useExtras } from "@/i18n/extras";
+import { useDiagnosticModal } from "@/components/cooverly/DiagnosticModal";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -41,6 +43,7 @@ function Index() {
       <Nav />
       <Hero />
       <Marquee />
+      <Diagnostic />
       <Services />
       <Niches />
       <CaseStudies />
