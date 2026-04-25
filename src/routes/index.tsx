@@ -55,6 +55,8 @@ function Index() {
 
 function Nav() {
   const { t } = useLang();
+  const ex = useExtras();
+  const { openModal } = useDiagnosticModal();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
@@ -66,10 +68,20 @@ function Nav() {
           <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
           <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
           <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
+          <button onClick={openModal} className="hover:text-foreground transition">{ex.diagnostic.navItem}</button>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LangSwitch />
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={openModal}
+            className="hidden border-border bg-card/40 backdrop-blur sm:inline-flex"
+          >
+            <Activity className="h-4 w-4" />
+            <span className="hidden md:inline">{ex.diagnostic.navItem}</span>
+          </Button>
           <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
             <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-4 w-4" /></Link>
           </Button>
@@ -471,6 +483,7 @@ function PlanCard({
 
 function Footer() {
   const { t } = useLang();
+  const ex = useExtras();
   return (
     <footer className="relative border-t border-border/50 px-6 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-sm text-muted-foreground">
@@ -483,6 +496,11 @@ function Footer() {
           <span>© {new Date().getFullYear()}</span>
         </div>
         <div className="text-center">{t.footer.tag}</div>
+        <div className="text-center text-xs">
+          <Link to="/privacy" className="text-muted-foreground transition hover:text-foreground">
+            {ex.cookies.manage}
+          </Link>
+        </div>
       </div>
     </footer>
   );
