@@ -54,21 +54,21 @@ function Nav() {
   const { t } = useLang();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" aria-label="Cooverly" className="group flex items-center">
-          <Logo size={72} />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+        <Link to="/" aria-label="Cooverly" className="group flex shrink-0 items-center">
+          <Logo size={120} />
         </Link>
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
           <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
           <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
           <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
           <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LangSwitch />
           <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
-            <Link to="/contact">{t.nav.bookDemo} <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-4 w-4" /></Link>
           </Button>
         </div>
       </div>
@@ -84,9 +84,9 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
 
   return (
-    <section ref={ref} className="relative px-6 pt-20 pb-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-        <motion.div style={{ y: yText, opacity }}>
+    <section ref={ref} className="relative px-6 pt-16 pb-24 sm:pt-20 sm:pb-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <motion.div style={{ y: yText, opacity }} className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 max-w-xl text-lg text-muted-foreground"
+            className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg mx-auto lg:mx-0"
           >
             {t.hero.sub}
           </motion.p>
@@ -126,7 +126,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start"
           >
             <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
               <Link to="/contact">
@@ -145,7 +145,7 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-12 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"
+            className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground lg:justify-start"
           >
             <div className="h-px w-8 bg-border" />
             {t.hero.group}{" "}
