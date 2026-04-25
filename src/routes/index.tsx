@@ -16,6 +16,7 @@ import { CONTACT } from "@/i18n/translations";
 import { useExtras } from "@/i18n/extras";
 import { useDiagnosticModal } from "@/components/cooverly/DiagnosticModal";
 import { useRef } from "react";
+import { RevenueAnalyzer } from "@/components/cooverly/RevenueAnalyzer";
 
 export const Route = createFileRoute("/")({
   component: Index,
