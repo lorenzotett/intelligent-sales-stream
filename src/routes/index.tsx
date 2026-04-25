@@ -38,13 +38,21 @@ const nicheIcons = [Smile, Stethoscope, Home, Building2, Briefcase];
 const serviceIcons = [Zap, MessageSquare, Calendar];
 
 function Index() {
+  const ex = useExtras();
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
       <AnimatedBackground />
       <Nav />
       <Hero />
       <Marquee />
-      <Diagnostic />
+      <section id="diagnostic" className="relative px-6 py-24 sm:py-32">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
+          <div className="mt-12 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-8">
+            <RevenueAnalyzer />
+          </div>
+        </div>
+      </section>
       <Services />
       <Niches />
       <CaseStudies />
@@ -227,20 +235,6 @@ function Marquee() {
         ))}
       </motion.div>
     </div>
-  );
-}
-
-function Diagnostic() {
-  const ex = useExtras();
-  return (
-    <section id="diagnostic" className="relative px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
-        <div className="mt-12 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-8">
-          <RevenueAnalyzer />
-        </div>
-      </div>
-    </section>
   );
 }
 
