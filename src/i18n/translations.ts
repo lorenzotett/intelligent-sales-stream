@@ -7,6 +7,11 @@ export const CONTACT = {
   email: "hello@cooverly.com",
 };
 
+export const SITE = {
+  name: "Cooverly",
+  domain: "cooverly.com",
+};
+
 export const translations = {
   en: {
     nav: {

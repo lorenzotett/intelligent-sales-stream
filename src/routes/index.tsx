@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight, MessageSquare, Calendar, Zap,
   Stethoscope, Home, Building2, Briefcase, Smile,
-  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon,
+  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon, Activity,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
@@ -13,7 +13,10 @@ import { Logo } from "@/components/cooverly/Logo";
 import { LangSwitch } from "@/components/cooverly/LangSwitch";
 import { useLang } from "@/i18n/LanguageContext";
 import { CONTACT } from "@/i18n/translations";
+import { useExtras } from "@/i18n/extras";
+import { useDiagnosticModal } from "@/components/cooverly/DiagnosticModal";
 import { useRef } from "react";
+import { RevenueAnalyzer } from "@/components/cooverly/RevenueAnalyzer";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -41,6 +44,7 @@ function Index() {
       <Nav />
       <Hero />
       <Marquee />
+      <Diagnostic />
       <Services />
       <Niches />
       <CaseStudies />
@@ -52,6 +56,8 @@ function Index() {
 
 function Nav() {
   const { t } = useLang();
+  const ex = useExtras();
+  const { openModal } = useDiagnosticModal();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
@@ -63,10 +69,20 @@ function Nav() {
           <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
           <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
           <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
+          <button onClick={openModal} className="hover:text-foreground transition">{ex.diagnostic.navItem}</button>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LangSwitch />
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={openModal}
+            className="hidden border-border bg-card/40 backdrop-blur sm:inline-flex"
+          >
+            <Activity className="h-4 w-4" />
+            <span className="hidden md:inline">{ex.diagnostic.navItem}</span>
+          </Button>
           <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
             <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-4 w-4" /></Link>
           </Button>
@@ -211,6 +227,20 @@ function Marquee() {
         ))}
       </motion.div>
     </div>
+  );
+}
+
+function Diagnostic() {
+  const ex = useExtras();
+  return (
+    <section id="diagnostic" className="relative px-6 py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
+        <div className="mt-12 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-8">
+          <RevenueAnalyzer />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -468,6 +498,7 @@ function PlanCard({
 
 function Footer() {
   const { t } = useLang();
+  const ex = useExtras();
   return (
     <footer className="relative border-t border-border/50 px-6 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-sm text-muted-foreground">
@@ -480,6 +511,11 @@ function Footer() {
           <span>© {new Date().getFullYear()}</span>
         </div>
         <div className="text-center">{t.footer.tag}</div>
+        <div className="text-center text-xs">
+          <Link to="/privacy" className="text-muted-foreground transition hover:text-foreground">
+            {ex.cookies.manage}
+          </Link>
+        </div>
       </div>
     </footer>
   );

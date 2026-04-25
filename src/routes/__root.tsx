@@ -2,6 +2,9 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { DiagnosticModalProvider } from "@/components/cooverly/DiagnosticModal";
+import { CookieBanner } from "@/components/cooverly/CookieBanner";
+import { PromoPopup } from "@/components/cooverly/PromoPopup";
 
 function NotFoundComponent() {
   return (
@@ -72,7 +75,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <LanguageProvider>
-      <Outlet />
+      <DiagnosticModalProvider>
+        <Outlet />
+        <PromoPopup />
+        <CookieBanner />
+      </DiagnosticModalProvider>
     </LanguageProvider>
   );
 }
