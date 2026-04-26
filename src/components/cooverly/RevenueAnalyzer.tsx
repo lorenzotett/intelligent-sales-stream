@@ -846,3 +846,104 @@ function StatCard({ label, value, sub, Icon, tone }: { label: string; value: str
     </motion.div>
   );
 }
+
+function RevenueChart({
+  current, lost, opportunity, slow, unanswered, noShow, lang,
+}: {
+  current: number; lost: number; opportunity: number;
+  slow: number; unanswered: number; noShow: number;
+  lang: "en" | "es" | "it";
+}) {
+  const labels = {
+    en: { bars: "Monthly revenue map", current: "Current", lost: "Lost", recover: "Recoverable", breakdown: "Where the money is leaking", slow: "Slow response", unanswered: "Unanswered leads", noShow: "No-shows" },
+    es: { bars: "Mapa de ingresos mensuales", current: "Actual", lost: "Perdido", recover: "Recuperable", breakdown: "Dónde se fuga el dinero", slow: "Respuesta lenta", unanswered: "Leads sin contestar", noShow: "No-shows" },
+    it: { bars: "Mappa del fatturato mensile", current: "Attuale", lost: "Perso", recover: "Recuperabile", breakdown: "Da dove perdi soldi", slow: "Risposta lenta", unanswered: "Lead senza risposta", noShow: "No-show" },
+  }[lang];
+
+  const max = Math.max(current, lost, opportunity, 1);
+  const bars = [
+    { l: labels.current, v: current, color: "oklch(0.78 0.13 240)", glow: "oklch(0.78 0.13 240 / 0.5)" },
+    { l: labels.lost, v: lost, color: "oklch(0.65 0.22 28)", glow: "oklch(0.65 0.22 28 / 0.55)" },
+    { l: labels.recover, v: opportunity, color: "oklch(0.72 0.19 140)", glow: "oklch(0.72 0.19 140 / 0.55)" },
+  ];
+
+  const totalLost = Math.max(slow + unanswered + noShow, 1);
+  const segments = [
+    { l: labels.slow, v: slow, color: "oklch(0.78 0.13 240)" },
+    { l: labels.unanswered, v: unanswered, color: "oklch(0.65 0.22 28)" },
+    { l: labels.noShow, v: noShow, color: "oklch(0.72 0.19 50)" },
+  ];
+
+  const fmt0 = (n: number) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(Math.round(n));
+
+  return (
+    <div className="mt-6 grid gap-6 lg:grid-cols-2">
+      {/* 3D bar chart */}
+      <div
+        className="relative overflow-hidden rounded-2xl border border-border bg-background/40 p-5"
+        style={{ boxShadow: "0 18px 60px -22px oklch(0.78 0.13 240 / 0.45)" }}
+      >
+        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{labels.bars}</div>
+        <div className="mt-6 flex items-end gap-4 sm:gap-6" style={{ height: 220, perspective: 900 }}>
+          {bars.map((b, i) => {
+            const h = (b.v / max) * 180 + 8;
+            return (
+              <motion.div
+                key={b.l}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: h, opacity: 1 }}
+                transition={{ delay: 0.1 + i * 0.12, duration: 0.7, ease: "easeOut" }}
+                className="relative flex-1 rounded-t-lg"
+                style={{
+                  background: `linear-gradient(180deg, ${b.color} 0%, color-mix(in oklab, ${b.color} 60%, transparent) 100%)`,
+                  boxShadow: `0 -6px 30px -8px ${b.glow}, inset 0 1px 0 oklch(1 0 0 / 0.25)`,
+                  transform: "rotateX(8deg)",
+                  transformStyle: "preserve-3d",
+                }}
+                aria-label={`${b.l}: ${fmt0(b.v)}`}
+              >
+                <span className="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold" style={{ color: b.color }}>
+                  {fmt0(b.v)}
+                </span>
+              </motion.div>
+            );
+          })}
+        </div>
+        <div className="mt-3 flex justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+          {bars.map((b) => <div key={b.l} className="flex-1 text-center">{b.l}</div>)}
+        </div>
+      </div>
+
+      {/* Breakdown bar */}
+      <div
+        className="relative overflow-hidden rounded-2xl border border-border bg-background/40 p-5"
+        style={{ boxShadow: "0 18px 60px -22px oklch(0.65 0.22 28 / 0.45)" }}
+      >
+        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{labels.breakdown}</div>
+        <div className="mt-6 flex h-3 w-full overflow-hidden rounded-full border border-border/60 bg-background/60">
+          {segments.map((s, i) => (
+            <motion.div
+              key={s.l}
+              initial={{ width: 0 }}
+              animate={{ width: `${(s.v / totalLost) * 100}%` }}
+              transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+              style={{ background: s.color, boxShadow: `inset 0 1px 0 oklch(1 0 0 / 0.25)` }}
+            />
+          ))}
+        </div>
+        <div className="mt-5 space-y-3">
+          {segments.map((s) => (
+            <div key={s.l} className="flex items-center justify-between gap-3 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: s.color, boxShadow: `0 0 12px ${s.color}` }} />
+                <span className="text-foreground/90">{s.l}</span>
+              </div>
+              <div className="font-semibold tabular-nums" style={{ color: s.color }}>{fmt0(s.v)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
