@@ -604,7 +604,7 @@ export function RevenueAnalyzer() {
             <Sparkles className="h-3.5 w-3.5" /> {C.dash.title}
           </div>
 
-          <div className="mt-5 grid gap-3 sm:gap-4 sm:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:gap-4 md:grid-cols-3">
             <StatCard tone="primary" label={C.dash.now} value={fmt(result.currentRevenue)} sub={C.dash.perMonth} Icon={TrendingUp} />
             <StatCard tone="danger" label={C.dash.lost} value={`- ${fmt(result.lostRevenue)}`} sub={C.dash.perMonth} Icon={AlertTriangle} />
             <StatCard tone="success" label={C.dash.opportunity} value={`+ ${fmt(result.opportunity)}`} sub={C.dash.perMonth} Icon={Rocket} />
