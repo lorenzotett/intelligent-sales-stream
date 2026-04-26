@@ -10,7 +10,7 @@ export function LangSwitch({ className }: { className?: string }) {
         className,
       )}
     >
-      {(["en", "es"] as const).map((l) => (
+      {(["en", "es", "it"] as const).map((l) => (
         <button
           key={l}
           type="button"
@@ -22,7 +22,7 @@ export function LangSwitch({ className }: { className?: string }) {
               : "text-muted-foreground hover:text-foreground",
           )}
           aria-pressed={lang === l}
-          aria-label={l === "en" ? "English" : "Español"}
+          aria-label={l === "en" ? "English" : l === "es" ? "Español" : "Italiano"}
         >
           {l}
         </button>
