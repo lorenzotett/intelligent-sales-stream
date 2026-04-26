@@ -557,16 +557,16 @@ export function RevenueAnalyzer() {
   // ----- LANDING -----
   if (!started) {
     return (
-      <div className="rounded-3xl border border-border bg-card/60 p-10 backdrop-blur-xl" style={{ boxShadow: "var(--shadow-glow)" }}>
+      <div className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-10" style={{ boxShadow: "var(--shadow-glow)" }}>
         <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary-glow">
           <Sparkles className="h-3.5 w-3.5" /> {C.eyebrow}
         </div>
-        <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-4xl">
+        <h2 className="mt-4 text-2xl font-semibold leading-tight sm:text-3xl md:text-4xl">
           {C.title}
         </h2>
-        <p className="mt-4 max-w-xl text-muted-foreground">{C.sub}</p>
+        <p className="mt-3 max-w-xl text-sm text-muted-foreground sm:mt-4 sm:text-base">{C.sub}</p>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+        <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-3">
           {[
             { Icon: TrendingUp, l: lang === "en" ? "Current revenue" : "Ingresos actuales" },
             { Icon: AlertTriangle, l: lang === "en" ? "Lost revenue" : "Ingresos perdidos" },
@@ -582,7 +582,7 @@ export function RevenueAnalyzer() {
         <Button
           size="lg"
           onClick={() => setStarted(true)}
-          className="mt-8 h-12 bg-gradient-to-r from-primary to-primary-glow px-8 text-primary-foreground"
+          className="mt-6 h-12 w-full bg-gradient-to-r from-primary to-primary-glow px-8 text-primary-foreground sm:mt-8 sm:w-auto"
           style={{ boxShadow: "var(--shadow-glow)" }}
         >
           {C.start} <ArrowRight className="ml-1 h-4 w-4" />
@@ -594,17 +594,17 @@ export function RevenueAnalyzer() {
   // ----- DASHBOARD -----
   if (done && result) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className="rounded-3xl border border-border bg-card/60 p-8 backdrop-blur-xl"
+          className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8"
           style={{ boxShadow: "var(--shadow-glow)" }}
         >
           <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary-glow">
             <Sparkles className="h-3.5 w-3.5" /> {C.dash.title}
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:gap-4 sm:grid-cols-3">
             <StatCard tone="primary" label={C.dash.now} value={fmt(result.currentRevenue)} sub={C.dash.perMonth} Icon={TrendingUp} />
             <StatCard tone="danger" label={C.dash.lost} value={`- ${fmt(result.lostRevenue)}`} sub={C.dash.perMonth} Icon={AlertTriangle} />
             <StatCard tone="success" label={C.dash.opportunity} value={`+ ${fmt(result.opportunity)}`} sub={C.dash.perMonth} Icon={Rocket} />
@@ -623,9 +623,9 @@ export function RevenueAnalyzer() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="rounded-3xl border border-border bg-card/60 p-8 backdrop-blur-xl"
+          className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8"
         >
-          <h3 className="text-xl font-semibold">{C.dash.whats}</h3>
+          <h3 className="text-lg font-semibold sm:text-xl">{C.dash.whats}</h3>
           <ul className="mt-4 space-y-3">
             {insights.map((ins, i) => (
               <li key={i} className="flex items-start gap-3 rounded-xl border border-border bg-background/30 p-4 text-sm">
@@ -638,9 +638,9 @@ export function RevenueAnalyzer() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-          className="rounded-3xl border border-border bg-card/60 p-8 backdrop-blur-xl"
+          className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8"
         >
-          <h3 className="text-xl font-semibold">{C.dash.systems}</h3>
+          <h3 className="text-lg font-semibold sm:text-xl">{C.dash.systems}</h3>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {recommendations.map((r) => {
               const Icon = r.Icon;
@@ -664,24 +664,24 @@ export function RevenueAnalyzer() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="overflow-hidden rounded-3xl border border-border bg-card/60 p-8 backdrop-blur-xl"
+          className="overflow-hidden rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8"
           style={{ boxShadow: "var(--shadow-glow)" }}
         >
-          <h3 className="text-2xl font-semibold">{C.dash.ctaTitle}</h3>
-          <p className="mt-2 text-muted-foreground">{C.dash.ctaSub}</p>
+          <h3 className="text-xl font-semibold sm:text-2xl">{C.dash.ctaTitle}</h3>
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">{C.dash.ctaSub}</p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground" style={{ boxShadow: "var(--shadow-glow)" }}>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button asChild size="lg" className="h-12 w-full sm:w-auto bg-gradient-to-r from-primary to-primary-glow px-6 sm:px-7 text-primary-foreground" style={{ boxShadow: "var(--shadow-glow)" }}>
               <a href={`${CONTACT.whatsapp}?text=${encodeURIComponent(C.dash.waMsg)}`} target="_blank" rel="noreferrer">
                 <MessageSquare className="h-4 w-4" /> {C.dash.whatsapp}
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7">
+            <Button asChild size="lg" variant="outline" className="h-12 w-full sm:w-auto border-border bg-card/40 px-6 sm:px-7">
               <a href={CALENDLY} target="_blank" rel="noreferrer">
                 <CalendarCheck className="h-4 w-4" /> {C.dash.book}
               </a>
             </Button>
-            <Button onClick={downloadPDF} size="lg" variant="ghost" className="h-12 px-5">
+            <Button onClick={downloadPDF} size="lg" variant="ghost" className="h-12 w-full sm:w-auto px-5">
               <Download className="h-4 w-4" /> {C.dash.pdf}
             </Button>
           </div>
@@ -697,19 +697,19 @@ export function RevenueAnalyzer() {
   // ----- STEPS -----
   const s = C.steps[step];
   return (
-    <div className="rounded-3xl border border-border bg-card/60 p-8 backdrop-blur-xl" style={{ boxShadow: "var(--shadow-glow)" }}>
-      <div className="flex items-center justify-between">
-        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+    <div className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8" style={{ boxShadow: "var(--shadow-glow)" }}>
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
           {C.stepLabel} {step + 1} {C.of} {totalSteps}
         </div>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary-glow">
+        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-primary-glow sm:text-xs">
           <Sparkles className="h-3 w-3" /> {C.eyebrow}
         </div>
       </div>
       <div className="mt-3"><Stepper step={step} total={totalSteps} /></div>
 
-      <div className="mt-6">
-        <div className="text-2xl font-semibold">{s.title}</div>
+      <div className="mt-5 sm:mt-6">
+        <div className="text-xl font-semibold sm:text-2xl">{s.title}</div>
         <div className="mt-1 text-sm text-muted-foreground">{s.sub}</div>
       </div>
 
@@ -789,12 +789,12 @@ export function RevenueAnalyzer() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="mt-8 flex items-center justify-between">
+      <div className="mt-6 flex items-center justify-between gap-3 sm:mt-8">
         <Button
           variant="ghost"
           onClick={() => setStep((s) => Math.max(0, s - 1))}
           disabled={step === 0}
-          className="text-muted-foreground"
+          className="px-3 text-muted-foreground sm:px-4"
         >
           <ArrowLeft className="h-4 w-4" /> {C.back}
         </Button>
@@ -802,7 +802,7 @@ export function RevenueAnalyzer() {
           <Button
             onClick={() => setStep((s) => Math.min(totalSteps - 1, s + 1))}
             disabled={!canNext}
-            className="h-11 bg-gradient-to-r from-primary to-primary-glow px-6 text-primary-foreground"
+            className="h-11 bg-gradient-to-r from-primary to-primary-glow px-4 text-primary-foreground sm:px-6"
             style={{ boxShadow: "var(--shadow-glow)" }}
           >
             {C.next} <ArrowRight className="h-4 w-4" />
@@ -811,7 +811,7 @@ export function RevenueAnalyzer() {
           <Button
             onClick={runAnalyze}
             disabled={!canNext || analyzing}
-            className="h-11 bg-gradient-to-r from-primary to-primary-glow px-6 text-primary-foreground"
+            className="h-11 bg-gradient-to-r from-primary to-primary-glow px-4 text-primary-foreground sm:px-6"
             style={{ boxShadow: "var(--shadow-glow)" }}
           >
             {analyzing ? <><Loader2 className="h-4 w-4 animate-spin" /> {C.analyzing}</> : <><CheckCircle2 className="h-4 w-4" /> {C.analyze}</>}

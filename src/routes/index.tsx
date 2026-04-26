@@ -525,8 +525,8 @@ function SectionHeading({ eyebrow, title, sub }: { eyebrow: string; title: strin
       className="max-w-3xl"
     >
       <div className="text-xs uppercase tracking-[0.3em] text-primary-glow">{eyebrow}</div>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">{title}</h2>
-      {sub && <p className="mt-4 text-lg text-muted-foreground">{sub}</p>}
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:mt-4 sm:text-4xl md:text-5xl">{title}</h2>
+      {sub && <p className="mt-3 text-base text-muted-foreground sm:mt-4 sm:text-lg">{sub}</p>}
     </motion.div>
   );
 }

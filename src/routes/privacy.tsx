@@ -22,26 +22,26 @@ function PrivacyPage() {
   return (
     <div className="relative min-h-screen text-foreground">
       <AnimatedBackground />
-      <div className="mx-auto max-w-3xl px-6 py-12">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> {ex.privacy.back}
           </Link>
           <LangSwitch />
         </div>
-        <div className="mt-8">
-          <Logo size={88} />
+        <div className="mt-6 sm:mt-8">
+          <Logo size={72} className="sm:[&_img]:!h-[88px] sm:[&_img]:!w-[88px]" />
         </div>
-        <h1 className="mt-12 text-4xl font-semibold tracking-tight md:text-5xl">{ex.privacy.title}</h1>
+        <h1 className="mt-8 text-3xl font-semibold tracking-tight sm:mt-12 sm:text-4xl md:text-5xl">{ex.privacy.title}</h1>
         <div className="mt-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           {ex.privacy.updated}: {new Date().toISOString().slice(0, 10)}
         </div>
-        <p className="mt-8 text-base leading-relaxed text-foreground/90">{ex.privacy.intro}</p>
-        <div className="mt-10 space-y-8">
+        <p className="mt-6 text-sm leading-relaxed text-foreground/90 sm:mt-8 sm:text-base">{ex.privacy.intro}</p>
+        <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-8">
           {ex.privacy.sections.map((s) => (
             <section key={s.h}>
-              <h2 className="text-xl font-semibold tracking-tight">{s.h}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">{s.p}</p>
+              <h2 className="text-lg font-semibold tracking-tight sm:text-xl">{s.h}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">{s.p}</p>
             </section>
           ))}
         </div>
