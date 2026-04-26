@@ -135,6 +135,46 @@ const COPY = {
       back: "Volver al inicio",
     },
   },
+  it: {
+    diagnostic: {
+      sectionEyebrow: "Diagnostica AI del fatturato",
+      sectionTitle: "Scopri quanti soldi stai perdendo — in 60 secondi.",
+      sectionSub: "Rispondi a poche domande veloci. Calcoliamo il fatturato perso e i sistemi AI che lo recuperano.",
+      openCta: "Apri la diagnostica",
+      navItem: "Diagnostica",
+    },
+    promo: {
+      title: "Vuoi sapere quanto fatturato stai lasciando sul tavolo?",
+      sub: "Fai la Diagnostica AI gratuita (60 secondi). Ricevi subito il tuo report personalizzato.",
+      cta: "Fai la mia diagnostica gratuita",
+      dismiss: "Non ora",
+    },
+    cookies: {
+      title: "Rispettiamo la tua privacy",
+      body: "Usiamo i cookie per far funzionare il sito, ricordare la tua lingua e capire come viene usato. Puoi accettare tutto, rifiutare i non essenziali o leggere la nostra privacy policy.",
+      accept: "Accetta tutto",
+      reject: "Rifiuta non essenziali",
+      manage: "Privacy policy",
+    },
+    privacy: {
+      title: "Privacy Policy",
+      updated: "Ultimo aggiornamento",
+      intro:
+        "Questa Privacy Policy spiega come Cooverly (\"noi\") raccoglie, utilizza e protegge le informazioni quando visiti cooverly.com o usi i nostri servizi.",
+      sections: [
+        { h: "1. Dati che raccogliamo", p: "Raccogliamo (a) dati che ci fornisci direttamente — ad esempio quando completi la Diagnostica AI o ci contatti via WhatsApp, email o moduli (nome, dati del business, numeri sul flusso di lead, dati di contatto); e (b) dati tecnici in automatico — IP, browser, dispositivo, pagine visitate e interazioni, tramite cookie e tecnologie simili." },
+        { h: "2. Come usiamo i dati", p: "Usiamo i dati per: erogare e migliorare la diagnostica e i nostri servizi, generare il tuo report personalizzato, contattarti riguardo la tua richiesta, inviarti comunicazioni commerciali se hai dato il consenso, adempiere agli obblighi di legge e prevenire frodi o abusi." },
+        { h: "3. Base giuridica (GDPR)", p: "Trattiamo i tuoi dati sulla base del consenso, dell'esecuzione di un contratto da te richiesto, del nostro legittimo interesse a operare e migliorare Cooverly, e per adempiere agli obblighi di legge." },
+        { h: "4. Cookie", p: "I cookie essenziali sono necessari al funzionamento del sito (es. ricordare la lingua e la scelta sui cookie). I cookie di analytics ci aiutano a capire il traffico. Puoi accettare o rifiutare i non essenziali nel banner e cambiare la scelta in qualsiasi momento svuotando lo storage del browser per questo sito." },
+        { h: "5. Condivisione", p: "Non vendiamo i tuoi dati. Li condividiamo solo con responsabili del trattamento strettamente necessari per operare il servizio (hosting, analytics, strumenti di comunicazione), sotto data-processing agreement, e con le autorità quando richiesto dalla legge." },
+        { h: "6. Conservazione", p: "Conserviamo i dati solo per il tempo necessario alle finalità sopra o richiesto dalla legge, poi li eliminiamo o anonimizziamo." },
+        { h: "7. I tuoi diritti", p: "Puoi richiedere accesso, rettifica, cancellazione, limitazione, portabilità e opposizione al trattamento dei tuoi dati personali, e ritirare il consenso in qualsiasi momento. Contattaci a hello@cooverly.com." },
+        { h: "8. Trasferimenti internazionali", p: "Alcuni responsabili possono essere fuori SEE. In tal caso applichiamo garanzie adeguate come le Clausole Contrattuali Standard." },
+        { h: "9. Contatto", p: "Cooverly · hello@cooverly.com · +34 625 19 88 29 · Spagna & USA · Divisione EU: Digitalizzato (Italia)." },
+      ],
+      back: "Torna alla home",
+    },
+  },
 } as const;
 
 export function useExtras() {
