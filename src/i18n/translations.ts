@@ -1,4 +1,4 @@
-export type Lang = "en" | "es";
+export type Lang = "en" | "es" | "it";
 
 const WHATSAPP = "https://wa.me/34625198829";
 
