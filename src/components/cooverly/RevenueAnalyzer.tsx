@@ -255,6 +255,82 @@ const COPY = {
     },
     pdf: { title: "Cooverly — Diagnóstico de Ingresos IA", footer: "Cooverly · cooverly.com · +34 625 19 88 29" },
   },
+  it: {
+    eyebrow: "Diagnostica AI del fatturato",
+    title: "Scopri quanti soldi stai perdendo ogni mese.",
+    sub: "Una diagnostica da 60 secondi. Calcoliamo il fatturato perso e i sistemi AI che lo recuperano.",
+    start: "Inizia la diagnostica gratuita",
+    next: "Continua",
+    back: "Indietro",
+    analyze: "Esegui analisi",
+    analyzing: "Analizzo i tuoi dati…",
+    stepLabel: "Step",
+    of: "di",
+    industries: ["Med Spa / Estetica", "Dentista", "Immobiliare", "Servizi alla casa", "Coaching / Formazione", "Agenzia di marketing", "Altro"],
+    steps: [
+      { title: "Il tuo business", sub: "Le basi per dimensionare l'opportunità.",
+        fields: { industry: "Settore", leads: "Lead al mese", value: "Valore medio per cliente ($)" } },
+      { title: "Risposta ai lead", sub: "La velocità di risposta è il fattore #1 di conversione.",
+        fields: { response: "In quanto tempo rispondi a un nuovo lead?", unanswered: "% di lead a cui non rispondi mai",
+          options: [
+            { v: "instant", l: "Subito (<5 min)" },
+            { v: "1h", l: "Entro 1 ora" },
+            { v: "few_hours", l: "Entro qualche ora" },
+            { v: "same_day", l: "In giornata" },
+            { v: "next_day", l: "Il giorno dopo o più tardi" },
+          ] } },
+      { title: "Conversione", sub: "Come trasformi oggi i lead in clienti.",
+        fields: { conv: "Tasso di conversione lead → cliente (%)", appts: "Appuntamenti prenotati al mese", noshow: "Tasso di no-show (%)" } },
+      { title: "Sistema attuale", sub: "Cosa hai attivo in questo momento.",
+        fields: { crm: "Usi un CRM?", auto: "Hai automazioni?", handler: "Chi gestisce i tuoi lead?",
+          handlerOpts: [
+            { v: "self", l: "Io stesso" },
+            { v: "team", l: "Il mio team" },
+            { v: "noone", l: "Nessuno in modo continuativo" },
+          ] } },
+      { title: "Obiettivi di crescita", sub: "Dove vuoi essere a 90 giorni.",
+        fields: { desired: "Clienti desiderati al mese", bottleneck: "Maggiore collo di bottiglia",
+          bnOpts: [
+            { v: "leadgen", l: "Generazione lead" },
+            { v: "followup", l: "Follow-up" },
+            { v: "conversion", l: "Conversione" },
+            { v: "noshows", l: "No-show" },
+          ] } },
+    ],
+    yes: "Sì",
+    no: "No",
+    dash: {
+      title: "La tua Diagnostica del fatturato",
+      now: "Fatturato attuale",
+      lost: "Perdita mensile",
+      opportunity: "Opportunità recuperabile",
+      perMonth: "/ mese",
+      whats: "Cosa sta succedendo nel tuo business",
+      systems: "Sistemi AI consigliati",
+      impact: "Impatto previsto",
+      ctaTitle: "Recupera questo fatturato.",
+      ctaSub: "Due strade — scegli quella che ti calza.",
+      whatsapp: "Scrivici su WhatsApp per recuperare",
+      book: "Prenota una call strategica",
+      pdf: "Scarica il report PDF",
+      restart: "Fai una nuova diagnostica",
+      waMsg: "Ho appena completato la Diagnostica AI del fatturato su cooverly.com e voglio implementare il sistema per il mio business.",
+    },
+    rec: {
+      conversion: { name: "Sistema AI di Conversione Lead", why: "Risponde a ogni nuovo lead in pochi secondi su WhatsApp, web e DM — qualifica e prenota in automatico." },
+      followup: { name: "Motore di Follow-Up AI", why: "Riattiva lead freddi e non risponditi con sequenze multi-canale finché non prenotano o si disiscrivono." },
+      shows: { name: "Acceleratore Appuntamenti AI", why: "Conferma, ricorda e riprogramma in automatico — uccide i no-show prima che accadano." },
+    },
+    insights: {
+      slow: "Stai perdendo lead perché rispondi troppo lentamente. Rispondere sotto i 5 minuti può aumentare la conversione fino al 391%.",
+      unanswered: (p: number) => `Lasci senza risposta circa il ${p}% dei tuoi lead. Ognuno è traffico pagato che se ne va.`,
+      noFollowup: "Non hai un follow-up automatico. Un buyer medio ha bisogno di 5+ contatti prima di dire sì.",
+      noShow: (p: number) => `Il tuo tasso di no-show (${p}%) sta bruciando agenda e fatturato in silenzio.`,
+      noCRM: "Senza un CRM non hai memoria dei tuoi lead. Ogni conversazione riparte da zero.",
+      growth: "C'è un divario chiaro fra clienti attuali e desiderati. Il sistema qui sotto lo chiude senza assumere nessuno.",
+    },
+    pdf: { title: "Cooverly — Diagnostica AI del fatturato", footer: "Cooverly · cooverly.com · +34 625 19 88 29" },
+  },
 };
 
 function fmt(n: number) {
@@ -533,6 +609,16 @@ export function RevenueAnalyzer() {
             <StatCard tone="danger" label={C.dash.lost} value={`- ${fmt(result.lostRevenue)}`} sub={C.dash.perMonth} Icon={AlertTriangle} />
             <StatCard tone="success" label={C.dash.opportunity} value={`+ ${fmt(result.opportunity)}`} sub={C.dash.perMonth} Icon={Rocket} />
           </div>
+
+          <RevenueChart
+            current={result.currentRevenue}
+            lost={result.lostRevenue}
+            opportunity={result.opportunity}
+            slow={result.lostFromSlow}
+            unanswered={result.lostFromUnanswered}
+            noShow={result.lostFromNoShow}
+            lang={lang}
+          />
         </motion.div>
 
         <motion.div
@@ -758,5 +844,106 @@ function StatCard({ label, value, sub, Icon, tone }: { label: string; value: str
         <div className="mt-1 text-xs text-muted-foreground">{sub}</div>
       </div>
     </motion.div>
+  );
+}
+
+function RevenueChart({
+  current, lost, opportunity, slow, unanswered, noShow, lang,
+}: {
+  current: number; lost: number; opportunity: number;
+  slow: number; unanswered: number; noShow: number;
+  lang: "en" | "es" | "it";
+}) {
+  const labels = {
+    en: { bars: "Monthly revenue map", current: "Current", lost: "Lost", recover: "Recoverable", breakdown: "Where the money is leaking", slow: "Slow response", unanswered: "Unanswered leads", noShow: "No-shows" },
+    es: { bars: "Mapa de ingresos mensuales", current: "Actual", lost: "Perdido", recover: "Recuperable", breakdown: "Dónde se fuga el dinero", slow: "Respuesta lenta", unanswered: "Leads sin contestar", noShow: "No-shows" },
+    it: { bars: "Mappa del fatturato mensile", current: "Attuale", lost: "Perso", recover: "Recuperabile", breakdown: "Da dove perdi soldi", slow: "Risposta lenta", unanswered: "Lead senza risposta", noShow: "No-show" },
+  }[lang];
+
+  const max = Math.max(current, lost, opportunity, 1);
+  const bars = [
+    { l: labels.current, v: current, color: "oklch(0.78 0.13 240)", glow: "oklch(0.78 0.13 240 / 0.5)" },
+    { l: labels.lost, v: lost, color: "oklch(0.65 0.22 28)", glow: "oklch(0.65 0.22 28 / 0.55)" },
+    { l: labels.recover, v: opportunity, color: "oklch(0.72 0.19 140)", glow: "oklch(0.72 0.19 140 / 0.55)" },
+  ];
+
+  const totalLost = Math.max(slow + unanswered + noShow, 1);
+  const segments = [
+    { l: labels.slow, v: slow, color: "oklch(0.78 0.13 240)" },
+    { l: labels.unanswered, v: unanswered, color: "oklch(0.65 0.22 28)" },
+    { l: labels.noShow, v: noShow, color: "oklch(0.72 0.19 50)" },
+  ];
+
+  const fmt0 = (n: number) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(Math.round(n));
+
+  return (
+    <div className="mt-6 grid gap-6 lg:grid-cols-2">
+      {/* 3D bar chart */}
+      <div
+        className="relative overflow-hidden rounded-2xl border border-border bg-background/40 p-5"
+        style={{ boxShadow: "0 18px 60px -22px oklch(0.78 0.13 240 / 0.45)" }}
+      >
+        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{labels.bars}</div>
+        <div className="mt-6 flex items-end gap-4 sm:gap-6" style={{ height: 220, perspective: 900 }}>
+          {bars.map((b, i) => {
+            const h = (b.v / max) * 180 + 8;
+            return (
+              <motion.div
+                key={b.l}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: h, opacity: 1 }}
+                transition={{ delay: 0.1 + i * 0.12, duration: 0.7, ease: "easeOut" }}
+                className="relative flex-1 rounded-t-lg"
+                style={{
+                  background: `linear-gradient(180deg, ${b.color} 0%, color-mix(in oklab, ${b.color} 60%, transparent) 100%)`,
+                  boxShadow: `0 -6px 30px -8px ${b.glow}, inset 0 1px 0 oklch(1 0 0 / 0.25)`,
+                  transform: "rotateX(8deg)",
+                  transformStyle: "preserve-3d",
+                }}
+                aria-label={`${b.l}: ${fmt0(b.v)}`}
+              >
+                <span className="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold" style={{ color: b.color }}>
+                  {fmt0(b.v)}
+                </span>
+              </motion.div>
+            );
+          })}
+        </div>
+        <div className="mt-3 flex justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+          {bars.map((b) => <div key={b.l} className="flex-1 text-center">{b.l}</div>)}
+        </div>
+      </div>
+
+      {/* Breakdown bar */}
+      <div
+        className="relative overflow-hidden rounded-2xl border border-border bg-background/40 p-5"
+        style={{ boxShadow: "0 18px 60px -22px oklch(0.65 0.22 28 / 0.45)" }}
+      >
+        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{labels.breakdown}</div>
+        <div className="mt-6 flex h-3 w-full overflow-hidden rounded-full border border-border/60 bg-background/60">
+          {segments.map((s, i) => (
+            <motion.div
+              key={s.l}
+              initial={{ width: 0 }}
+              animate={{ width: `${(s.v / totalLost) * 100}%` }}
+              transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+              style={{ background: s.color, boxShadow: `inset 0 1px 0 oklch(1 0 0 / 0.25)` }}
+            />
+          ))}
+        </div>
+        <div className="mt-5 space-y-3">
+          {segments.map((s) => (
+            <div key={s.l} className="flex items-center justify-between gap-3 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: s.color, boxShadow: `0 0 12px ${s.color}` }} />
+                <span className="text-foreground/90">{s.l}</span>
+              </div>
+              <div className="font-semibold tabular-nums" style={{ color: s.color }}>{fmt0(s.v)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
