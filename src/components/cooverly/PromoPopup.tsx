@@ -6,18 +6,28 @@ import { useExtras } from "@/i18n/extras";
 import { useDiagnosticModal } from "./DiagnosticModal";
 
 const KEY = "cooverly-promo-shown";
-const DELAY_MS = 60_000;
+const DELAY_MS = 15_000;
+const COOKIE_KEY = "cooverly-cookie-consent";
 
 export function PromoPopup() {
   const ex = useExtras();
   const { openModal } = useDiagnosticModal();
   const [show, setShow] = useState(false);
+  const [cookieDismissed, setCookieDismissed] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const updateCookie = () => {
+      setCookieDismissed(Boolean(window.localStorage.getItem(COOKIE_KEY)));
+    };
+    updateCookie();
+    const interval = window.setInterval(updateCookie, 800);
     if (window.sessionStorage.getItem(KEY)) return;
     const t = setTimeout(() => setShow(true), DELAY_MS);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      window.clearInterval(interval);
+    };
   }, []);
 
   function dismiss() {
@@ -38,7 +48,7 @@ export function PromoPopup() {
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 40, opacity: 0, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 240, damping: 24 }}
-          className="fixed bottom-4 right-4 z-[55] w-[calc(100vw-2rem)] max-w-sm sm:bottom-6 sm:right-6"
+          className={`fixed right-4 z-[55] w-[calc(100vw-2rem)] max-w-sm sm:right-6 transition-all duration-300 ${cookieDismissed ? "bottom-4 sm:bottom-6" : "bottom-36 sm:bottom-32"}`}
           role="dialog"
           aria-label="AI Revenue Diagnostic invitation"
         >
