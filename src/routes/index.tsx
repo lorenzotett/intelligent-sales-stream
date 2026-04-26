@@ -241,10 +241,10 @@ function Marquee() {
 function Services() {
   const { t } = useLang();
   return (
-    <section id="services" className="relative px-6 py-32">
+    <section id="services" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.services.eyebrow} title={t.services.title} sub={t.services.sub} />
-        <div className="mt-16 grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
           {t.services.items.map((s, i) => {
             const Icon = serviceIcons[i];
             return (
@@ -283,10 +283,10 @@ function Services() {
 function Niches() {
   const { t } = useLang();
   return (
-    <section id="niches" className="relative px-6 py-32">
+    <section id="niches" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.niches.eyebrow} title={t.niches.title} sub={t.niches.sub} />
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-3 grid-cols-2 sm:mt-16 sm:gap-4 lg:grid-cols-5">
           {t.niches.items.map((n, i) => {
             const Icon = nicheIcons[i];
             return (
@@ -314,10 +314,10 @@ function Niches() {
 function CaseStudies() {
   const { t } = useLang();
   return (
-    <section id="results" className="relative px-6 py-32">
+    <section id="results" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.cases.eyebrow} title={t.cases.title} />
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3">
           {t.cases.items.map((c, i) => (
             <motion.div
               key={c.tag}
@@ -325,12 +325,12 @@ function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-8 backdrop-blur-xl"
+              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-6 sm:p-8 backdrop-blur-xl"
             >
               <div className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--gradient-primary)" }} />
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.tag}</div>
               <div
-                className="mt-6 bg-clip-text text-6xl font-semibold tracking-tight text-transparent"
+                className="mt-5 bg-clip-text text-5xl sm:text-6xl font-semibold tracking-tight text-transparent"
                 style={{ backgroundImage: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
               >
                 {c.metric}
@@ -361,12 +361,12 @@ function Pricing() {
     )}`;
 
   return (
-    <section id="pricing" className="relative px-6 py-32">
+    <section id="pricing" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} sub={p.sub} />
 
         {/* MRR */}
-        <div className="mt-16">
+        <div className="mt-10 sm:mt-16">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-primary-glow backdrop-blur">
               <Sparkles className="h-3 w-3" /> {p.mrrLabel}
@@ -374,7 +374,7 @@ function Pricing() {
             <p className="max-w-md text-xs text-muted-foreground">{p.mrrNote}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
             {p.mrrPlans.map((plan, i) => (
               <PlanCard
                 key={plan.name}
@@ -395,7 +395,7 @@ function Pricing() {
         </div>
 
         {/* Lifetime */}
-        <div className="mt-24">
+        <div className="mt-16 sm:mt-24">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent backdrop-blur">
               <InfinityIcon className="h-3 w-3" /> {p.lifetimeLabel}
@@ -403,7 +403,7 @@ function Pricing() {
             <p className="max-w-md text-xs text-muted-foreground">{p.lifetimeNote}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
             {p.lifetimePlans.map((plan, i) => (
               <PlanCard
                 key={plan.name}
