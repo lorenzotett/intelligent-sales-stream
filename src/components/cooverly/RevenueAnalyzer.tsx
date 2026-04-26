@@ -609,6 +609,16 @@ export function RevenueAnalyzer() {
             <StatCard tone="danger" label={C.dash.lost} value={`- ${fmt(result.lostRevenue)}`} sub={C.dash.perMonth} Icon={AlertTriangle} />
             <StatCard tone="success" label={C.dash.opportunity} value={`+ ${fmt(result.opportunity)}`} sub={C.dash.perMonth} Icon={Rocket} />
           </div>
+
+          <RevenueChart
+            current={result.currentRevenue}
+            lost={result.lostRevenue}
+            opportunity={result.opportunity}
+            slow={result.lostFromSlow}
+            unanswered={result.lostFromUnanswered}
+            noShow={result.lostFromNoShow}
+            lang={lang}
+          />
         </motion.div>
 
         <motion.div
