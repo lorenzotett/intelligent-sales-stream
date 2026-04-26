@@ -37,17 +37,20 @@ export function CookieBanner() {
           role="dialog"
           aria-label="Cookie consent"
         >
-          <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card/90 p-4 shadow-2xl backdrop-blur-xl sm:p-5">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl" style={{ background: "var(--gradient-brand)" }}>
+          <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card/90 p-3 shadow-2xl backdrop-blur-xl sm:p-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
+              <div className="hidden h-10 w-10 shrink-0 place-items-center rounded-xl sm:grid" style={{ background: "var(--gradient-brand)" }}>
                 <Cookie className="h-5 w-5 text-primary-foreground" />
               </div>
               <div className="flex-1">
-                <div className="text-sm font-semibold text-foreground">{ex.cookies.title}</div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <Cookie className="h-4 w-4 text-primary-glow sm:hidden" />
+                  {ex.cookies.title}
+                </div>
                 <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">{ex.cookies.body}</p>
               </div>
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                <Button asChild size="sm" variant="ghost" className="h-9 text-xs">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:items-center">
+                <Button asChild size="sm" variant="ghost" className="col-span-2 h-9 text-xs sm:col-span-1">
                   <Link to="/privacy">{ex.cookies.manage}</Link>
                 </Button>
                 <Button size="sm" variant="outline" className="h-9 border-border bg-background/40 text-xs" onClick={() => set("rejected")}>

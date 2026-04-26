@@ -25,7 +25,7 @@ export function Logo3D() {
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={reset}
-      className="relative mx-auto h-[460px] w-[460px] max-w-full"
+      className="relative mx-auto aspect-square w-full max-w-[280px] sm:max-w-[360px] md:max-w-[460px]"
       style={{ perspective: "1400px" }}
     >
       {/* Orbit rings */}

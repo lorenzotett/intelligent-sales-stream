@@ -28,7 +28,7 @@ function ContactPage() {
   return (
     <div className="relative min-h-screen text-foreground">
       <AnimatedBackground />
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> {t.contact.back}
@@ -36,29 +36,29 @@ function ContactPage() {
           <LangSwitch />
         </div>
 
-        <div className="mt-8">
-          <Logo size={88} />
+        <div className="mt-6 sm:mt-8">
+          <Logo size={72} className="sm:[&_img]:!h-[88px] sm:[&_img]:!w-[88px]" />
         </div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className="mt-12 text-5xl font-semibold tracking-tight md:text-6xl"
+          className="mt-8 text-3xl font-semibold tracking-tight sm:mt-12 sm:text-5xl md:text-6xl"
         >
           {t.contact.title}{" "}
           <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-brand)" }}>
             {t.contact.titleHighlight}
           </span>
         </motion.h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{t.contact.sub}</p>
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:mt-6 sm:text-lg">{t.contact.sub}</p>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+        <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-[1.1fr_1fr]">
           {/* AI Revenue Analyzer */}
           <div>
             <RevenueAnalyzer />
           </div>
 
           {/* Contact cards */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-1">
             {t.contact.cards.map((c, i) => {
               const Icon = cardIcons[i];
               return (
@@ -67,7 +67,7 @@ function ContactPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08 }}
-                  className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl"
+                  className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:p-6"
                 >
                   <Icon className="h-6 w-6 text-primary-glow" />
                   <div className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.title}</div>

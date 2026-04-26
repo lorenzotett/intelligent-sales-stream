@@ -45,10 +45,10 @@ function Index() {
       <Nav />
       <Hero />
       <Marquee />
-      <section id="diagnostic" className="relative px-6 py-24 sm:py-32">
+      <section id="diagnostic" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
-          <div className="mt-12 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-8">
+          <div className="mt-8 rounded-2xl border border-border bg-card/60 p-3 backdrop-blur-xl sm:mt-12 sm:rounded-3xl sm:p-8">
             <RevenueAnalyzer />
           </div>
         </div>
@@ -68,9 +68,9 @@ function Nav() {
   const { openModal } = useDiagnosticModal();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-4">
         <Link to="/" aria-label="Cooverly" className="group flex shrink-0 items-center">
-          <Logo size={120} />
+          <Logo size={88} className="sm:[&_img]:!h-[120px] sm:[&_img]:!w-[120px]" />
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
           <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
@@ -80,7 +80,7 @@ function Nav() {
           <button onClick={openModal} className="hover:text-foreground transition">{ex.diagnostic.navItem}</button>
           <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
         </nav>
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <LangSwitch />
           <Button
             size="sm"
@@ -91,8 +91,8 @@ function Nav() {
             <Activity className="h-4 w-4" />
             <span className="hidden md:inline">{ex.diagnostic.navItem}</span>
           </Button>
-          <Button asChild size="sm" className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]">
-            <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-4 w-4" /></Link>
+          <Button asChild size="sm" className="h-9 px-3 text-xs bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)] sm:h-9 sm:px-4 sm:text-sm">
+            <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" /></Link>
           </Button>
         </div>
       </div>
@@ -108,8 +108,8 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
 
   return (
-    <section ref={ref} className="relative px-6 pt-16 pb-24 sm:pt-20 sm:pb-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <section ref={ref} className="relative px-4 pt-10 pb-16 sm:px-6 sm:pt-20 sm:pb-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div style={{ y: yText, opacity }} className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,7 +125,7 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
+            className="text-[2.25rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             {t.hero.titleA}{" "}
             <span
@@ -141,7 +141,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg mx-auto lg:mx-0"
+            className="mt-5 max-w-xl text-sm text-muted-foreground sm:mt-6 sm:text-lg mx-auto lg:mx-0"
           >
             {t.hero.sub}
           </motion.p>
@@ -150,15 +150,15 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start"
+            className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start"
           >
-            <Button asChild size="lg" className="h-12 bg-gradient-to-r from-primary to-primary-glow px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
+            <Button asChild size="lg" className="h-12 w-full sm:w-auto bg-gradient-to-r from-primary to-primary-glow px-6 sm:px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
               <Link to="/contact">
                 <MessageSquare className="h-4 w-4" />
                 {t.hero.ctaPrimary}
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 border-border bg-card/40 px-7 backdrop-blur hover:bg-card">
+            <Button asChild size="lg" variant="outline" className="h-12 w-full sm:w-auto border-border bg-card/40 px-6 sm:px-7 backdrop-blur hover:bg-card">
               <Link to="/contact">
                 {t.hero.ctaSecondary} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -184,7 +184,7 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="relative mx-auto"
+          className="relative mx-auto w-full max-w-[420px] sm:max-w-none"
         >
           <Logo3D />
           <motion.div
@@ -241,10 +241,10 @@ function Marquee() {
 function Services() {
   const { t } = useLang();
   return (
-    <section id="services" className="relative px-6 py-32">
+    <section id="services" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.services.eyebrow} title={t.services.title} sub={t.services.sub} />
-        <div className="mt-16 grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
           {t.services.items.map((s, i) => {
             const Icon = serviceIcons[i];
             return (
@@ -283,10 +283,10 @@ function Services() {
 function Niches() {
   const { t } = useLang();
   return (
-    <section id="niches" className="relative px-6 py-32">
+    <section id="niches" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.niches.eyebrow} title={t.niches.title} sub={t.niches.sub} />
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-3 grid-cols-2 sm:mt-16 sm:gap-4 lg:grid-cols-5">
           {t.niches.items.map((n, i) => {
             const Icon = nicheIcons[i];
             return (
@@ -314,10 +314,10 @@ function Niches() {
 function CaseStudies() {
   const { t } = useLang();
   return (
-    <section id="results" className="relative px-6 py-32">
+    <section id="results" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={t.cases.eyebrow} title={t.cases.title} />
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3">
           {t.cases.items.map((c, i) => (
             <motion.div
               key={c.tag}
@@ -325,12 +325,12 @@ function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-8 backdrop-blur-xl"
+              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-6 sm:p-8 backdrop-blur-xl"
             >
               <div className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--gradient-primary)" }} />
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.tag}</div>
               <div
-                className="mt-6 bg-clip-text text-6xl font-semibold tracking-tight text-transparent"
+                className="mt-5 bg-clip-text text-5xl sm:text-6xl font-semibold tracking-tight text-transparent"
                 style={{ backgroundImage: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
               >
                 {c.metric}
@@ -361,12 +361,12 @@ function Pricing() {
     )}`;
 
   return (
-    <section id="pricing" className="relative px-6 py-32">
+    <section id="pricing" className="relative px-4 py-20 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} sub={p.sub} />
 
         {/* MRR */}
-        <div className="mt-16">
+        <div className="mt-10 sm:mt-16">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-primary-glow backdrop-blur">
               <Sparkles className="h-3 w-3" /> {p.mrrLabel}
@@ -374,7 +374,7 @@ function Pricing() {
             <p className="max-w-md text-xs text-muted-foreground">{p.mrrNote}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
             {p.mrrPlans.map((plan, i) => (
               <PlanCard
                 key={plan.name}
@@ -395,7 +395,7 @@ function Pricing() {
         </div>
 
         {/* Lifetime */}
-        <div className="mt-24">
+        <div className="mt-16 sm:mt-24">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent backdrop-blur">
               <InfinityIcon className="h-3 w-3" /> {p.lifetimeLabel}
@@ -403,7 +403,7 @@ function Pricing() {
             <p className="max-w-md text-xs text-muted-foreground">{p.lifetimeNote}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
             {p.lifetimePlans.map((plan, i) => (
               <PlanCard
                 key={plan.name}
@@ -525,8 +525,8 @@ function SectionHeading({ eyebrow, title, sub }: { eyebrow: string; title: strin
       className="max-w-3xl"
     >
       <div className="text-xs uppercase tracking-[0.3em] text-primary-glow">{eyebrow}</div>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">{title}</h2>
-      {sub && <p className="mt-4 text-lg text-muted-foreground">{sub}</p>}
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:mt-4 sm:text-4xl md:text-5xl">{title}</h2>
+      {sub && <p className="mt-3 text-base text-muted-foreground sm:mt-4 sm:text-lg">{sub}</p>}
     </motion.div>
   );
 }
