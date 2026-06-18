@@ -13,10 +13,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? window.localStorage.getItem("cooverly-lang") : null;
-    if (stored === "en" || stored === "es") {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem("cooverly-lang");
+    if (stored === "en" || stored === "es" || stored === "it") {
       setLangState(stored);
+      document.documentElement.lang = stored;
+      return;
     }
+    const nav = (navigator.language || "en").toLowerCase();
+    const detected: Lang = nav.startsWith("es") ? "es" : nav.startsWith("it") ? "it" : "en";
+    setLangState(detected);
+    document.documentElement.lang = detected;
   }, []);
 
   const setLang = (l: Lang) => {

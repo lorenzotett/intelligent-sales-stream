@@ -11,10 +11,18 @@ import { useLang } from "@/i18n/LanguageContext";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Cooverly" },
-      { name: "description", content: "Talk to the Cooverly team. AI revenue infrastructure across Spain and USA. Message us on WhatsApp or request a Lifetime plan by email." },
-      { property: "og:title", content: "Contact — Cooverly" },
-      { property: "og:description", content: "MRR plans on WhatsApp · Lifetime plans by email · Custom AI revenue systems." },
+      { title: "Contact Cooverly — AI Sales Agents | USA & Spain" },
+      { name: "description", content: "Talk to the Cooverly team. AI sales agents and revenue systems for service businesses across the USA and Spain. Message us on WhatsApp or request a Lifetime plan by email." },
+      { property: "og:title", content: "Contact Cooverly — AI Sales Agents | USA & Spain" },
+      { property: "og:description", content: "MRR plans on WhatsApp · Lifetime plans by email · Custom AI revenue systems for the US and Spanish markets." },
+      { property: "og:url", content: "https://cooverly.com/contact" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cooverly.com/contact" },
+      { rel: "alternate", hrefLang: "en", href: "https://cooverly.com/contact" },
+      { rel: "alternate", hrefLang: "es", href: "https://cooverly.com/contact" },
+      { rel: "alternate", hrefLang: "it", href: "https://cooverly.com/contact" },
+      { rel: "alternate", hrefLang: "x-default", href: "https://cooverly.com/contact" },
     ],
   }),
   component: ContactPage,
