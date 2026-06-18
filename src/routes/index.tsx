@@ -22,14 +22,25 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Cooverly — AI Revenue Systems for Service Businesses" },
+      { title: "Cooverly — AI Sales Agents for Service Businesses | USA & Spain" },
       {
         name: "description",
         content:
-          "We deploy AI systems that respond, qualify and book appointments 24/7 for med spas, dental practices, home services, real estate and agencies.",
+          "Cooverly deploys AI sales agents that reply in seconds, qualify leads and book appointments 24/7. Trusted by med spas, dental, home services, real estate and agencies in the US and Spain.",
       },
-      { property: "og:title", content: "Cooverly — AI Revenue Systems" },
-      { property: "og:description", content: "AI that answers, follows up and books appointments for your business — 24/7." },
+      { name: "keywords", content: "AI sales agent, AI lead conversion, AI appointment booking, AI for med spas, AI for dental practices, automated lead follow-up, WhatsApp AI, AI revenue systems, Spain, USA" },
+      { property: "og:title", content: "Cooverly — AI Sales Agents that Book Appointments 24/7" },
+      { property: "og:description", content: "AI that answers, follows up and books appointments for your business — every minute, every day. USA & Spain." },
+      { property: "og:url", content: "https://cooverly.com/" },
+      { name: "twitter:title", content: "Cooverly — AI Sales Agents that Book Appointments 24/7" },
+      { name: "twitter:description", content: "AI that answers, follows up and books appointments for your business — 24/7." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cooverly.com/" },
+      { rel: "alternate", hrefLang: "en", href: "https://cooverly.com/" },
+      { rel: "alternate", hrefLang: "es", href: "https://cooverly.com/" },
+      { rel: "alternate", hrefLang: "it", href: "https://cooverly.com/" },
+      { rel: "alternate", hrefLang: "x-default", href: "https://cooverly.com/" },
     ],
   }),
 });
