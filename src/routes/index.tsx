@@ -12,10 +12,7 @@ import { DepthScene } from "@/components/cooverly/DepthScene";
 import { DepthBand } from "@/components/cooverly/DepthBand";
 import { ReadinessQuiz } from "@/components/cooverly/ReadinessQuiz";
 import { Parallax } from "@/components/cooverly/Parallax";
-import { ScrollImage } from "@/components/cooverly/ScrollImage";
-import illusBuild from "@/assets/illus-build.jpg";
-import illusPath from "@/assets/illus-path.jpg";
-import illusPartner from "@/assets/illus-partner.jpg";
+import { ScrollScene } from "@/components/cooverly/ScrollScene";
 import { darkAccents, lightAccents, pick } from "@/components/cooverly/accents";
 import { useLang } from "@/i18n/LanguageContext";
 import { pageHead } from "@/lib/seo";
@@ -69,7 +66,7 @@ function Index() {
         </div>
       </section>
 
-      <ScrollImage src={illusBuild} alt="Venture pieces assembling into a structure" />
+      <ScrollScene scene="build" />
 
       {/* When */}
       <section id="who" className="border-y border-border bg-card">
@@ -127,7 +124,7 @@ function Index() {
         </div>
       </section>
 
-      <ScrollImage src={illusPath} alt="Stepping stones rising toward a flag" />
+      <ScrollScene scene="rise" />
 
       {/* Method */}
       <section id="method" className="relative isolate overflow-hidden bg-navy text-navy-foreground">
@@ -193,7 +190,7 @@ function Index() {
         </Reveal>
       </section>
 
-      <ScrollImage src={illusPartner} alt="Two hands placing the last block together" />
+      <ScrollScene scene="together" />
 
       {/* After launch */}
       <section className="border-y border-border bg-card">

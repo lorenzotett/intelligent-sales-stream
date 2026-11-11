@@ -223,3 +223,10 @@ button:active, a:active { transform: scale(.98); }
 ::selection { background: color-mix(in oklab, var(--primary) 18%, transparent); }
 /* Brand hairline: royal → sky → orange, used to open cards and sections. */
 .rule-tri { height: 2px; background: var(--gradient-tri); }
+
+/* Solid brand blocks for scroll scenes */
+.block3d { position: relative; width: var(--w); height: var(--h); transform-style: preserve-3d; }
+.block3d > span { position: absolute; background: var(--c); border-radius: 4px; }
+.block3d > span:nth-child(1) { inset: 0; transform: translateZ(calc(var(--d) / 2)); }
+.block3d > span:nth-child(2) { left: 0; top: 0; width: var(--w); height: var(--d); transform-origin: top; transform: translateZ(calc(var(--d) / 2)) rotateX(90deg); filter: brightness(1.25); }
+.block3d > span:nth-child(3) { right: 0; top: 0; width: var(--d); height: var(--h); transform-origin: right; transform: translateZ(calc(var(--d) / 2)) rotateY(90deg); filter: brightness(0.72); }
