@@ -7,19 +7,15 @@ const LanguageContext = createContext<Ctx | null>(null);
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
   useEffect(() => {
-    const stored = window.localStorage.getItem("cooverly-lang");
-    let l: Lang;
-    if (stored === "en" || stored === "es" || stored === "it") l = stored;
-    else {
-      const nav = (navigator.language || "en").toLowerCase();
-      l = nav.startsWith("es") ? "es" : nav.startsWith("it") ? "it" : "en";
-    }
+    const stored = window.localStorage.getItem("cooverly-lang-v2");
+    // English is the default; another language only if the visitor picked it.
+    const l: Lang = stored === "es" || stored === "it" ? stored : "en";
     setLangState(l);
     document.documentElement.lang = l;
   }, []);
   const setLang = (l: Lang) => {
     setLangState(l);
-    try { window.localStorage.setItem("cooverly-lang", l); } catch { /* noop */ }
+    try { window.localStorage.setItem("cooverly-lang-v2", l); } catch { /* noop */ }
     document.documentElement.lang = l;
   };
   return <LanguageContext.Provider value={{ lang, setLang, t: copy[lang] }}>{children}</LanguageContext.Provider>;
