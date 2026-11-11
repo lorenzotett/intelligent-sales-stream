@@ -5,11 +5,23 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { useLang } from "@/i18n/LanguageContext";
 import { WHATSAPP_HREF } from "@/i18n/site";
-import { MAX_PER_QUESTION, progressOf, scoreBand, totalScore } from "@/lib/quiz";
 import { Tilt3D } from "./Tilt3D";
+import { lightAccents, pick as pickAccent, type Accent } from "./accents";
+import { MAX_PER_QUESTION, progressOf, scoreBand, totalScore, type QuizBand } from "@/lib/quiz";
 
 const R = 44;
 const CIRC = 2 * Math.PI * R;
+/** Band colours: the title is large bold text, so the deeper orange is readable there. */
+const BAND_TONE: Record<QuizBand, string> = {
+  early: "text-warm-deep",
+  shaping: "text-sky-deep",
+  ready: "text-primary",
+};
+const BAND_ACCENT: Record<QuizBand, Accent> = {
+  early: lightAccents[3],
+  shaping: lightAccents[2],
+  ready: lightAccents[0],
+};
 
 export function ReadinessQuiz() {
   const { t } = useLang();
@@ -53,7 +65,8 @@ export function ReadinessQuiz() {
   return (
     <div>
       <Tilt3D max={4}>
-        <div className="rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8">
+        <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8">
+          <span aria-hidden className="rule-tri absolute inset-x-0 top-0" />
           <div className="flex items-center justify-between gap-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             <span>
               {finished
@@ -64,7 +77,7 @@ export function ReadinessQuiz() {
           </div>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-muted">
             <motion.div
-              className="h-full rounded-full bg-[linear-gradient(90deg,var(--primary),var(--sky))]"
+              className="h-full rounded-full bg-[linear-gradient(90deg,var(--primary),var(--sky),var(--accent-warm))]"
               animate={{ width: `${pct * 100}%` }}
               transition={anim}
             />
@@ -92,7 +105,7 @@ export function ReadinessQuiz() {
                         onClick={() => pick(o.s)}
                         className="group flex items-center gap-4 rounded-lg border border-border bg-background px-4 py-3.5 text-left transition-all hover:border-primary/60 hover:shadow-[var(--shadow-lift)] focus-visible:border-primary"
                       >
-                        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-[13px] font-bold text-muted-foreground transition-colors group-hover:border-primary group-hover:text-primary">
+                        <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-[13px] font-bold ${pickAccent(lightAccents, i).chip}`}>
                           {String.fromCharCode(65 + i)}
                         </span>
                         <span className="font-medium">{o.t}</span>
@@ -141,7 +154,8 @@ export function ReadinessQuiz() {
                       <defs>
                         <linearGradient id="quizGrad" x1="0" y1="0" x2="1" y2="1">
                           <stop offset="0%" style={{ stopColor: "var(--primary)" }} />
-                          <stop offset="100%" style={{ stopColor: "var(--sky)" }} />
+                          <stop offset="55%" style={{ stopColor: "var(--sky)" }} />
+                          <stop offset="100%" style={{ stopColor: "var(--accent-warm)" }} />
                         </linearGradient>
                       </defs>
                     </svg>
@@ -156,13 +170,13 @@ export function ReadinessQuiz() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold">{q.bands[band].t}</h3>
+                    <h3 className={`text-2xl font-bold ${BAND_TONE[band]}`}>{q.bands[band].t}</h3>
                     <p className="mt-2 text-muted-foreground">{q.bands[band].d}</p>
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-lg border border-border bg-background p-4">
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-primary">{q.nextLabel}</p>
+                <div className={`mt-6 rounded-lg border border-l-2 bg-background p-4 ${BAND_ACCENT[band].border}`}>
+                  <p className={`text-[13px] font-semibold uppercase tracking-[0.14em] ${BAND_ACCENT[band].text}`}>{q.nextLabel}</p>
                   <p className="mt-1 font-medium">{q.next[band]}</p>
                 </div>
 

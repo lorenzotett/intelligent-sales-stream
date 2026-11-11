@@ -12,6 +12,7 @@ import { DepthScene } from "@/components/cooverly/DepthScene";
 import { DepthBand } from "@/components/cooverly/DepthBand";
 import { ReadinessQuiz } from "@/components/cooverly/ReadinessQuiz";
 import { Parallax } from "@/components/cooverly/Parallax";
+import { darkAccents, lightAccents, pick } from "@/components/cooverly/accents";
 import { useLang } from "@/i18n/LanguageContext";
 import { pageHead } from "@/lib/seo";
 
@@ -34,6 +35,7 @@ function Index() {
       {/* Hero */}
       <section ref={heroRef} className="container-site relative isolate py-14 sm:py-20 lg:py-24">
         <DepthScene />
+        <span aria-hidden className="rule-tri absolute inset-x-0 top-0" />
         <div className="grid items-center gap-12 lg:grid-cols-12">
           <motion.div className="lg:col-span-7" style={{ y: reduce ? 0 : heroY, opacity: reduce ? 1 : heroOpacity }}>
             <Eyebrow>{t.hero.eyebrow}</Eyebrow>
@@ -75,7 +77,7 @@ function Index() {
             {t.when.items.map((it, i) => (
               <Reveal key={it.t} delay={i * 0.05}>
                 <li className="flex gap-5 py-6 first:pt-0">
-                  <span className="font-display text-sm font-bold text-primary">{String(i + 1).padStart(2, "0")}</span>
+                  <span className={`font-display text-sm font-bold ${pick(lightAccents, i).text}`}>{String(i + 1).padStart(2, "0")}</span>
                   <div>
                     <h3 className="text-xl font-bold">{it.t}</h3>
                     <p className="mt-1 text-muted-foreground">{it.d}</p>
@@ -90,16 +92,16 @@ function Index() {
       {/* Capabilities */}
       <section id="capabilities" className="container-site scroll-mt-20 py-16 sm:py-24">
         <span id="services" className="block scroll-mt-20" />
-        <Eyebrow>{t.caps.eyebrow}</Eyebrow>
+        <Eyebrow tone="sky">{t.caps.eyebrow}</Eyebrow>
         <Reveal><h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.caps.title}</h2></Reveal>
         <div className="mt-10 border-t border-border">
           {t.caps.rows.map((r, i) => (
             <Reveal key={r.t}>
               <div className="grid gap-2 border-b border-border py-6 md:grid-cols-12 md:gap-6">
-                <span className="font-display text-sm font-bold text-muted-foreground md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
+                <span className={`font-display text-sm font-bold ${pick(lightAccents, i).text} md:col-span-1`}>{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="text-lg font-bold md:col-span-3">{r.t}</h3>
                 <p className="text-muted-foreground md:col-span-4">{r.d}</p>
-                <p className="text-[15px] md:col-span-4"><span className="mr-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-primary">{t.caps.outputLabel}</span>{r.o}</p>
+                <p className="text-[15px] md:col-span-4"><span className={`mr-2 text-[13px] font-semibold uppercase tracking-[0.14em] ${pick(lightAccents, i).text}`}>{t.caps.outputLabel}</span>{r.o}</p>
               </div>
             </Reveal>
           ))}
@@ -111,7 +113,7 @@ function Index() {
       <section id="quiz" className="container-site scroll-mt-20 py-16 sm:py-24">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Eyebrow>{t.quiz.eyebrow}</Eyebrow>
+            <Eyebrow tone="red">{t.quiz.eyebrow}</Eyebrow>
             <Reveal depth={0.5}><h2 className="h2-fluid mt-4 font-bold">{t.quiz.title}</h2></Reveal>
             <p className="mt-5 max-w-[56ch] text-muted-foreground">{t.quiz.sub}</p>
           </div>
@@ -123,17 +125,18 @@ function Index() {
       <section id="method" className="relative isolate overflow-hidden bg-navy text-navy-foreground">
         <DepthBand />
         <div className="container-site py-16 sm:py-24">
-          <Eyebrow inverted>{t.method.eyebrow}</Eyebrow>
+          <Eyebrow inverted tone="warm">{t.method.eyebrow}</Eyebrow>
           <Reveal><h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.method.title}</h2></Reveal>
           <ol className="mt-12 grid gap-6 lg:grid-cols-3">
             {t.method.phases.map((p, i) => (
               <Reveal key={p.t} delay={i * 0.06}>
-                <Tilt3D className="h-full"><li className="flex h-full flex-col rounded-xl border border-navy-foreground/15 p-6">
-                  <p className="font-display text-sm font-bold text-navy-muted">{p.n}</p>
+                <Tilt3D className="h-full"><li className="relative flex h-full flex-col overflow-hidden rounded-xl border border-navy-foreground/15 p-6">
+                  <span aria-hidden className={`absolute inset-x-0 top-0 h-0.5 ${pick(darkAccents, i).bar}`} />
+                  <p className={`font-display text-sm font-bold ${pick(darkAccents, i).text}`}>{p.n}</p>
                   <h3 className="mt-2 text-2xl font-bold">{p.t}</h3>
                   <p className="mt-3 text-navy-muted">{p.q}</p>
                   <ul className="mt-5 space-y-2 text-[15px]">
-                    {p.a.map((a) => <li key={a} className="flex gap-2"><span aria-hidden className="mt-2.5 h-1 w-3 shrink-0 bg-navy-muted" />{a}</li>)}
+                    {p.a.map((a) => <li key={a} className="flex gap-2"><span aria-hidden className={`mt-2.5 h-1 w-3 shrink-0 ${pick(darkAccents, i).dot}`} />{a}</li>)}
                   </ul>
                   <div className="mt-auto pt-6">
                     <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-navy-muted">{t.method.outLabel}</p>
@@ -165,9 +168,10 @@ function Index() {
         </div>
         <Reveal className="lg:col-span-7 lg:col-start-6">
           <Tilt3D max={6}><article className="rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
-            <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-5 py-4 sm:px-7">
+            <header className="relative flex flex-wrap items-center justify-between gap-2 border-b border-border px-5 py-4 sm:px-7">
+              <span aria-hidden className="rule-tri absolute inset-x-0 top-0" />
               <p className="font-display font-bold">{t.deliver.docTitle}</p>
-              <span className="rounded-md bg-muted px-2 py-1 text-[13px] text-muted-foreground">{t.deliver.label}</span>
+              <span className="rounded-md bg-sky-deep/10 px-2 py-1 text-[13px] font-medium text-sky-deep">{t.deliver.label}</span>
             </header>
             <dl className="divide-y divide-border px-5 sm:px-7">
               {t.deliver.rows.map((r) => (
@@ -191,7 +195,8 @@ function Index() {
           <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
             {t.after.items.map((it, i) => (
               <Reveal key={it.t} delay={i * 0.08} className="bg-background p-6"><div>
-                <h3 className="text-lg font-bold">{it.t}</h3>
+                <span aria-hidden className={`block h-0.5 w-10 rounded-full ${pick(lightAccents, i).bar}`} />
+                <h3 className="mt-4 text-lg font-bold">{it.t}</h3>
                 <p className="mt-2 text-muted-foreground">{it.d}</p>
               </div></Reveal>
             ))}
@@ -218,6 +223,7 @@ function Index() {
         <Reveal><div className="relative isolate overflow-hidden rounded-2xl bg-navy px-6 py-14 text-navy-foreground sm:px-12 sm:py-16">
           <DepthBand />
           <span aria-hidden className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full border-[18px] border-accent-warm/40" />
+          <span aria-hidden className="absolute -top-12 left-[22%] h-28 w-28 rounded-full border-[10px] border-sky/25" />
           <h2 className="h2-fluid relative max-w-2xl font-bold">{t.closing.title}</h2>
           <p className="relative mt-5 max-w-[60ch] text-navy-muted">{t.closing.text}</p>
           <Button asChild className="relative mt-8 h-12 rounded-lg px-6 text-base hover:bg-primary-hover">

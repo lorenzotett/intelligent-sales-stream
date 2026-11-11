@@ -10,5 +10,9 @@
 - Mini quiz: 5-question readiness check with score gauge, three result bands, WhatsApp + contact CTAs, EN/IT/ES; scoring tested (5 tests).
 - Verified in the browser: quiz flow to both result bands, restart, mobile menu path; all 5 pages clean at 1280 and 360; no console errors; build OK.
 
+- Contact email → lorenzo.tttine@gmail.com everywhere (contact page, footer, project form, privacy, structured data).
+- Full brand palette back across all pages: royal blue, navy, sky, red and orange on numbers, labels, chips, phase cards, quiz letters/gauge/result, footer hairline, nav underline and the 3D shapes; sky-deep and warm-deep tokens keep small text readable.
+- Verified in the browser: colour classes present on every page, no horizontal overflow at 1280 and 360, contact rows fit on a phone, decorative shapes no longer cross the headline on mobile or desktop, no console errors, build OK.
+
 ## Open
 - [ ] Owner to supply the real logo without the old "AI Solutions · Spain & USA" line (text wordmark in use until then).

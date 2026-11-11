@@ -28,6 +28,10 @@ export function DepthBand() {
       </motion.div>
       <motion.div style={{ y: yRing2 }} className="absolute -left-10 bottom-[8%] h-40 w-40">
         <div className="ring3d border-primary/25 [animation-duration:26s] [animation-direction:reverse]" />
+        <div className="ring3d border-accent-warm/30 [animation-duration:34s] scale-[1.3]" />
+      </motion.div>
+      <motion.div style={{ y: yRing }} className="absolute -right-8 top-[74%] h-24 w-24">
+        <div className="ring3d border-danger-brand/20 [animation-duration:30s]" />
       </motion.div>
       <motion.div style={{ y: yFloor }} className="grid3d-dark absolute inset-x-0 bottom-0 h-2/3" />
     </motion.div>

@@ -39,27 +39,34 @@ export function DepthScene() {
       >
         <div className="h-full w-full" style={{ background: glow("var(--accent-warm)", 10) }} />
       </motion.div>
+      <motion.div
+        style={{ y: yBack }}
+        className="absolute right-[26%] top-[2%] h-56 w-56 rounded-full"
+      >
+        <div className="h-full w-full" style={{ background: glow("var(--danger-brand)", 7) }} />
+      </motion.div>
 
       {/* mid layer: rings */}
-      <motion.div style={{ y: yMid, rotateX: tilt }} className="absolute right-[3%] top-[6%] h-72 w-72">
+      <motion.div style={{ y: yMid, rotateX: tilt }} className="absolute -right-10 bottom-[1%] h-40 w-40 sm:right-[3%] sm:top-[6%] sm:bottom-auto sm:h-72 sm:w-72">
         <div className="ring3d border-primary/30" />
         <div className="ring3d border-accent-warm/40 [animation-duration:22s] [animation-direction:reverse]" />
         <div className="ring3d border-sky/45 [animation-duration:38s] scale-[1.25]" />
+        <div className="ring3d border-danger-brand/35 [animation-duration:44s] scale-[1.45]" />
       </motion.div>
 
       {/* near layer: cubes */}
-      <motion.div style={{ y: yNear }} className="absolute left-[6%] top-[12%]">
-        <div className="cube3d" style={{ ["--s" as string]: "70px" }}>
+      <motion.div style={{ y: yNear }} className="absolute left-[2%] top-[2%] hidden sm:block">
+        <div className="cube3d sky" style={{ ["--s" as string]: "70px" }}>
           {Array.from({ length: 6 }).map((_, i) => <span key={i} />)}
         </div>
       </motion.div>
-      <motion.div style={{ y: yNear }} className="absolute bottom-[10%] left-[44%]">
-        <div className="cube3d [animation-duration:26s]" style={{ ["--s" as string]: "40px" }}>
+      <motion.div style={{ y: yNear }} className="absolute bottom-[10%] left-[44%] hidden sm:block">
+        <div className="cube3d warm [animation-duration:26s]" style={{ ["--s" as string]: "40px" }}>
           {Array.from({ length: 6 }).map((_, i) => <span key={i} />)}
         </div>
       </motion.div>
-      <motion.div style={{ y: yMid }} className="absolute left-[26%] top-[64%]">
-        <div className="cube3d [animation-duration:34s]" style={{ ["--s" as string]: "24px" }}>
+      <motion.div style={{ y: yMid }} className="absolute right-[6%] bottom-[6%] hidden sm:block">
+        <div className="cube3d red [animation-duration:34s]" style={{ ["--s" as string]: "24px" }}>
           {Array.from({ length: 6 }).map((_, i) => <span key={i} />)}
         </div>
       </motion.div>

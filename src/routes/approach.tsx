@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell, Eyebrow } from "@/components/cooverly/PageShell";
+import { lightAccents, pick } from "@/components/cooverly/accents";
 import { useLang } from "@/i18n/LanguageContext";
 import { pageHead } from "@/lib/seo";
 
@@ -26,10 +27,11 @@ function ApproachPage() {
         <div className="container-site py-16">
           <h2 className="h2-fluid font-bold">{a.phasesTitle}</h2>
           <div className="mt-10 divide-y divide-border border-y border-border">
-            {t.method.phases.map((p) => (
-              <div key={p.t} className="grid gap-4 py-8 lg:grid-cols-12">
+            {t.method.phases.map((p, i) => (
+              <div key={p.t} className="relative grid gap-4 py-8 lg:grid-cols-12">
+                <span aria-hidden className={`absolute inset-x-0 top-0 h-0.5 ${pick(lightAccents, i).bar}`} />
                 <div className="lg:col-span-3">
-                  <p className="font-display text-sm font-bold text-primary">{p.n}</p>
+                  <p className={`font-display text-sm font-bold ${pick(lightAccents, i).text}`}>{p.n}</p>
                   <h3 className="mt-1 text-2xl font-bold">{p.t}</h3>
                 </div>
                 <div className="lg:col-span-4">
@@ -57,7 +59,7 @@ function ApproachPage() {
         <div>
           <h2 className="text-2xl font-bold sm:text-3xl">{a.coordTitle}</h2>
           <ul className="mt-4 space-y-3 text-muted-foreground">
-            {a.coord.map((c) => <li key={c} className="flex gap-3"><span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{c}</li>)}
+            {a.coord.map((c, i) => <li key={c} className="flex gap-3"><span aria-hidden className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${pick(lightAccents, i).dot}`} />{c}</li>)}
           </ul>
         </div>
       </section>
@@ -71,7 +73,7 @@ function ApproachPage() {
           <ol className="divide-y divide-navy-foreground/15 border-y border-navy-foreground/15 lg:col-span-7 lg:col-start-6">
             {a.agenda.map((g) => (
               <li key={g.w} className="grid gap-1 py-5 sm:grid-cols-[8rem_1fr]">
-                <span className="font-display font-bold">{g.w}</span>
+                <span className="font-display font-bold text-sky">{g.w}</span>
                 <span className="text-navy-muted">{g.t}</span>
               </li>
             ))}
@@ -84,8 +86,9 @@ function ApproachPage() {
         <p className="mt-4 text-muted-foreground">{a.budgetIntro}</p>
         <ol className="mt-8 grid gap-4 md:grid-cols-3">
           {a.budget.map((b, i) => (
-            <li key={b.t} className="rounded-xl border border-border bg-card p-6">
-              <p className="font-display text-sm font-bold text-primary">{i + 1}</p>
+            <li key={b.t} className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+              <span aria-hidden className={`absolute inset-x-0 top-0 h-0.5 ${pick(lightAccents, i).bar}`} />
+              <p className={`font-display text-sm font-bold ${pick(lightAccents, i).text}`}>{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{b.t}</h3>
               <p className="mt-2 text-muted-foreground">{b.d}</p>
             </li>
@@ -101,7 +104,7 @@ function ApproachPage() {
               <div key={label as string}>
                 <h3 className="text-xl font-bold">{label as string}</h3>
                 <ul className="mt-4 divide-y divide-border border-y border-border">
-                  {(items as string[]).map((x) => <li key={x} className="py-3">{x}</li>)}
+                  {(items as string[]).map((x, i) => <li key={x} className="flex gap-3 py-3"><span aria-hidden className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${pick(lightAccents, i).dot}`} />{x}</li>)}
                 </ul>
               </div>
             ))}

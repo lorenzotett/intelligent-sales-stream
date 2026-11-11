@@ -17,6 +17,31 @@ export function PageShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function Eyebrow({ children, inverted }: { children: ReactNode; inverted?: boolean }) {
-  return <p className={`text-[13px] font-semibold uppercase tracking-[0.18em] ${inverted ? "text-navy-muted" : "text-primary"}`}>{children}</p>;
+export type Tone = "royal" | "sky" | "red" | "warm";
+
+const LIGHT_TONES: Record<Tone, string> = {
+  royal: "text-primary",
+  sky: "text-sky-deep",
+  red: "text-danger-brand",
+  warm: "text-warm-deep",
+};
+
+const DARK_TONES: Record<Tone, string> = {
+  royal: "text-navy-muted",
+  sky: "text-sky",
+  red: "text-danger-brand",
+  warm: "text-accent-warm",
+};
+
+export function Eyebrow({
+  children,
+  inverted,
+  tone = "royal",
+}: {
+  children: ReactNode;
+  inverted?: boolean;
+  tone?: Tone;
+}) {
+  const toneCls = inverted ? DARK_TONES[tone] : LIGHT_TONES[tone];
+  return <p className={`text-[13px] font-semibold uppercase tracking-[0.18em] ${toneCls}`}>{children}</p>;
 }

@@ -46,7 +46,8 @@ export function ProjectForm() {
 
   if (step === 3) {
     return (
-      <div className="rounded-xl border border-border bg-card p-6 sm:p-8" role="status">
+      <div className="relative overflow-hidden rounded-xl border border-border bg-card p-6 sm:p-8" role="status">
+        <span aria-hidden className="rule-tri absolute inset-x-0 top-0" />
         <Mail className="h-6 w-6 text-primary" />
         <h2 className="mt-4 text-2xl font-bold">{f.sentTitle}</h2>
         <p className="mt-3 text-muted-foreground">{f.sentBody}</p>
@@ -58,13 +59,14 @@ export function ProjectForm() {
 
   return (
     <form noValidate onSubmit={(e) => { e.preventDefault(); if (step === 1) next(); else submit(); }}
-      className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-8">
+      className="relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-8">
+      <span aria-hidden className="rule-tri absolute inset-x-0 top-0" />
       <div ref={topRef} tabIndex={-1} className="outline-none">
         <p className="text-[15px] text-muted-foreground">{f.step} {step} {f.of} 2</p>
         <h2 className="mt-1 text-2xl font-bold">{step === 1 ? f.s1 : f.s2}</h2>
         <div className="mt-4 grid grid-cols-2 gap-2" aria-hidden>
           <span className="h-1 rounded-full bg-primary" />
-          <span className={cn("h-1 rounded-full transition-colors duration-200", step === 2 ? "bg-primary" : "bg-border")} />
+          <span className={cn("h-1 rounded-full transition-colors duration-200", step === 2 ? "bg-accent-warm" : "bg-border")} />
         </div>
       </div>
       {Object.keys(errors).length > 0 && <p role="alert" className="mt-5 text-sm font-medium text-destructive">{f.errorSummary}</p>}

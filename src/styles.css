@@ -71,6 +71,8 @@
   --color-navy-foreground: var(--navy-foreground);
   --color-navy-muted: var(--navy-muted);
   --color-sky: var(--sky);
+  --color-sky-deep: var(--sky-deep);
+  --color-warm-deep: var(--warm-deep);
 }
 
 :root {
@@ -103,9 +105,13 @@
   --navy-foreground: oklch(0.97 0.005 260);
   --navy-muted: oklch(0.83 0.05 244);        /* light sky on navy */
   --sky: oklch(0.756 0.135 244);             /* #5BB8FF brand sky */
+  --sky-deep: oklch(0.52 0.14 244);          /* readable sky for small text/icons on light */
+  --warm-deep: oklch(0.63 0.17 55);          /* readable orange for large text/icons on light */
   --shadow-soft: 0 1px 2px oklch(0.243 0.035 260 / 6%), 0 8px 24px -12px oklch(0.243 0.035 260 / 14%);
   --shadow-lift: 0 2px 4px oklch(0.243 0.035 260 / 7%), 0 22px 48px -20px oklch(0.243 0.035 260 / 26%);
   --gradient-brand: linear-gradient(90deg, var(--primary), var(--sky));
+  --gradient-warm: linear-gradient(90deg, var(--accent-warm), var(--danger-brand));
+  --gradient-tri: linear-gradient(90deg, var(--primary), var(--sky) 45%, var(--accent-warm));
   --shadow-glow: var(--shadow-soft);
   --chart-1: oklch(0.493 0.169 260);
   --chart-2: oklch(0.748 0.176 56);
@@ -156,7 +162,27 @@
 @utility h1-fluid { font-size: clamp(2.4rem, 1.6rem + 3.6vw, 4.5rem); }
 @utility h2-fluid { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.9rem); }
 @utility bg-primary-hover { background-color: var(--primary-hover); }
-@utility nav-link { color: var(--muted-foreground); transition: color 200ms; &:hover { color: var(--foreground); } &[aria-current="page"] { color: var(--foreground); font-weight: 600; } }
+@utility nav-link {
+  position: relative;
+  color: var(--muted-foreground);
+  transition: color 200ms;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gradient-tri);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 280ms cubic-bezier(.22, 1, .36, 1);
+  }
+  &:hover { color: var(--foreground); }
+  &:hover::after, &[aria-current="page"]::after { transform: scaleX(1); }
+  &[aria-current="page"] { color: var(--foreground); font-weight: 600; }
+}
 
 /* 3D decorative primitives */
 @keyframes spin3d { from { transform: rotateX(-24deg) rotateY(0deg); } to { transform: rotateX(-24deg) rotateY(360deg); } }
@@ -170,6 +196,9 @@
 .cube3d > span:nth-child(4) { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
 .cube3d > span:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); background: color-mix(in oklab, var(--accent-warm) 14%, transparent); }
 .cube3d > span:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+.cube3d.warm > span { border-color: color-mix(in oklab, var(--accent-warm) 55%, transparent); background: color-mix(in oklab, var(--accent-warm) 8%, transparent); }
+.cube3d.red > span { border-color: color-mix(in oklab, var(--danger-brand) 55%, transparent); background: color-mix(in oklab, var(--danger-brand) 8%, transparent); }
+.cube3d.sky > span { border-color: color-mix(in oklab, var(--sky) 60%, transparent); background: color-mix(in oklab, var(--sky) 10%, transparent); }
 .ring3d { position: absolute; inset: 0; border-width: 2px; border-style: solid; border-radius: 9999px; animation: ringspin 30s linear infinite; }
 .grid3d { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; transform: perspective(600px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .5; }
 .grid3d-dark { background-image: linear-gradient(color-mix(in oklab, var(--navy-foreground) 12%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--navy-foreground) 12%, transparent) 1px, transparent 1px); background-size: 56px 56px; transform: perspective(700px) rotateX(64deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .8; will-change: transform; }
@@ -192,3 +221,5 @@ button:active, a:active { transform: scale(.98); }
 .lift { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s cubic-bezier(.22,1,.36,1); }
 .lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 ::selection { background: color-mix(in oklab, var(--primary) 18%, transparent); }
+/* Brand hairline: royal → sky → orange, used to open cards and sections. */
+.rule-tri { height: 2px; background: var(--gradient-tri); }

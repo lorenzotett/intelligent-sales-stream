@@ -8,6 +8,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-navy text-navy-foreground">
+      <span aria-hidden className="rule-tri block" />
       <div className="container-site grid gap-10 py-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <Wordmark inverted />
@@ -17,18 +18,18 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <h2 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.pages}</h2>
           <ul className="mt-4 space-y-2 text-[15px]">
-            <li><a href="/#capabilities" className="hover:underline">{t.nav.what}</a></li>
-            <li><Link to="/approach" className="hover:underline">{t.nav.how}</Link></li>
-            <li><Link to="/about" className="hover:underline">{t.nav.about}</Link></li>
-            <li><Link to="/contact" className="hover:underline">{t.contact.eyebrow}</Link></li>
+            <li><a href="/#capabilities" className="hover:text-sky hover:underline">{t.nav.what}</a></li>
+            <li><Link to="/approach" className="hover:text-sky hover:underline">{t.nav.how}</Link></li>
+            <li><Link to="/about" className="hover:text-sky hover:underline">{t.nav.about}</Link></li>
+            <li><Link to="/contact" className="hover:text-accent-warm hover:underline">{t.contact.eyebrow}</Link></li>
           </ul>
         </div>
         <div className="md:col-span-3">
           <h2 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.contact}</h2>
           <ul className="mt-4 space-y-2 text-[15px]">
-            <li><a href={`mailto:${CONTACT.email}`} className="hover:underline">{CONTACT.email}</a></li>
-            <li><a href={CONTACT.phoneHref} className="hover:underline">{CONTACT.phoneDisplay}</a></li>
-            <li><a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" className="hover:underline">WhatsApp</a></li>
+            <li><a href={`mailto:${CONTACT.email}`} className="hover:text-sky hover:underline">{CONTACT.email}</a></li>
+            <li><a href={CONTACT.phoneHref} className="hover:text-sky hover:underline">{CONTACT.phoneDisplay}</a></li>
+            <li><a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" className="hover:text-accent-warm hover:underline">WhatsApp</a></li>
           </ul>
         </div>
         <div className="md:col-span-2">
