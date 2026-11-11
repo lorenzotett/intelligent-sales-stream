@@ -1,99 +1,50 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowLeft, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
-import { Logo } from "@/components/cooverly/Logo";
-import { LangSwitch } from "@/components/cooverly/LangSwitch";
-import { RevenueAnalyzer } from "@/components/cooverly/RevenueAnalyzer";
+import { createFileRoute } from "@tanstack/react-router";
+import { Mail, MessageSquare, Phone } from "lucide-react";
+import { PageShell, Eyebrow } from "@/components/cooverly/PageShell";
+import { ProjectForm } from "@/components/cooverly/ProjectForm";
 import { useLang } from "@/i18n/LanguageContext";
+import { CONTACT } from "@/i18n/site";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Cooverly — AI Sales Agents | USA & Spain" },
-      { name: "description", content: "Talk to the Cooverly team. AI sales agents and revenue systems for service businesses across the USA and Spain. Message us on WhatsApp or request a Lifetime plan by email." },
-      { property: "og:title", content: "Contact Cooverly — AI Sales Agents | USA & Spain" },
-      { property: "og:description", content: "MRR plans on WhatsApp · Lifetime plans by email · Custom AI revenue systems for the US and Spanish markets." },
-      { property: "og:url", content: "https://cooverly.com/contact" },
-    ],
-    links: [
-      { rel: "canonical", href: "https://cooverly.com/contact" },
-      { rel: "alternate", hrefLang: "en", href: "https://cooverly.com/contact" },
-      { rel: "alternate", hrefLang: "es", href: "https://cooverly.com/contact" },
-      { rel: "alternate", hrefLang: "it", href: "https://cooverly.com/contact" },
-      { rel: "alternate", hrefLang: "x-default", href: "https://cooverly.com/contact" },
-    ],
-  }),
+  head: () => pageHead("/contact", "Tell us about your project — Cooverly",
+    "Share a short overview of the new business, product or spin-off you would like to build with Cooverly."),
   component: ContactPage,
 });
 
-const cardIcons = [MessageSquare, Mail, Phone, MapPin];
-
 function ContactPage() {
   const { t } = useLang();
-
+  const c = t.contact;
+  const wa = `${CONTACT.whatsapp}?text=${encodeURIComponent(c.waText)}`;
+  const items = [
+    { Icon: Mail, label: c.emailLabel, value: CONTACT.email, href: `mailto:${CONTACT.email}?subject=${encodeURIComponent(c.emailSubject)}` },
+    { Icon: Phone, label: c.phoneLabel, value: CONTACT.phoneDisplay, href: CONTACT.phoneHref },
+    { Icon: MessageSquare, label: c.waLabel, value: c.waAction, href: wa, external: true },
+  ];
   return (
-    <div className="relative min-h-screen text-foreground">
-      <AnimatedBackground />
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> {t.contact.back}
-          </Link>
-          <LangSwitch />
+    <PageShell>
+      <section className="container-site grid gap-10 py-14 sm:py-20 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <Eyebrow>{c.eyebrow}</Eyebrow>
+          <h1 className="h1-fluid mt-5 font-extrabold">{c.title}</h1>
+          <p className="mt-6 max-w-[56ch] text-lg text-muted-foreground">{c.sub}</p>
+          <h2 className="mt-12 text-lg font-bold">{c.otherTitle}</h2>
+          <ul className="mt-4 divide-y divide-border border-y border-border">
+            {items.map(({ Icon, label, value, href, external }) => (
+              <li key={label}>
+                <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
+                  className="flex min-h-14 items-center gap-4 py-3 transition-colors hover:text-primary">
+                  <Icon className="h-5 w-5 text-primary" aria-hidden />
+                  <span className="w-24 shrink-0 text-sm text-muted-foreground">{label}</span>
+                  <span className="font-medium">{value}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-muted-foreground">{c.intl}</p>
         </div>
-
-        <div className="mt-6 sm:mt-8">
-          <Logo size={72} className="sm:[&_img]:!h-[88px] sm:[&_img]:!w-[88px]" />
-        </div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className="mt-8 text-3xl font-semibold tracking-tight sm:mt-12 sm:text-5xl md:text-6xl"
-        >
-          {t.contact.title}{" "}
-          <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-brand)" }}>
-            {t.contact.titleHighlight}
-          </span>
-        </motion.h1>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:mt-6 sm:text-lg">{t.contact.sub}</p>
-
-        <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-[1.1fr_1fr]">
-          {/* AI Revenue Analyzer */}
-          <div>
-            <RevenueAnalyzer />
-          </div>
-
-          {/* Contact cards */}
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-1">
-            {t.contact.cards.map((c, i) => {
-              const Icon = cardIcons[i];
-              return (
-                <motion.div
-                  key={c.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-xl sm:p-6"
-                >
-                  <Icon className="h-6 w-6 text-primary-glow" />
-                  <div className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.title}</div>
-                  <div className="mt-1 font-medium">{c.value}</div>
-                  {c.action && c.href && (
-                    <Button asChild size="sm" variant="outline" className="mt-4 border-border bg-card/40">
-                      <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-                        {c.action}
-                      </a>
-                    </Button>
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
+        <div className="lg:col-span-7"><ProjectForm /></div>
+      </section>
+    </PageShell>
   );
 }
-

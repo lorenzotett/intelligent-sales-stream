@@ -1,0 +1,2 @@
+- All site copy lives in src/i18n/site.ts (EN typed shape, IT/ES must match); pages read it via useLang() — keeps three languages in sync.
+- Project form has no backend: it validates (src/lib/project-form.ts, tested) and opens a prefilled mailto — never show a fake "sent" state.

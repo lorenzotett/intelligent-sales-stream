@@ -2,9 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "@/i18n/LanguageContext";
-import { DiagnosticModalProvider } from "@/components/cooverly/DiagnosticModal";
 import { CookieBanner } from "@/components/cooverly/CookieBanner";
-import { PromoPopup } from "@/components/cooverly/PromoPopup";
 
 function NotFoundComponent() {
   return (
@@ -34,7 +32,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: "Cooverly" },
-      { name: "theme-color", content: "#0A2A5E" },
+      { name: "theme-color", content: "#F7F8FA" },
       { name: "robots", content: "index,follow,max-image-preview:large,max-snippet:-1" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Cooverly" },
@@ -53,8 +51,9 @@ export const Route = createRootRoute({
       { rel: "icon", type: "image/png", sizes: "256x256", href: "/favicon-256.png" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "shortcut icon", href: "/favicon.ico" },
-      { rel: "preconnect", href: "https://wa.me" },
-      { rel: "dns-prefetch", href: "https://wa.me" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" },
     ],
     scripts: [
       {
@@ -64,11 +63,10 @@ export const Route = createRootRoute({
           "@type": "Organization",
           name: "Cooverly",
           url: "https://cooverly.com",
-          logo: "https://cooverly.com/favicon-256.png",
-          description:
-            "AI revenue systems that respond, qualify and book appointments 24/7 for service businesses in the USA and Spain.",
-          areaServed: ["US", "ES", "IT"],
-          sameAs: ["https://wa.me/34625198829"],
+                    description:
+            "Venture development partner helping entrepreneurs and established companies validate, build and launch new businesses and corporate spin-offs.",
+          email: "hello@cooverly.com",
+          vatID: "10904471215",
           contactPoint: [{
             "@type": "ContactPoint",
             telephone: "+34-625-19-88-29",
@@ -101,11 +99,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <LanguageProvider>
-      <DiagnosticModalProvider>
-        <Outlet />
-        <PromoPopup />
-        <CookieBanner />
-      </DiagnosticModalProvider>
+      <Outlet />
+      <CookieBanner />
     </LanguageProvider>
   );
 }

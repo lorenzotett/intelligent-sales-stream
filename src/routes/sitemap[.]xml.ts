@@ -5,6 +5,8 @@ const BASE_URL = "https://cooverly.com";
 
 const ROUTES = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
+  { path: "/approach", changefreq: "monthly", priority: "0.8" },
+  { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/contact", changefreq: "monthly", priority: "0.8" },
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },
 ];
@@ -15,20 +17,12 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const today = new Date().toISOString().slice(0, 10);
         const urls = ROUTES.map((e) => {
-          const alts = ["en", "es", "it"]
-            .map(
-              (l) =>
-                `    <xhtml:link rel="alternate" hreflang="${l}" href="${BASE_URL}${e.path}"/>`,
-            )
-            .join("\n");
           return [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
             `    <lastmod>${today}</lastmod>`,
             `    <changefreq>${e.changefreq}</changefreq>`,
             `    <priority>${e.priority}</priority>`,
-            alts,
-            `    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${e.path}"/>`,
             `  </url>`,
           ].join("\n");
         });

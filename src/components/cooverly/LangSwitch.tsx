@@ -1,28 +1,23 @@
 import { useLang } from "@/i18n/LanguageContext";
 import { cn } from "@/lib/utils";
 
+const LABELS = { en: "English", it: "Italiano", es: "Español" } as const;
+
 export function LangSwitch({ className }: { className?: string }) {
   const { lang, setLang } = useLang();
   return (
-    <div
-      className={cn(
-        "inline-flex items-center rounded-full border border-border bg-card/50 p-0.5 text-xs backdrop-blur",
-        className,
-      )}
-    >
-      {(["en", "es", "it"] as const).map((l) => (
+    <div role="group" aria-label="Language" className={cn("inline-flex rounded-lg border border-border bg-card p-0.5 text-xs", className)}>
+      {(["en", "it", "es"] as const).map((l) => (
         <button
           key={l}
           type="button"
           onClick={() => setLang(l)}
-          className={cn(
-            "rounded-full px-2.5 py-1 font-medium uppercase tracking-wider transition",
-            lang === l
-              ? "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]"
-              : "text-muted-foreground hover:text-foreground",
-          )}
           aria-pressed={lang === l}
-          aria-label={l === "en" ? "English" : l === "es" ? "Español" : "Italiano"}
+          aria-label={LABELS[l]}
+          className={cn(
+            "min-h-9 min-w-9 rounded-md px-2 font-semibold uppercase tracking-wider transition-colors duration-200",
+            lang === l ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground",
+          )}
         >
           {l}
         </button>

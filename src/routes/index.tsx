@@ -1,543 +1,188 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  ArrowRight, MessageSquare, Calendar, Zap,
-  Stethoscope, Home, Building2, Briefcase, Smile,
-  TrendingUp, Clock, Check, Sparkles, Infinity as InfinityIcon, Activity,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedBackground } from "@/components/cooverly/AnimatedBackground";
-import { TiltCard } from "@/components/cooverly/TiltCard";
-import { Logo3D } from "@/components/cooverly/Logo3D";
-import { Logo } from "@/components/cooverly/Logo";
-import { LangSwitch } from "@/components/cooverly/LangSwitch";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { PageShell, Eyebrow } from "@/components/cooverly/PageShell";
+import { HeroMap } from "@/components/cooverly/HeroMap";
+import { Reveal } from "@/components/cooverly/Reveal";
 import { useLang } from "@/i18n/LanguageContext";
-import { CONTACT } from "@/i18n/translations";
-import { useExtras } from "@/i18n/extras";
-import { useDiagnosticModal } from "@/components/cooverly/DiagnosticModal";
-import { useRef } from "react";
-import { RevenueAnalyzer } from "@/components/cooverly/RevenueAnalyzer";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+  head: () => pageHead("/", "Cooverly — New Businesses & Corporate Spin-offs",
+    "Cooverly helps entrepreneurs and established companies validate, build and launch new businesses, with support across business strategy, product and go-to-market."),
   component: Index,
-  head: () => ({
-    meta: [
-      { title: "Cooverly — AI Sales Agents for Service Businesses | USA & Spain" },
-      {
-        name: "description",
-        content:
-          "Cooverly deploys AI sales agents that reply in seconds, qualify leads and book appointments 24/7. Trusted by med spas, dental, home services, real estate and agencies in the US and Spain.",
-      },
-      { name: "keywords", content: "AI sales agent, AI lead conversion, AI appointment booking, AI for med spas, AI for dental practices, automated lead follow-up, WhatsApp AI, AI revenue systems, Spain, USA" },
-      { property: "og:title", content: "Cooverly — AI Sales Agents that Book Appointments 24/7" },
-      { property: "og:description", content: "AI that answers, follows up and books appointments for your business — every minute, every day. USA & Spain." },
-      { property: "og:url", content: "https://cooverly.com/" },
-      { name: "twitter:title", content: "Cooverly — AI Sales Agents that Book Appointments 24/7" },
-      { name: "twitter:description", content: "AI that answers, follows up and books appointments for your business — 24/7." },
-    ],
-    links: [
-      { rel: "canonical", href: "https://cooverly.com/" },
-      { rel: "alternate", hrefLang: "en", href: "https://cooverly.com/" },
-      { rel: "alternate", hrefLang: "es", href: "https://cooverly.com/" },
-      { rel: "alternate", hrefLang: "it", href: "https://cooverly.com/" },
-      { rel: "alternate", hrefLang: "x-default", href: "https://cooverly.com/" },
-    ],
-  }),
 });
 
-const nicheIcons = [Smile, Stethoscope, Home, Building2, Briefcase];
-const serviceIcons = [Zap, MessageSquare, Calendar];
-
 function Index() {
-  const ex = useExtras();
+  const { t } = useLang();
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-foreground">
-      <AnimatedBackground />
-      <Nav />
-      <Hero />
-      <Marquee />
-      <section id="diagnostic" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <SectionHeading eyebrow={ex.diagnostic.sectionEyebrow} title={ex.diagnostic.sectionTitle} sub={ex.diagnostic.sectionSub} />
-          <div className="mt-8 rounded-2xl border border-border bg-card/60 p-3 backdrop-blur-xl sm:mt-12 sm:rounded-3xl sm:p-8">
-            <RevenueAnalyzer />
+    <PageShell>
+      {/* Hero */}
+      <section className="container-site grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:py-24">
+        <div className="lg:col-span-7">
+          <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+          <h1 className="h1-fluid mt-5 font-extrabold">{t.hero.h1a}<br />{t.hero.h1b}</h1>
+          <p className="mt-6 max-w-[62ch] text-lg text-muted-foreground">{t.hero.sub}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button asChild className="h-12 rounded-lg px-6 text-base hover:bg-primary-hover">
+              <Link to="/contact">{t.hero.cta} <ArrowRight className="h-4 w-4" /></Link>
+            </Button>
+            <Button asChild variant="outline" className="h-12 rounded-lg px-6 text-base">
+              <Link to="/approach">{t.hero.cta2}</Link>
+            </Button>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">{t.hero.micro}</p>
+        </div>
+        <div className="lg:col-span-5"><HeroMap /></div>
+      </section>
+
+      {/* When */}
+      <section id="who" className="border-y border-border bg-card">
+        <div className="container-site grid gap-10 py-16 sm:py-20 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <h2 className="h2-fluid font-bold">{t.when.title}</h2>
+            <p className="mt-5 max-w-[60ch] text-muted-foreground">{t.when.intro}</p>
+            <p className="mt-5 text-sm text-muted-foreground">{t.when.note}</p>
+          </div>
+          <ul className="divide-y divide-border lg:col-span-6 lg:col-start-7">
+            {t.when.items.map((it, i) => (
+              <Reveal key={it.t} delay={i * 0.05}>
+                <li className="flex gap-5 py-6 first:pt-0">
+                  <span className="font-display text-sm font-bold text-primary">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="text-xl font-bold">{it.t}</h3>
+                    <p className="mt-1 text-muted-foreground">{it.d}</p>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Capabilities */}
+      <section id="capabilities" className="container-site scroll-mt-20 py-16 sm:py-24">
+        <span id="services" className="block scroll-mt-20" />
+        <Eyebrow>{t.caps.eyebrow}</Eyebrow>
+        <h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.caps.title}</h2>
+        <div className="mt-10 border-t border-border">
+          {t.caps.rows.map((r, i) => (
+            <Reveal key={r.t}>
+              <div className="grid gap-2 border-b border-border py-6 md:grid-cols-12 md:gap-6">
+                <span className="font-display text-sm font-bold text-muted-foreground md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="text-lg font-bold md:col-span-3">{r.t}</h3>
+                <p className="text-muted-foreground md:col-span-4">{r.d}</p>
+                <p className="text-[15px] md:col-span-4"><span className="mr-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary">{t.caps.outputLabel}</span>{r.o}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">{t.caps.footnote}</p>
+      </section>
+
+      {/* Method */}
+      <section id="method" className="bg-navy text-navy-foreground">
+        <div className="container-site py-16 sm:py-24">
+          <Eyebrow inverted>{t.method.eyebrow}</Eyebrow>
+          <h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.method.title}</h2>
+          <ol className="mt-12 grid gap-6 lg:grid-cols-3">
+            {t.method.phases.map((p, i) => (
+              <Reveal key={p.t} delay={i * 0.06}>
+                <li className="flex h-full flex-col rounded-xl border border-navy-foreground/15 p-6">
+                  <p className="font-display text-sm font-bold text-navy-muted">{p.n}</p>
+                  <h3 className="mt-2 text-2xl font-bold">{p.t}</h3>
+                  <p className="mt-3 text-navy-muted">{p.q}</p>
+                  <ul className="mt-5 space-y-2 text-[15px]">
+                    {p.a.map((a) => <li key={a} className="flex gap-2"><span aria-hidden className="mt-2.5 h-1 w-3 shrink-0 bg-navy-muted" />{a}</li>)}
+                  </ul>
+                  <div className="mt-auto pt-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-muted">{t.method.outLabel}</p>
+                    <p className="mt-1 text-[15px]">{p.o}</p>
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-navy-muted">{t.method.nextLabel}</p>
+                    <p className="mt-1 text-[15px] font-semibold">{p.next}</p>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-2xl text-sm text-navy-muted">{t.method.disclaimer}</p>
+            <Button asChild variant="secondary" className="h-12 rounded-lg px-6">
+              <Link to="/approach">{t.method.cta} <ArrowRight className="h-4 w-4" /></Link>
+            </Button>
           </div>
         </div>
       </section>
-      <Services />
-      <Niches />
-      <CaseStudies />
-      <Pricing />
-      <Footer />
-    </div>
-  );
-}
 
-function Nav() {
-  const { t } = useLang();
-  const ex = useExtras();
-  const { openModal } = useDiagnosticModal();
-  return (
-    <header className="sticky top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-4">
-        <Link to="/" aria-label="Cooverly" className="group flex shrink-0 items-center">
-          <Logo size={88} className="sm:[&_img]:!h-[120px] sm:[&_img]:!w-[120px]" />
-        </Link>
-        <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
-          <a href="#services" className="hover:text-foreground transition">{t.nav.systems}</a>
-          <a href="#niches" className="hover:text-foreground transition">{t.nav.whoFor}</a>
-          <a href="#results" className="hover:text-foreground transition">{t.nav.results}</a>
-          <a href="#pricing" className="hover:text-foreground transition">{t.nav.pricing}</a>
-          <button onClick={openModal} className="hover:text-foreground transition">{ex.diagnostic.navItem}</button>
-          <Link to="/contact" className="hover:text-foreground transition">{t.nav.contact}</Link>
-        </nav>
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
-          <LangSwitch />
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={openModal}
-            className="hidden border-border bg-card/40 backdrop-blur sm:inline-flex"
-          >
-            <Activity className="h-4 w-4" />
-            <span className="hidden md:inline">{ex.diagnostic.navItem}</span>
-          </Button>
-          <Button asChild size="sm" className="h-9 px-3 text-xs bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)] sm:h-9 sm:px-4 sm:text-sm">
-            <Link to="/contact"><span className="hidden sm:inline">{t.nav.bookDemo}</span><span className="sm:hidden">Demo</span> <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" /></Link>
-          </Button>
+      {/* Deliverable */}
+      <section id="investment" className="container-site grid gap-10 py-16 sm:py-24 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <Eyebrow>{t.deliver.eyebrow}</Eyebrow>
+          <h2 className="h2-fluid mt-4 font-bold">{t.deliver.title}</h2>
+          <p className="mt-5 text-muted-foreground">{t.deliver.sub}</p>
         </div>
-      </div>
-    </header>
-  );
-}
+        <Reveal className="lg:col-span-7 lg:col-start-6">
+          <article className="rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
+            <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-5 py-4 sm:px-7">
+              <p className="font-display font-bold">{t.deliver.docTitle}</p>
+              <span className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground">{t.deliver.label}</span>
+            </header>
+            <dl className="divide-y divide-border px-5 sm:px-7">
+              {t.deliver.rows.map((r) => (
+                <div key={r.k} className="grid gap-1 py-4 sm:grid-cols-[13rem_1fr] sm:gap-6">
+                  <dt className="font-semibold">{r.k}</dt>
+                  <dd className="text-muted-foreground">{r.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        </Reveal>
+      </section>
 
-function Hero() {
-  const { t } = useLang();
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
-
-  return (
-    <section ref={ref} className="relative px-4 pt-10 pb-16 sm:px-6 sm:pt-20 sm:pb-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
-        <motion.div style={{ y: yText, opacity }} className="text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
-          >
-            <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_12px_oklch(0.68_0.22_38)]" />
-            {t.hero.badge}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[2.25rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            {t.hero.titleA}{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "var(--gradient-brand)" }}
-            >
-              {t.hero.titleHighlight}
-            </span>
-            {t.hero.titleB}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-5 max-w-xl text-sm text-muted-foreground sm:mt-6 sm:text-lg mx-auto lg:mx-0"
-          >
-            {t.hero.sub}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start"
-          >
-            <Button asChild size="lg" className="h-12 w-full sm:w-auto bg-gradient-to-r from-primary to-primary-glow px-6 sm:px-7 text-primary-foreground shadow-[var(--shadow-glow)]">
-              <Link to="/contact">
-                <MessageSquare className="h-4 w-4" />
-                {t.hero.ctaPrimary}
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 w-full sm:w-auto border-border bg-card/40 px-6 sm:px-7 backdrop-blur hover:bg-card">
-              <Link to="/contact">
-                {t.hero.ctaSecondary} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground lg:justify-start"
-          >
-            <div className="h-px w-8 bg-border" />
-            {t.hero.group}{" "}
-            <span className="font-medium text-foreground">Digitalizzato</span>
-            <span className="rounded-full border border-border bg-card/50 px-2 py-0.5 text-[10px] uppercase tracking-wider">
-              {t.hero.groupBadge}
-            </span>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="relative mx-auto w-full max-w-[420px] sm:max-w-none"
-        >
-          <Logo3D />
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-2 top-8 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
-            style={{ boxShadow: "var(--shadow-glow)" }}
-          >
-            <div className="flex items-center gap-2 text-xs">
-              <Clock className="h-3.5 w-3.5 text-primary-glow" />
-              {t.hero.pillResponse}
-            </div>
-            <div className="text-2xl font-semibold">{t.hero.pillResponseValue}</div>
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute -right-2 bottom-8 hidden rounded-xl border border-border bg-card/80 px-4 py-3 backdrop-blur-xl md:block"
-            style={{ boxShadow: "var(--shadow-accent)" }}
-          >
-            <div className="flex items-center gap-2 text-xs">
-              <TrendingUp className="h-3.5 w-3.5 text-accent" />
-              {t.hero.pillConversion}
-            </div>
-            <div className="text-2xl font-semibold">{t.hero.pillConversionValue}</div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-function Marquee() {
-  const { t } = useLang();
-  const items = t.marquee;
-  return (
-    <div className="relative overflow-hidden border-y border-border/50 bg-card/30 py-6 backdrop-blur">
-      <motion.div
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="flex gap-12 whitespace-nowrap text-sm uppercase tracking-[0.2em] text-muted-foreground"
-      >
-        {[...items, ...items, ...items].map((it, i) => (
-          <span key={i} className="flex items-center gap-12">
-            <span>{it}</span>
-            <span className="text-primary-glow">◆</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-function Services() {
-  const { t } = useLang();
-  return (
-    <section id="services" className="relative px-4 py-20 sm:px-6 sm:py-32">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow={t.services.eyebrow} title={t.services.title} sub={t.services.sub} />
-        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
-          {t.services.items.map((s, i) => {
-            const Icon = serviceIcons[i];
-            return (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <TiltCard className="h-full" glow={i === 1 ? "accent" : "primary"}>
-                  <div
-                    className="mb-6 grid h-12 w-12 place-items-center rounded-xl"
-                    style={{ background: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
-                  >
-                    <Icon className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {t.services.systemLabel} {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3 className="mt-2 text-2xl font-semibold tracking-tight">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-                  <div className="mt-8 flex items-center gap-2 text-sm text-primary-glow">
-                    {t.services.learn} <ArrowRight className="h-4 w-4" />
-                  </div>
-                </TiltCard>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Niches() {
-  const { t } = useLang();
-  return (
-    <section id="niches" className="relative px-4 py-20 sm:px-6 sm:py-32">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow={t.niches.eyebrow} title={t.niches.title} sub={t.niches.sub} />
-        <div className="mt-10 grid gap-3 grid-cols-2 sm:mt-16 sm:gap-4 lg:grid-cols-5">
-          {t.niches.items.map((n, i) => {
-            const Icon = nicheIcons[i];
-            return (
-              <motion.div
-                key={n.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-xl transition-all hover:border-primary/50 hover:bg-card"
-              >
-                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all group-hover:bg-primary/20" />
-                <Icon className="relative h-7 w-7 text-primary-glow" />
-                <div className="relative mt-6 text-base font-semibold">{n.title}</div>
-                <div className="relative mt-2 text-xs text-accent">{n.result}</div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CaseStudies() {
-  const { t } = useLang();
-  return (
-    <section id="results" className="relative px-4 py-20 sm:px-6 sm:py-32">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow={t.cases.eyebrow} title={t.cases.title} />
-        <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3">
-          {t.cases.items.map((c, i) => (
-            <motion.div
-              key={c.tag}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/30 p-6 sm:p-8 backdrop-blur-xl"
-            >
-              <div className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--gradient-primary)" }} />
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.tag}</div>
-              <div
-                className="mt-5 bg-clip-text text-5xl sm:text-6xl font-semibold tracking-tight text-transparent"
-                style={{ backgroundImage: i === 1 ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
-              >
-                {c.metric}
+      {/* After launch */}
+      <section className="border-y border-border bg-card">
+        <div className="container-site py-16 sm:py-24">
+          <div className="grid gap-8 lg:grid-cols-12">
+            <h2 className="h2-fluid font-bold lg:col-span-5">{t.after.title}</h2>
+            <p className="text-muted-foreground lg:col-span-6 lg:col-start-7">{t.after.text}</p>
+          </div>
+          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+            {t.after.items.map((it) => (
+              <div key={it.t} className="bg-background p-6">
+                <h3 className="text-lg font-bold">{it.t}</h3>
+                <p className="mt-2 text-muted-foreground">{it.d}</p>
               </div>
-              <div className="mt-2 text-sm text-muted-foreground">{c.label}</div>
-              <p className="mt-6 text-sm leading-relaxed text-foreground/80">{c.body}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  const { t } = useLang();
-  const p = t.pricing;
-
-  const waLink = (planName: string) =>
-    `${CONTACT.whatsapp}?text=${encodeURIComponent(
-      `Hi Cooverly, I'd like to start with the ${planName} plan (MRR).`,
-    )}`;
-  const mailLink = (planName: string) =>
-    `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-      `Cooverly Lifetime — ${planName}`,
-    )}&body=${encodeURIComponent(
-      `Hi Cooverly team,\n\nI'm interested in the ${planName} (Lifetime) plan. Please share next steps.\n\nThanks,`,
-    )}`;
-
-  return (
-    <section id="pricing" className="relative px-4 py-20 sm:px-6 sm:py-32">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow={p.eyebrow} title={p.title} sub={p.sub} />
-
-        {/* MRR */}
-        <div className="mt-10 sm:mt-16">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-primary-glow backdrop-blur">
-              <Sparkles className="h-3 w-3" /> {p.mrrLabel}
-            </div>
-            <p className="max-w-md text-xs text-muted-foreground">{p.mrrNote}</p>
-          </div>
-
-          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
-            {p.mrrPlans.map((plan, i) => (
-              <PlanCard
-                key={plan.name}
-                index={i}
-                name={plan.name}
-                price={plan.price}
-                period={p.perMonth}
-                tagline={plan.tagline}
-                features={plan.features}
-                highlight={!!plan.highlight}
-                badge={p.mostPopular}
-                ctaLabel={p.mrrCta}
-                ctaHref={waLink(plan.name)}
-                ctaIcon="whatsapp"
-              />
             ))}
           </div>
+          <p className="mt-6 max-w-3xl text-sm text-muted-foreground">{t.after.note}</p>
         </div>
+      </section>
 
-        {/* Lifetime */}
-        <div className="mt-16 sm:mt-24">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent backdrop-blur">
-              <InfinityIcon className="h-3 w-3" /> {p.lifetimeLabel}
-            </div>
-            <p className="max-w-md text-xs text-muted-foreground">{p.lifetimeNote}</p>
-          </div>
-
-          <div className="grid gap-5 sm:gap-6 md:grid-cols-3" style={{ perspective: "1500px" }}>
-            {p.lifetimePlans.map((plan, i) => (
-              <PlanCard
-                key={plan.name}
-                index={i}
-                name={plan.name}
-                price={plan.price}
-                period={p.oneTime}
-                tagline={plan.tagline}
-                features={plan.features}
-                highlight={!!plan.highlight}
-                badge={p.mostPopular}
-                ctaLabel={p.lifetimeCta}
-                ctaHref={mailLink(plan.name)}
-                ctaIcon="mail"
-                accent
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PlanCard({
-  index, name, price, period, tagline, features, highlight, badge, ctaLabel, ctaHref, ctaIcon, accent,
-}: {
-  index: number; name: string; price: string; period: string; tagline: string;
-  features: string[]; highlight: boolean; badge: string;
-  ctaLabel: string; ctaHref: string; ctaIcon: "whatsapp" | "mail"; accent?: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-    >
-      <TiltCard className="h-full" glow={accent ? "accent" : "primary"}>
-        {highlight && (
-          <div
-            className="mb-4 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground"
-            style={{ background: accent ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
-          >
-            <Sparkles className="h-3 w-3" /> {badge}
-          </div>
-        )}
-        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{name}</div>
-        <div className="mt-3 flex items-end gap-1.5">
-          <span
-            className="bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-5xl"
-            style={{ backgroundImage: accent ? "var(--gradient-accent)" : "var(--gradient-primary)" }}
-          >
-            {price}
-          </span>
-          <span className="pb-1 text-sm text-muted-foreground">{period}</span>
-        </div>
-        <p className="mt-3 text-sm text-muted-foreground">{tagline}</p>
-
-        <ul className="mt-6 space-y-2.5">
-          {features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5 text-sm">
-              <Check className={`mt-0.5 h-4 w-4 shrink-0 ${accent ? "text-accent" : "text-primary-glow"}`} />
-              <span className="text-foreground/85">{f}</span>
-            </li>
+      {/* FAQ */}
+      <section id="faq" className="container-site grid gap-10 py-16 sm:py-24 lg:grid-cols-12">
+        <h2 className="h2-fluid font-bold lg:col-span-4">{t.faq.title}</h2>
+        <Accordion type="single" collapsible className="lg:col-span-7 lg:col-start-6">
+          {t.faq.items.map((f, i) => (
+            <AccordionItem key={f.q} value={`q${i}`}>
+              <AccordionTrigger className="py-5 text-left text-base font-semibold sm:text-lg">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-base text-muted-foreground">{f.a}</AccordionContent>
+            </AccordionItem>
           ))}
-        </ul>
+        </Accordion>
+      </section>
 
-        <Button
-          asChild
-          className={`mt-8 h-11 w-full ${
-            accent
-              ? "border border-accent/40 bg-accent/10 text-accent hover:bg-accent/20"
-              : "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-glow)]"
-          }`}
-        >
-          <a href={ctaHref} target={ctaIcon === "whatsapp" ? "_blank" : undefined} rel="noreferrer">
-            {ctaIcon === "whatsapp" ? <MessageSquare className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
-            {ctaLabel}
-          </a>
-        </Button>
-      </TiltCard>
-    </motion.div>
-  );
-}
-
-function Footer() {
-  const { t } = useLang();
-  const ex = useExtras();
-  return (
-    <footer className="relative border-t border-border/50 px-6 py-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-sm text-muted-foreground">
-        <Logo size={96} />
-        <div className="text-center text-xs text-muted-foreground">
-          <span className="font-medium text-foreground/90">Cooverly</span>
-          <span className="mx-2">·</span>
-          <span>P.IVA 10904471215</span>
-          <span className="mx-2">·</span>
-          <span>© {new Date().getFullYear()}</span>
+      {/* Closing */}
+      <section className="container-site pb-20">
+        <div className="relative overflow-hidden rounded-2xl bg-navy px-6 py-14 text-navy-foreground sm:px-12 sm:py-16">
+          <span aria-hidden className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full border-[18px] border-accent-warm/40" />
+          <h2 className="h2-fluid relative max-w-2xl font-bold">{t.closing.title}</h2>
+          <p className="relative mt-5 max-w-[60ch] text-navy-muted">{t.closing.text}</p>
+          <Button asChild className="relative mt-8 h-12 rounded-lg px-6 text-base hover:bg-primary-hover">
+            <Link to="/contact">{t.closing.cta} <ArrowRight className="h-4 w-4" /></Link>
+          </Button>
         </div>
-        <div className="text-center">{t.footer.tag}</div>
-        <div className="text-center text-xs">
-          <Link to="/privacy" className="text-muted-foreground transition hover:text-foreground">
-            {ex.cookies.manage}
-          </Link>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function SectionHeading({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-3xl"
-    >
-      <div className="text-xs uppercase tracking-[0.3em] text-primary-glow">{eyebrow}</div>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:mt-4 sm:text-4xl md:text-5xl">{title}</h2>
-      {sub && <p className="mt-3 text-base text-muted-foreground sm:mt-4 sm:text-lg">{sub}</p>}
-    </motion.div>
+      </section>
+    </PageShell>
   );
 }

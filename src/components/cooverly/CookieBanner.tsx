@@ -1,69 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
-import { Cookie } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useExtras } from "@/i18n/extras";
+import { useLang } from "@/i18n/LanguageContext";
 
 const KEY = "cooverly-cookie-consent";
 
 export function CookieBanner() {
-  const ex = useExtras();
+  const { t } = useLang();
   const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const v = window.localStorage.getItem(KEY);
-    if (!v) {
-      const t = setTimeout(() => setShow(true), 600);
-      return () => clearTimeout(t);
-    }
-  }, []);
-
-  function set(value: "accepted" | "rejected") {
-    try { window.localStorage.setItem(KEY, value); } catch { /* noop */ }
+  useEffect(() => { if (!window.localStorage.getItem(KEY)) setShow(true); }, []);
+  function set(v: "accepted" | "rejected") {
+    try { window.localStorage.setItem(KEY, v); } catch { /* noop */ }
     setShow(false);
   }
-
+  if (!show) return null;
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 220, damping: 26 }}
-          className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-3 sm:px-6 sm:pb-6"
-          role="dialog"
-          aria-label="Cookie consent"
-        >
-          <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card/90 p-3 shadow-2xl backdrop-blur-xl sm:p-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
-              <div className="hidden h-10 w-10 shrink-0 place-items-center rounded-xl sm:grid" style={{ background: "var(--gradient-brand)" }}>
-                <Cookie className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <Cookie className="h-4 w-4 text-primary-glow sm:hidden" />
-                  {ex.cookies.title}
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">{ex.cookies.body}</p>
-              </div>
-              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:items-center">
-                <Button asChild size="sm" variant="ghost" className="col-span-2 h-9 text-xs sm:col-span-1">
-                  <Link to="/privacy">{ex.cookies.manage}</Link>
-                </Button>
-                <Button size="sm" variant="outline" className="h-9 border-border bg-background/40 text-xs" onClick={() => set("rejected")}>
-                  {ex.cookies.reject}
-                </Button>
-                <Button size="sm" className="h-9 bg-gradient-to-r from-primary to-primary-glow text-xs text-primary-foreground" onClick={() => set("accepted")}>
-                  {ex.cookies.accept}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div role="region" aria-label={t.cookies.title} className="fixed inset-x-0 bottom-0 z-50 p-3 sm:p-5">
+      <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center sm:gap-5">
+        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+          <strong className="text-foreground">{t.cookies.title}.</strong> {t.cookies.body}{" "}
+          <Link to="/privacy" className="text-primary underline underline-offset-2">{t.cookies.manage}</Link>
+        </p>
+        <div className="flex gap-2">
+          <Button variant="outline" className="h-11 flex-1 sm:flex-none" onClick={() => set("rejected")}>{t.cookies.reject}</Button>
+          <Button className="h-11 flex-1 hover:bg-primary-hover sm:flex-none" onClick={() => set("accepted")}>{t.cookies.accept}</Button>
+        </div>
+      </div>
+    </div>
   );
 }
