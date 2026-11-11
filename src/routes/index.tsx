@@ -12,7 +12,9 @@ import { DepthScene } from "@/components/cooverly/DepthScene";
 import { DepthBand } from "@/components/cooverly/DepthBand";
 import { ReadinessQuiz } from "@/components/cooverly/ReadinessQuiz";
 import { Parallax } from "@/components/cooverly/Parallax";
-import { ScrollScene } from "@/components/cooverly/ScrollScene";
+import { ScrollVideo } from "@/components/cooverly/ScrollVideo";
+import filmBuild from "@/assets/brand-motion-build.mp4.asset.json";
+import filmRise from "@/assets/brand-motion-rise.mp4.asset.json";
 import { darkAccents, lightAccents, pick } from "@/components/cooverly/accents";
 import { useLang } from "@/i18n/LanguageContext";
 import { pageHead } from "@/lib/seo";
@@ -66,7 +68,7 @@ function Index() {
         </div>
       </section>
 
-      <ScrollScene scene="build" />
+      <ScrollVideo src={filmBuild.url} />
 
       {/* When */}
       <section id="who" className="border-y border-border bg-card">
@@ -124,7 +126,7 @@ function Index() {
         </div>
       </section>
 
-      <ScrollScene scene="rise" />
+      <ScrollVideo src={filmRise.url} dark />
 
       {/* Method */}
       <section id="method" className="relative isolate overflow-hidden bg-navy text-navy-foreground">
@@ -190,7 +192,6 @@ function Index() {
         </Reveal>
       </section>
 
-      <ScrollScene scene="together" />
 
       {/* After launch */}
       <section className="border-y border-border bg-card">
