@@ -153,3 +153,19 @@
 @utility h2-fluid { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.9rem); }
 @utility bg-primary-hover { background-color: var(--primary-hover); }
 @utility nav-link { color: var(--muted-foreground); transition: color 200ms; &:hover { color: var(--foreground); } &[aria-current="page"] { color: var(--foreground); font-weight: 600; } }
+
+/* 3D decorative primitives */
+@keyframes spin3d { from { transform: rotateX(-24deg) rotateY(0deg); } to { transform: rotateX(-24deg) rotateY(360deg); } }
+@keyframes ringspin { from { transform: rotateX(68deg) rotateZ(0deg); } to { transform: rotateX(68deg) rotateZ(360deg); } }
+@keyframes float3d { 0%,100% { transform: translateY(0) translateZ(0); } 50% { transform: translateY(-14px) translateZ(30px); } }
+.cube3d { position: relative; width: var(--s); height: var(--s); transform-style: preserve-3d; animation: spin3d 18s linear infinite; }
+.cube3d > span { position: absolute; inset: 0; border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent); background: color-mix(in oklab, var(--primary) 7%, transparent); }
+.cube3d > span:nth-child(1) { transform: translateZ(calc(var(--s) / 2)); }
+.cube3d > span:nth-child(2) { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.cube3d > span:nth-child(3) { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.cube3d > span:nth-child(4) { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+.cube3d > span:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); background: color-mix(in oklab, var(--accent-warm) 14%, transparent); }
+.cube3d > span:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+.ring3d { position: absolute; inset: 0; border-width: 2px; border-style: solid; border-radius: 9999px; animation: ringspin 30s linear infinite; }
+.grid3d { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; transform: perspective(600px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .7; }
+.float3d { animation: float3d 7s ease-in-out infinite; }

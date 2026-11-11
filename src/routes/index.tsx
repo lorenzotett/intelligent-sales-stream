@@ -5,6 +5,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { PageShell, Eyebrow } from "@/components/cooverly/PageShell";
 import { HeroMap } from "@/components/cooverly/HeroMap";
 import { Reveal } from "@/components/cooverly/Reveal";
+import { Tilt3D } from "@/components/cooverly/Tilt3D";
+import { DepthScene } from "@/components/cooverly/DepthScene";
 import { useLang } from "@/i18n/LanguageContext";
 import { pageHead } from "@/lib/seo";
 
@@ -19,7 +21,8 @@ function Index() {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="container-site grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:py-24">
+      <section className="container-site relative isolate grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:py-24">
+        <DepthScene />
         <div className="lg:col-span-7">
           <Eyebrow>{t.hero.eyebrow}</Eyebrow>
           <h1 className="h1-fluid mt-5 font-extrabold">{t.hero.h1a}<br />{t.hero.h1b}</h1>
@@ -34,7 +37,7 @@ function Index() {
           </div>
           <p className="mt-4 text-sm text-muted-foreground">{t.hero.micro}</p>
         </div>
-        <div className="lg:col-span-5"><HeroMap /></div>
+        <Tilt3D className="float3d lg:col-span-5" max={12}><HeroMap /></Tilt3D>
       </section>
 
       {/* When */}
@@ -89,7 +92,7 @@ function Index() {
           <ol className="mt-12 grid gap-6 lg:grid-cols-3">
             {t.method.phases.map((p, i) => (
               <Reveal key={p.t} delay={i * 0.06}>
-                <li className="flex h-full flex-col rounded-xl border border-navy-foreground/15 p-6">
+                <Tilt3D className="h-full"><li className="flex h-full flex-col rounded-xl border border-navy-foreground/15 p-6">
                   <p className="font-display text-sm font-bold text-navy-muted">{p.n}</p>
                   <h3 className="mt-2 text-2xl font-bold">{p.t}</h3>
                   <p className="mt-3 text-navy-muted">{p.q}</p>
@@ -102,7 +105,7 @@ function Index() {
                     <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-navy-muted">{t.method.nextLabel}</p>
                     <p className="mt-1 text-[15px] font-semibold">{p.next}</p>
                   </div>
-                </li>
+                </li></Tilt3D>
               </Reveal>
             ))}
           </ol>
@@ -123,7 +126,7 @@ function Index() {
           <p className="mt-5 text-muted-foreground">{t.deliver.sub}</p>
         </div>
         <Reveal className="lg:col-span-7 lg:col-start-6">
-          <article className="rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
+          <Tilt3D max={6}><article className="rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
             <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-5 py-4 sm:px-7">
               <p className="font-display font-bold">{t.deliver.docTitle}</p>
               <span className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground">{t.deliver.label}</span>
@@ -136,7 +139,7 @@ function Index() {
                 </div>
               ))}
             </dl>
-          </article>
+          </article></Tilt3D>
         </Reveal>
       </section>
 
