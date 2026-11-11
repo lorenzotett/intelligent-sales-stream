@@ -65,7 +65,7 @@ export const Route = createRootRoute({
           url: "https://cooverly.com",
                     description:
             "Venture development partner helping entrepreneurs and established companies validate, build and launch new businesses and corporate spin-offs.",
-          email: "hello@cooverly.com",
+          email: "lorenzo.tttine@gmail.com",
           vatID: "10904471215",
           contactPoint: [{
             "@type": "ContactPoint",

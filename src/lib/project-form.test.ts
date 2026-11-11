@@ -15,7 +15,7 @@ describe("project form", () => {
     expect(validateStep2({ ...ok1, name: "Ana", email: "ana@gmail.com" })).toEqual({});
   });
   it("omits empty optional fields from the email", () => {
-    const url = buildMailto("hello@cooverly.com", "S", [["Name", "Ana"], ["Budget", ""]]);
+    const url = buildMailto("lorenzo.tttine@gmail.com", "S", [["Name", "Ana"], ["Budget", ""]]);
     expect(decodeURIComponent(url)).toContain("Name: Ana");
     expect(decodeURIComponent(url)).not.toContain("Budget");
   });
