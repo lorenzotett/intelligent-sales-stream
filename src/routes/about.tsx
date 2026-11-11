@@ -25,7 +25,7 @@ function AboutPage() {
           </div>
         </div>
         <aside className="self-start rounded-xl bg-navy p-7 text-navy-foreground lg:col-span-4 lg:col-start-9 lg:mt-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-muted">{a.contactLabel}</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{a.contactLabel}</p>
           <p className="mt-2 font-display text-3xl font-extrabold">{a.name}</p>
           <blockquote className="mt-6 border-l-2 border-accent-warm pl-4 text-lg leading-relaxed">“{a.quote}”</blockquote>
         </aside>

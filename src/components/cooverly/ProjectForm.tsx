@@ -60,7 +60,7 @@ export function ProjectForm() {
     <form noValidate onSubmit={(e) => { e.preventDefault(); if (step === 1) next(); else submit(); }}
       className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-8">
       <div ref={topRef} tabIndex={-1} className="outline-none">
-        <p className="text-sm text-muted-foreground">{f.step} {step} {f.of} 2</p>
+        <p className="text-[15px] text-muted-foreground">{f.step} {step} {f.of} 2</p>
         <h2 className="mt-1 text-2xl font-bold">{step === 1 ? f.s1 : f.s2}</h2>
         <div className="mt-4 grid grid-cols-2 gap-2" aria-hidden>
           <span className="h-1 rounded-full bg-primary" />
@@ -76,9 +76,9 @@ export function ProjectForm() {
           <Field id="description" label={f.descLabel} help={f.descHelp} error={err("description")}>
             <textarea id="pf-description" rows={6} maxLength={DESC_MAX + 50} value={d.description} onChange={set("description")}
               aria-invalid={!!errors.description} aria-describedby="pf-description-help pf-description-err" className={fieldCls} />
-            <p className="mt-1 text-right text-xs text-muted-foreground">{d.description.trim().length}/{DESC_MAX}</p>
+            <p className="mt-1 text-right text-[13px] text-muted-foreground">{d.description.trim().length}/{DESC_MAX}</p>
           </Field>
-          <p className="text-sm text-muted-foreground">{f.micro}</p>
+          <p className="text-[15px] text-muted-foreground">{f.micro}</p>
           <Button type="submit" className="h-12 w-full rounded-lg text-base hover:bg-primary-hover sm:w-auto sm:px-6">
             {f.next} <ArrowRight className="h-4 w-4" />
           </Button>
@@ -108,8 +108,8 @@ export function ProjectForm() {
               </select>
             </Field>
           </div>
-          <p id="pf-budget-help" className="text-sm text-muted-foreground">{f.budgetHelp}</p>
-          <p className="text-sm text-muted-foreground">
+          <p id="pf-budget-help" className="text-[15px] text-muted-foreground">{f.budgetHelp}</p>
+          <p className="text-[15px] text-muted-foreground">
             {f.privacyPre} <Link to="/privacy" className="text-primary underline underline-offset-2">{f.privacyLink}</Link>.
           </p>
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center">
@@ -120,7 +120,7 @@ export function ProjectForm() {
               <Mail className="h-4 w-4" /> {f.submit}
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground">{f.submitHelp}</p>
+          <p className="text-[13px] text-muted-foreground">{f.submitHelp}</p>
         </div>
       )}
     </form>
@@ -133,7 +133,7 @@ function Field({ id, label, help, optional, error, children }: { id: string; lab
       <label htmlFor={`pf-${id}`} className="mb-1.5 block text-[15px] font-semibold">
         {label} {optional && <span className="font-normal text-muted-foreground">({optional})</span>}
       </label>
-      {help && <p id={`pf-${id}-help`} className="mb-2 text-sm text-muted-foreground">{help}</p>}
+      {help && <p id={`pf-${id}-help`} className="mb-2 text-[15px] text-muted-foreground">{help}</p>}
       {children}
       {error && <p id={`pf-${id}-err`} className="mt-1.5 text-sm text-destructive">{error}</p>}
     </div>

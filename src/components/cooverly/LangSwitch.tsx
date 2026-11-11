@@ -6,7 +6,7 @@ const LABELS = { en: "English", it: "Italiano", es: "Español" } as const;
 export function LangSwitch({ className }: { className?: string }) {
   const { lang, setLang } = useLang();
   return (
-    <div role="group" aria-label="Language" className={cn("inline-flex rounded-lg border border-border bg-card p-0.5 text-xs", className)}>
+    <div role="group" aria-label="Language" className={cn("inline-flex rounded-lg border border-border bg-card p-0.5 text-[13px]", className)}>
       {(["en", "it", "es"] as const).map((l) => (
         <button
           key={l}

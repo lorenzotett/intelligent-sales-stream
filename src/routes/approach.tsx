@@ -33,14 +33,14 @@ function ApproachPage() {
                   <h3 className="mt-1 text-2xl font-bold">{p.t}</h3>
                 </div>
                 <div className="lg:col-span-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.qLabel}</p>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.qLabel}</p>
                   <p className="mt-1">{p.q}</p>
                   <ul className="mt-4 space-y-1 text-muted-foreground">{p.a.map((x) => <li key={x}>— {x}</li>)}</ul>
                 </div>
                 <div className="lg:col-span-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.outLabel}</p>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.outLabel}</p>
                   <p className="mt-1">{p.o}</p>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.nextLabel}</p>
+                  <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{t.method.nextLabel}</p>
                   <p className="mt-1 font-semibold">{p.next}</p>
                 </div>
               </div>

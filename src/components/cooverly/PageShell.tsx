@@ -18,5 +18,5 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 export function Eyebrow({ children, inverted }: { children: ReactNode; inverted?: boolean }) {
-  return <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${inverted ? "text-navy-muted" : "text-primary"}`}>{children}</p>;
+  return <p className={`text-[13px] font-semibold uppercase tracking-[0.18em] ${inverted ? "text-navy-muted" : "text-primary"}`}>{children}</p>;
 }

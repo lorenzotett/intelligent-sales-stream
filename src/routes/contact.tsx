@@ -3,7 +3,7 @@ import { Mail, MessageSquare, Phone } from "lucide-react";
 import { PageShell, Eyebrow } from "@/components/cooverly/PageShell";
 import { ProjectForm } from "@/components/cooverly/ProjectForm";
 import { useLang } from "@/i18n/LanguageContext";
-import { CONTACT } from "@/i18n/site";
+import { CONTACT, WHATSAPP_HREF } from "@/i18n/site";
 import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
@@ -15,11 +15,10 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const { t } = useLang();
   const c = t.contact;
-  const wa = `${CONTACT.whatsapp}?text=${encodeURIComponent(c.waText)}`;
   const items = [
     { Icon: Mail, label: c.emailLabel, value: CONTACT.email, href: `mailto:${CONTACT.email}?subject=${encodeURIComponent(c.emailSubject)}` },
     { Icon: Phone, label: c.phoneLabel, value: CONTACT.phoneDisplay, href: CONTACT.phoneHref },
-    { Icon: MessageSquare, label: c.waLabel, value: c.waAction, href: wa, external: true },
+    { Icon: MessageSquare, label: c.waLabel, value: CONTACT.phoneDisplay, href: WHATSAPP_HREF, external: true },
   ];
   return (
     <PageShell>
@@ -35,13 +34,13 @@ function ContactPage() {
                 <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
                   className="flex min-h-14 items-center gap-4 py-3 transition-colors hover:text-primary">
                   <Icon className="h-5 w-5 text-primary" aria-hidden />
-                  <span className="w-24 shrink-0 text-sm text-muted-foreground">{label}</span>
+                  <span className="w-24 shrink-0 text-[15px] text-muted-foreground">{label}</span>
                   <span className="font-medium">{value}</span>
                 </a>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-muted-foreground">{c.intl}</p>
+          <p className="mt-6 text-[15px] text-muted-foreground">{c.intl}</p>
         </div>
         <div className="lg:col-span-7"><ProjectForm /></div>
       </section>

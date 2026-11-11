@@ -2,14 +2,67 @@ export type Lang = "en" | "es" | "it";
 
 export const CONTACT = {
   email: "hello@cooverly.com",
-  phoneDisplay: "+34 625 19 88 29",
-  phoneHref: "tel:+34625198829",
-  whatsapp: "https://wa.me/34625198829",
+  phoneDisplay: "+39 378 405 7222",
+  phoneHref: "tel:+393784057222",
+  whatsapp: "https://wa.me/393784057222",
+  whatsappText: "Hi Cooverly, I'd like to talk about a new business project.",
   vat: "10904471215",
 } as const;
 
+// WhatsApp opens with an automatic English first message, in every language.
+export const WHATSAPP_HREF = `${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappText)}`;
+
 const en = {
-  nav: { what: "What we do", how: "How we work", about: "About", cta: "Tell us about your project", menu: "Menu", close: "Close menu", home: "Cooverly home" },
+  nav: { what: "What we do", how: "How we work", about: "About", quiz: "Quick check", cta: "Tell us about your project", menu: "Menu", close: "Close menu", home: "Cooverly home" },
+  quiz: {
+    eyebrow: "Quick check",
+    title: "Is your project ready for its first build?",
+    sub: "Five short questions. The result comes straight away—no account, no email, nothing is stored.",
+    qLabel: "Question", of: "of",
+    back: "Back",
+    restart: "Start again",
+    questions: [
+      { q: "Where is the idea today?", options: [
+        { t: "Still just a thought", s: 0 },
+        { t: "Talked about with a few people", s: 1 },
+        { t: "Researched or tested in some way", s: 2 },
+      ]},
+      { q: "Do you know who would pay for it?", options: [
+        { t: "Not yet", s: 0 },
+        { t: "A general sense of it", s: 1 },
+        { t: "Yes—I can describe them", s: 2 },
+      ]},
+      { q: "Has anyone outside your team seen it?", options: [
+        { t: "No", s: 0 },
+        { t: "Informally, in conversation", s: 1 },
+        { t: "Yes, and they gave feedback", s: 2 },
+      ]},
+      { q: "What would it take to start?", options: [
+        { t: "Still unclear", s: 0 },
+        { t: "A rough idea of the first step", s: 1 },
+        { t: "A defined first scope", s: 2 },
+      ]},
+      { q: "How do you want to move?", options: [
+        { t: "Still deciding", s: 0 },
+        { t: "Part-time, alongside what I already have", s: 1 },
+        { t: "Ready to commit time and budget", s: 2 },
+      ]},
+    ],
+    resultTitle: "Your result",
+    scoreLabel: "Score",
+    bands: {
+      early: { t: "Early stage", d: "The idea is still forming. The useful next step is validation: who the customer is, which problem is worth paying for, and what the smallest honest test looks like." },
+      shaping: { t: "Taking shape", d: "You have real signals. The useful next step is turning them into a working plan: offer, first scope, costs and a route to the first customers." },
+      ready: { t: "Ready to move", d: "You know the customer, the offer and the first scope. The useful next step is building and launching, with clear ownership and a review cadence." },
+    },
+    nextLabel: "Suggested next step",
+    next: {
+      early: "Talk about validation",
+      shaping: "Ask for a working plan",
+      ready: "Tell us about your project",
+    },
+    disclaimer: "This check is a starting point, not a commitment and not a promise about results.",
+  },
   descriptor: "Venture Development Partner",
   hero: {
     eyebrow: "New businesses & corporate spin-offs",
@@ -150,7 +203,7 @@ const en = {
     title: "One process for business, product and market.",
     p1: "Cooverly brings business planning, product development and go-to-market work into one coordinated process. We work with entrepreneurs and established companies that want to turn a new opportunity into a business they can test, launch and develop.",
     p2: "Our initial focus is on initiatives that are digital or have a significant digital component: software, platforms, new services and new business lines.",
-    p3: "AI is one of the tools we use when it helps the project—not the definition of what we do.",
+    p3: "We pick the tools the project needs—business, product and market work first, technology where it earns its place.",
     contactLabel: "Your point of contact",
     name: "Lorenzo",
     quote: "I enjoy working with entrepreneurs who have something new in mind—helping them give the idea a clear shape and move it forward.",
@@ -229,7 +282,56 @@ const en = {
 export type SiteCopy = typeof en;
 
 const it: SiteCopy = {
-  nav: { what: "Cosa facciamo", how: "Come lavoriamo", about: "Chi siamo", cta: "Parliamo del tuo progetto", menu: "Menu", close: "Chiudi menu", home: "Home Cooverly" },
+  nav: { what: "Cosa facciamo", how: "Come lavoriamo", about: "Chi siamo", quiz: "Verifica rapida", cta: "Parliamo del tuo progetto", menu: "Menu", close: "Chiudi menu", home: "Home Cooverly" },
+  quiz: {
+    eyebrow: "Verifica rapida",
+    title: "Il tuo progetto è pronto per il primo build?",
+    sub: "Cinque domande brevi. Il risultato arriva subito—nessun account, nessuna email, niente viene salvato.",
+    qLabel: "Domanda", of: "di",
+    back: "Indietro",
+    restart: "Ricomincia",
+    questions: [
+      { q: "Dov'è l'idea oggi?", options: [
+        { t: "Ancora solo un'ipotesi", s: 0 },
+        { t: "Ne ho parlato con alcune persone", s: 1 },
+        { t: "L'ho già studiata o testata", s: 2 },
+      ]},
+      { q: "Sai chi pagherebbe?", options: [
+        { t: "Non ancora", s: 0 },
+        { t: "Ho un'idea generale", s: 1 },
+        { t: "Sì, so descriverli", s: 2 },
+      ]},
+      { q: "L'ha vista qualcuno fuori dal tuo team?", options: [
+        { t: "No", s: 0 },
+        { t: "Sì, ma in modo informale", s: 1 },
+        { t: "Sì, e ha dato un feedback", s: 2 },
+      ]},
+      { q: "Cosa servirebbe per iniziare?", options: [
+        { t: "Non è ancora chiaro", s: 0 },
+        { t: "Ho un'idea del primo passo", s: 1 },
+        { t: "Ho già un primo ambito definito", s: 2 },
+      ]},
+      { q: "Come vuoi muoverti?", options: [
+        { t: "Devo ancora decidere", s: 0 },
+        { t: "Part-time, insieme a quello che ho", s: 1 },
+        { t: "Pronto a dedicarci tempo e budget", s: 2 },
+      ]},
+    ],
+    resultTitle: "Il tuo risultato",
+    scoreLabel: "Punteggio",
+    bands: {
+      early: { t: "Fase iniziale", d: "L'idea è ancora in formazione. Il passo utile è la validazione: chi è il cliente, quale problema vale la pena far pagare e qual è il test più onesto e piccolo." },
+      shaping: { t: "Prende forma", d: "Hai segnali reali. Il passo utile è trasformarli in un piano di lavoro: offerta, primo ambito, costi e una strada verso i primi clienti." },
+      ready: { t: "Pronto a partire", d: "Conosci cliente, offerta e primo ambito. Il passo utile è costruire e lanciare, con ruoli chiari e un ritmo di verifica." },
+    },
+    nextLabel: "Prossimo passo suggerito",
+    next: {
+      early: "Parliamo di una validazione",
+      shaping: "Chiedi un piano di lavoro",
+      ready: "Raccontaci il tuo progetto",
+    },
+    disclaimer: "Questa verifica è un punto di partenza, non un impegno e non una promessa di risultati.",
+  },
   descriptor: "Venture Development Partner",
   hero: {
     eyebrow: "Nuovi business e spin-off aziendali",
@@ -370,7 +472,7 @@ const it: SiteCopy = {
     title: "Un unico processo per business, prodotto e mercato.",
     p1: "Cooverly unisce pianificazione del business, sviluppo del prodotto e lancio sul mercato in un unico processo coordinato. Lavoriamo con imprenditori e aziende che vogliono trasformare una nuova opportunità in un business da verificare, lanciare e sviluppare.",
     p2: "Il nostro focus iniziale riguarda iniziative digitali o con una componente digitale significativa: software, piattaforme, nuovi servizi e nuove linee di business.",
-    p3: "L’AI è uno degli strumenti che usiamo quando è utile al progetto—non la definizione di ciò che facciamo.",
+    p3: "Scegliamo gli strumenti che il progetto richiede—prima business, prodotto e mercato, la tecnologia dove serve davvero.",
     contactLabel: "Il tuo referente",
     name: "Lorenzo",
     quote: "Mi piace lavorare con imprenditori che hanno in mente qualcosa di nuovo: aiutarli a dare all’idea una forma chiara e a portarla avanti.",
@@ -447,7 +549,56 @@ const it: SiteCopy = {
 };
 
 const es: SiteCopy = {
-  nav: { what: "Qué hacemos", how: "Cómo trabajamos", about: "Sobre nosotros", cta: "Cuéntanos tu proyecto", menu: "Menú", close: "Cerrar menú", home: "Inicio Cooverly" },
+  nav: { what: "Qué hacemos", how: "Cómo trabajamos", about: "Sobre nosotros", quiz: "Chequeo rápido", cta: "Cuéntanos tu proyecto", menu: "Menú", close: "Cerrar menú", home: "Inicio Cooverly" },
+  quiz: {
+    eyebrow: "Chequeo rápido",
+    title: "¿Tu proyecto está listo para su primera build?",
+    sub: "Cinco preguntas breves. El resultado llega enseguida—sin cuenta, sin email, no se guarda nada.",
+    qLabel: "Pregunta", of: "de",
+    back: "Atrás",
+    restart: "Empezar de nuevo",
+    questions: [
+      { q: "¿Dónde está la idea hoy?", options: [
+        { t: "Todavía es solo una idea", s: 0 },
+        { t: "La he comentado con algunas personas", s: 1 },
+        { t: "Ya la he investigado o probado", s: 2 },
+      ]},
+      { q: "¿Sabes quién pagaría?", options: [
+        { t: "Todavía no", s: 0 },
+        { t: "Tengo una idea general", s: 1 },
+        { t: "Sí, puedo describirlos", s: 2 },
+      ]},
+      { q: "¿Alguien fuera de tu equipo la ha visto?", options: [
+        { t: "No", s: 0 },
+        { t: "Sí, pero de forma informal", s: 1 },
+        { t: "Sí, y dio su opinión", s: 2 },
+      ]},
+      { q: "¿Qué haría falta para empezar?", options: [
+        { t: "Todavía no está claro", s: 0 },
+        { t: "Tengo una idea del primer paso", s: 1 },
+        { t: "Ya tengo un primer alcance definido", s: 2 },
+      ]},
+      { q: "¿Cómo quieres moverte?", options: [
+        { t: "Aún debo decidir", s: 0 },
+        { t: "A tiempo parcial, junto a lo que tengo", s: 1 },
+        { t: "Listo para dedicar tiempo y presupuesto", s: 2 },
+      ]},
+    ],
+    resultTitle: "Tu resultado",
+    scoreLabel: "Puntuación",
+    bands: {
+      early: { t: "Fase inicial", d: "La idea aún se está formando. El siguiente paso útil es validar: quién es el cliente, qué problema merece un pago y cuál es la prueba más honesta y pequeña." },
+      shaping: { t: "Tomando forma", d: "Tienes señales reales. El siguiente paso útil es convertirlas en un plan de trabajo: oferta, primer alcance, costes y una ruta hacia los primeros clientes." },
+      ready: { t: "Listo para avanzar", d: "Conoces cliente, oferta y primer alcance. El siguiente paso útil es construir y lanzar, con roles claros y un ritmo de revisión." },
+    },
+    nextLabel: "Siguiente paso sugerido",
+    next: {
+      early: "Hablemos de una validación",
+      shaping: "Pide un plan de trabajo",
+      ready: "Cuéntanos tu proyecto",
+    },
+    disclaimer: "Este chequeo es un punto de partida, no un compromiso y no una promesa de resultados.",
+  },
   descriptor: "Venture Development Partner",
   hero: {
     eyebrow: "Nuevos negocios y spin-offs corporativos",
@@ -588,7 +739,7 @@ const es: SiteCopy = {
     title: "Un solo proceso para negocio, producto y mercado.",
     p1: "Cooverly une la planificación del negocio, el desarrollo del producto y la salida al mercado en un único proceso coordinado. Trabajamos con emprendedores y empresas que quieren convertir una nueva oportunidad en un negocio que puedan validar, lanzar y desarrollar.",
     p2: "Nuestro foco inicial son iniciativas digitales o con un componente digital relevante: software, plataformas, nuevos servicios y nuevas líneas de negocio.",
-    p3: "La IA es una de las herramientas que usamos cuando ayuda al proyecto—no la definición de lo que hacemos.",
+    p3: "Elegimos las herramientas que el proyecto necesita—primero negocio, producto y mercado, la tecnología donde aporta.",
     contactLabel: "Tu persona de contacto",
     name: "Lorenzo",
     quote: "Disfruto trabajando con emprendedores que tienen algo nuevo en mente: ayudarles a dar a la idea una forma clara y hacerla avanzar.",

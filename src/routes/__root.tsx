@@ -10,7 +10,7 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-[15px] text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
@@ -69,7 +69,7 @@ export const Route = createRootRoute({
           vatID: "10904471215",
           contactPoint: [{
             "@type": "ContactPoint",
-            telephone: "+34-625-19-88-29",
+            telephone: "+39-378-405-7222",
             contactType: "sales",
             availableLanguage: ["English", "Spanish", "Italian"],
           }],

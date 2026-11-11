@@ -70,6 +70,7 @@
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
   --color-navy-muted: var(--navy-muted);
+  --color-sky: var(--sky);
 }
 
 :root {
@@ -81,47 +82,49 @@
   --card-foreground: oklch(0.243 0.035 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.243 0.035 260);
-  --primary: oklch(0.537 0.226 266);         /* #2F5BFF */
-  --primary-hover: oklch(0.47 0.21 266);     /* #2147D8 */
+  --primary: oklch(0.493 0.169 260);        /* #1E5BBF brand royal */
+  --primary-hover: oklch(0.43 0.165 261);   /* darker royal */
   --primary-foreground: oklch(1 0 0);
-  --primary-glow: oklch(0.537 0.226 266);
+  --primary-glow: oklch(0.756 0.135 244);   /* #5BB8FF brand sky */
   --secondary: oklch(0.955 0.008 260);
   --secondary-foreground: oklch(0.243 0.035 260);
   --muted: oklch(0.955 0.008 260);
-  --muted-foreground: oklch(0.47 0.035 260); /* #526078 */
+  --muted-foreground: oklch(0.42 0.038 260); /* #3E4A61 — AA on light surfaces */
   --accent: oklch(0.955 0.008 260);
   --accent-foreground: oklch(0.243 0.035 260);
-  --accent-warm: oklch(0.71 0.17 45);        /* #F37A3A decorative only */
-  --danger-brand: oklch(0.577 0.245 27);
-  --destructive: oklch(0.55 0.22 27);
+  --accent-warm: oklch(0.748 0.176 56);     /* #FF8A1C brand orange */
+  --danger-brand: oklch(0.612 0.208 22);    /* #E63946 brand red */
+  --destructive: oklch(0.58 0.2 22);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.906 0.013 258);          /* #DCE2EB */
   --input: oklch(0.906 0.013 258);
-  --ring: oklch(0.537 0.226 266);
-  --navy: oklch(0.18 0.03 262);              /* #0B1220 */
+  --ring: oklch(0.493 0.169 260);
+  --navy: oklch(0.297 0.1 260);              /* #0A2A5E brand navy */
   --navy-foreground: oklch(0.97 0.005 260);
-  --navy-muted: oklch(0.78 0.02 260);
+  --navy-muted: oklch(0.83 0.05 244);        /* light sky on navy */
+  --sky: oklch(0.756 0.135 244);             /* #5BB8FF brand sky */
   --shadow-soft: 0 1px 2px oklch(0.243 0.035 260 / 6%), 0 8px 24px -12px oklch(0.243 0.035 260 / 14%);
-  --gradient-brand: linear-gradient(90deg, var(--primary), var(--primary));
+  --shadow-lift: 0 2px 4px oklch(0.243 0.035 260 / 7%), 0 22px 48px -20px oklch(0.243 0.035 260 / 26%);
+  --gradient-brand: linear-gradient(90deg, var(--primary), var(--sky));
   --shadow-glow: var(--shadow-soft);
-  --chart-1: oklch(0.537 0.226 266);
-  --chart-2: oklch(0.71 0.17 45);
-  --chart-3: oklch(0.47 0.035 260);
-  --chart-4: oklch(0.8 0.05 260);
-  --chart-5: oklch(0.3 0.03 260);
+  --chart-1: oklch(0.493 0.169 260);
+  --chart-2: oklch(0.748 0.176 56);
+  --chart-3: oklch(0.756 0.135 244);
+  --chart-4: oklch(0.297 0.1 260);
+  --chart-5: oklch(0.612 0.208 22);
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.243 0.035 260);
-  --sidebar-primary: oklch(0.537 0.226 266);
+  --sidebar-primary: oklch(0.493 0.169 260);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.955 0.008 260);
   --sidebar-accent-foreground: oklch(0.243 0.035 260);
   --sidebar-border: oklch(0.906 0.013 258);
-  --sidebar-ring: oklch(0.537 0.226 266);
+  --sidebar-ring: oklch(0.493 0.169 260);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -130,7 +133,8 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; text-wrap: balance; }
+  p { text-wrap: pretty; }
   :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -167,10 +171,24 @@
 .cube3d > span:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); background: color-mix(in oklab, var(--accent-warm) 14%, transparent); }
 .cube3d > span:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
 .ring3d { position: absolute; inset: 0; border-width: 2px; border-style: solid; border-radius: 9999px; animation: ringspin 30s linear infinite; }
-.grid3d { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; transform: perspective(600px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .7; }
+.grid3d { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; transform: perspective(600px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .5; }
+.grid3d-dark { background-image: linear-gradient(color-mix(in oklab, var(--navy-foreground) 12%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--navy-foreground) 12%, transparent) 1px, transparent 1px); background-size: 56px 56px; transform: perspective(700px) rotateX(64deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .8; will-change: transform; }
 .float3d { animation: float3d 7s ease-in-out infinite; }
 .cube3d, .ring3d, .float3d { will-change: transform; }
 a, button { transition: color .2s, background-color .2s, transform .2s, box-shadow .2s; }
 button:active, a:active { transform: scale(.98); }
 @keyframes pageEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .page-enter { animation: pageEnter .45s cubic-bezier(.22,1,.36,1) both; }
+
+/* Depth + readability helpers */
+.progress-glow { box-shadow: 0 0 14px color-mix(in oklab, var(--primary) 45%, transparent); }
+.depth-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow .35s cubic-bezier(.22,1,.36,1), transform .35s cubic-bezier(.22,1,.36,1);
+}
+.depth-card:hover { box-shadow: var(--shadow-lift); }
+.lift { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s cubic-bezier(.22,1,.36,1); }
+.lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+::selection { background: color-mix(in oklab, var(--primary) 18%, transparent); }

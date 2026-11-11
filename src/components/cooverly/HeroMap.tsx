@@ -8,7 +8,7 @@ export function HeroMap() {
       <span aria-hidden className="absolute -right-2 -top-2 h-16 w-16 rounded-xl bg-accent-warm/15" />
       <div className="relative flex items-center justify-between gap-3 border-b border-border pb-4">
         <p className="font-display text-base font-bold">{h.dossierTitle}</p>
-        <span className="shrink-0 rounded-md border border-border px-2 py-1 text-[11px] font-medium text-muted-foreground">{h.dossierLabel}</span>
+        <span className="shrink-0 rounded-md border border-border px-2 py-1 text-[13px] font-medium text-muted-foreground">{h.dossierLabel}</span>
       </div>
       <ol className="relative mt-5 space-y-0">
         {h.stages.map((s, i) => (
@@ -19,12 +19,12 @@ export function HeroMap() {
             </span>
             <div className="pt-0.5">
               <p className="font-semibold leading-tight">{s.k}</p>
-              <p className="text-sm text-muted-foreground">{s.d}</p>
+              <p className="text-[15px] text-muted-foreground">{s.d}</p>
             </div>
           </li>
         ))}
       </ol>
-      <figcaption className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-sm text-muted-foreground">
+      <figcaption className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-[15px] text-muted-foreground">
         <span aria-hidden className="h-2 w-2 rounded-full bg-accent-warm" /> {h.decision}
       </figcaption>
     </figure>

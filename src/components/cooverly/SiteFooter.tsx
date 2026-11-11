@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useLang } from "@/i18n/LanguageContext";
-import { CONTACT } from "@/i18n/site";
+import { CONTACT, WHATSAPP_HREF } from "@/i18n/site";
 import { Wordmark } from "./Wordmark";
 
 export function SiteFooter() {
@@ -15,7 +15,7 @@ export function SiteFooter() {
           <p className="mt-4 max-w-sm text-[15px] text-navy-muted">{t.footer.tagline}</p>
         </div>
         <div className="md:col-span-2">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.pages}</h2>
+          <h2 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.pages}</h2>
           <ul className="mt-4 space-y-2 text-[15px]">
             <li><a href="/#capabilities" className="hover:underline">{t.nav.what}</a></li>
             <li><Link to="/approach" className="hover:underline">{t.nav.how}</Link></li>
@@ -24,15 +24,15 @@ export function SiteFooter() {
           </ul>
         </div>
         <div className="md:col-span-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.contact}</h2>
+          <h2 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.contact}</h2>
           <ul className="mt-4 space-y-2 text-[15px]">
             <li><a href={`mailto:${CONTACT.email}`} className="hover:underline">{CONTACT.email}</a></li>
             <li><a href={CONTACT.phoneHref} className="hover:underline">{CONTACT.phoneDisplay}</a></li>
-            <li><a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="hover:underline">WhatsApp</a></li>
+            <li><a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" className="hover:underline">WhatsApp</a></li>
           </ul>
         </div>
         <div className="md:col-span-2">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.legal}</h2>
+          <h2 className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-muted">{t.footer.legal}</h2>
           <ul className="mt-4 space-y-2 text-[15px]">
             <li><Link to="/privacy" className="hover:underline">{t.footer.privacy}</Link></li>
           </ul>

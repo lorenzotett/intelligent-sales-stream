@@ -16,13 +16,14 @@ export function SiteHeader() {
     <a key="w" href="/#capabilities" onClick={onClick} className="nav-link">{t.nav.what}</a>,
     <Link key="h" to="/approach" onClick={onClick} className="nav-link" activeProps={{ "aria-current": "page" }}>{t.nav.how}</Link>,
     <Link key="a" to="/about" onClick={onClick} className="nav-link" activeProps={{ "aria-current": "page" }}>{t.nav.about}</Link>,
+    <a key="q" href="/#quiz" onClick={onClick} className="nav-link">{t.nav.quiz}</a>,
   ];
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="container-site flex h-16 items-center justify-between gap-4">
         <Link to="/" aria-label={t.nav.home} className="flex items-baseline gap-3">
           <Wordmark />
-          <span className="hidden text-xs font-medium text-muted-foreground xl:inline">{t.descriptor}</span>
+          <span className="hidden text-[13px] font-medium text-muted-foreground xl:inline">{t.descriptor}</span>
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-7 text-[15px] lg:flex">{links()}</nav>
         <div className="hidden items-center gap-3 lg:flex">
