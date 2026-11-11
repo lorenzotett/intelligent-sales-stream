@@ -12,7 +12,7 @@ import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead("/", "Cooverly — New Businesses & Corporate Spin-offs",
-    "Cooverly helps entrepreneurs and established companies validate, build and launch new businesses, with support across business strategy, product and go-to-market."),
+    "Venture development partner for founders, companies and family holdings in Dubai, the Cayman Islands, Switzerland, Singapore, the US and Europe: validate, build and launch new businesses and spin-offs."),
   component: Index,
 });
 
