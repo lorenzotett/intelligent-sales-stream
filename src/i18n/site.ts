@@ -84,6 +84,7 @@ const en = {
     decision: "Decision point after each stage",
   },
   when: {
+    eyebrow: 'When it fits',
     title: "A new opportunity deserves a clear path.",
     intro: "You may have an idea, an existing business to build on, or an opportunity that needs a dedicated team. We help define what to test, what to build and how to move forward.",
     items: [
@@ -135,6 +136,7 @@ const en = {
     ],
   },
   after: {
+    eyebrow: 'After launch',
     title: "The work continues after launch.",
     text: "Launching is one milestone. The next decisions come from customers, usage and commercial results. We can stay involved to coordinate product priorities, test the offer and help your team move forward.",
     items: [
@@ -145,6 +147,7 @@ const en = {
     note: "The scope, team capacity and project budget are agreed before each engagement. Every proposal defines our role, the work included and any separately funded delivery.",
   },
   faq: {
+    eyebrow: 'FAQ',
     title: "Questions we are often asked",
     items: [
       { q: "Do I need a fully developed idea?", a: "No. An early idea or an observed opportunity is enough to start a conversation. Validation exists to give it shape." },
@@ -156,6 +159,14 @@ const en = {
       { q: "Is Cooverly an investor?", a: "No. We do not invest capital or promise funding. Any equity arrangement would be a separate, explicit agreement." },
       { q: "How are ownership and responsibilities defined?", a: "In the applicable agreements: ownership of IP, decision rights and responsibilities are written down before work begins." },
     ],
+  },
+  films: {
+    a: { k: 'Validate', t: 'Every piece in place before you build.' },
+    b: { k: 'Build & grow', t: 'One step at a time, each one a decision.' },
+  },
+  markets: {
+    label: 'Working remotely with clients in',
+    list: ["Dubai & UAE", "Cayman Islands", "Switzerland", "Singapore", "Luxembourg", "Monaco", "United States", "United Kingdom", "Europe"],
   },
   closing: {
     title: "What would you like to build next?",
@@ -353,6 +364,7 @@ const it: SiteCopy = {
     decision: "Punto di decisione dopo ogni fase",
   },
   when: {
+    eyebrow: 'Quando ha senso',
     title: "Una nuova opportunità merita un percorso chiaro.",
     intro: "Puoi avere un’idea, un’attività esistente da cui partire o un’opportunità che richiede una squadra dedicata. Ti aiutiamo a definire cosa verificare, cosa costruire e come andare avanti.",
     items: [
@@ -404,6 +416,7 @@ const it: SiteCopy = {
     ],
   },
   after: {
+    eyebrow: 'Dopo il lancio',
     title: "Il lavoro continua dopo il lancio.",
     text: "Il lancio è una tappa. Le decisioni successive arrivano da clienti, utilizzo e risultati commerciali. Possiamo restare al tuo fianco per coordinare le priorità di prodotto, verificare l’offerta e aiutare il tuo team ad andare avanti.",
     items: [
@@ -414,6 +427,7 @@ const it: SiteCopy = {
     note: "Perimetro, capacità del team e budget di progetto sono concordati prima di ogni incarico. Ogni proposta definisce il nostro ruolo, il lavoro incluso e le eventuali attività finanziate separatamente.",
   },
   faq: {
+    eyebrow: 'Domande frequenti',
     title: "Domande frequenti",
     items: [
       { q: "Serve un’idea già completa?", a: "No. Un’idea iniziale o un’opportunità osservata bastano per iniziare a parlarne. La validazione serve proprio a darle forma." },
@@ -425,6 +439,14 @@ const it: SiteCopy = {
       { q: "Cooverly è un investitore?", a: "No. Non investiamo capitale né promettiamo finanziamenti. Eventuali accordi di equity sarebbero un accordo separato ed esplicito." },
       { q: "Come si definiscono proprietà e responsabilità?", a: "Negli accordi applicabili: proprietà intellettuale, diritti decisionali e responsabilità sono messi per iscritto prima di iniziare." },
     ],
+  },
+  films: {
+    a: { k: 'Validare', t: 'Ogni pezzo al suo posto prima di costruire.' },
+    b: { k: 'Costruire e crescere', t: 'Un passo alla volta, ognuno una decisione.' },
+  },
+  markets: {
+    label: 'Lavoriamo da remoto con clienti in',
+    list: ["Dubai & UAE", "Cayman Islands", "Switzerland", "Singapore", "Luxembourg", "Monaco", "United States", "United Kingdom", "Europe"],
   },
   closing: {
     title: "Cosa vorresti costruire adesso?",
@@ -620,6 +642,7 @@ const es: SiteCopy = {
     decision: "Punto de decisión tras cada etapa",
   },
   when: {
+    eyebrow: 'Cuándo encaja',
     title: "Una nueva oportunidad merece un camino claro.",
     intro: "Puedes tener una idea, un negocio existente sobre el que construir o una oportunidad que necesita un equipo dedicado. Te ayudamos a definir qué validar, qué construir y cómo avanzar.",
     items: [
@@ -671,6 +694,7 @@ const es: SiteCopy = {
     ],
   },
   after: {
+    eyebrow: 'Tras el lanzamiento',
     title: "El trabajo continúa después del lanzamiento.",
     text: "Lanzar es un hito. Las siguientes decisiones llegan de los clientes, el uso y los resultados comerciales. Podemos seguir implicados para coordinar las prioridades de producto, probar la oferta y ayudar a tu equipo a avanzar.",
     items: [
@@ -681,6 +705,7 @@ const es: SiteCopy = {
     note: "El alcance, la capacidad del equipo y el presupuesto del proyecto se acuerdan antes de cada encargo. Cada propuesta define nuestro papel, el trabajo incluido y la ejecución financiada por separado.",
   },
   faq: {
+    eyebrow: 'Preguntas frecuentes',
     title: "Preguntas frecuentes",
     items: [
       { q: "¿Necesito una idea totalmente desarrollada?", a: "No. Una idea inicial o una oportunidad detectada bastan para empezar a hablar. La validación sirve precisamente para darle forma." },
@@ -692,6 +717,14 @@ const es: SiteCopy = {
       { q: "¿Cooverly es un inversor?", a: "No. No invertimos capital ni prometemos financiación. Cualquier acuerdo de participación sería un acuerdo separado y explícito." },
       { q: "¿Cómo se definen la propiedad y las responsabilidades?", a: "En los acuerdos aplicables: propiedad intelectual, derechos de decisión y responsabilidades se ponen por escrito antes de empezar." },
     ],
+  },
+  films: {
+    a: { k: 'Validar', t: 'Cada pieza en su sitio antes de construir.' },
+    b: { k: 'Construir y crecer', t: 'Paso a paso, cada uno una decisión.' },
+  },
+  markets: {
+    label: 'Trabajamos en remoto con clientes en',
+    list: ["Dubai & UAE", "Cayman Islands", "Switzerland", "Singapore", "Luxembourg", "Monaco", "United States", "United Kingdom", "Europe"],
   },
   closing: {
     title: "¿Qué te gustaría construir ahora?",

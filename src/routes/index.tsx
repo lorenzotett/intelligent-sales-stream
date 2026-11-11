@@ -66,15 +66,24 @@ function Index() {
             <Tilt3D className="float3d" max={12}><HeroMap /></Tilt3D>
           </motion.div>
         </div>
+        <div className="mt-14 border-t border-border pt-6 sm:mt-20">
+          <p className="text-center text-[13px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t.markets.label}</p>
+          <ul className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 font-display text-[15px] font-semibold text-foreground/80">
+            {t.markets.list.map((m, i) => (
+              <li key={m} className="flex items-center gap-2"><span aria-hidden className={`h-1.5 w-1.5 rounded-full ${pick(lightAccents, i).dot}`} />{m}</li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <ScrollVideo src={filmBuild.url} />
+      <ScrollVideo src={filmBuild.url} kicker={t.films.a.k} title={t.films.a.t} />
 
       {/* When */}
       <section id="who" className="border-y border-border bg-card">
         <div className="container-site grid gap-10 py-16 sm:py-20 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <h2 className="h2-fluid font-bold">{t.when.title}</h2>
+            <Eyebrow tone="warm">{t.when.eyebrow}</Eyebrow>
+            <h2 className="h2-fluid mt-4 font-bold">{t.when.title}</h2>
             <p className="mt-5 max-w-[60ch] text-muted-foreground">{t.when.intro}</p>
             <p className="mt-5 text-[15px] text-muted-foreground">{t.when.note}</p>
           </div>
@@ -99,17 +108,28 @@ function Index() {
         <span id="services" className="block scroll-mt-20" />
         <Eyebrow tone="sky">{t.caps.eyebrow}</Eyebrow>
         <Reveal><h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.caps.title}</h2></Reveal>
-        <div className="mt-10 border-t border-border">
-          {t.caps.rows.map((r, i) => (
-            <Reveal key={r.t}>
-              <div className="grid gap-2 border-b border-border py-6 md:grid-cols-12 md:gap-6">
-                <span className={`font-display text-sm font-bold ${pick(lightAccents, i).text} md:col-span-1`}>{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="text-lg font-bold md:col-span-3">{r.t}</h3>
-                <p className="text-muted-foreground md:col-span-4">{r.d}</p>
-                <p className="text-[15px] md:col-span-4"><span className={`mr-2 text-[13px] font-semibold uppercase tracking-[0.14em] ${pick(lightAccents, i).text}`}>{t.caps.outputLabel}</span>{r.o}</p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {t.caps.rows.map((r, i) => {
+            const ac = pick(lightAccents, i);
+            return (
+              <Reveal key={r.t} delay={(i % 3) * 0.07} className="h-full">
+                <Tilt3D className="h-full" max={7}>
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-lg sm:p-7">
+                    <span aria-hidden className={`absolute inset-x-0 top-0 h-1 ${ac.bar}`} />
+                    <span className={`grid h-11 w-11 place-items-center rounded-xl font-display text-sm font-bold ${ac.chip}`}>{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="mt-5 text-xl font-bold">{r.t}</h3>
+                    <p className="mt-2 text-muted-foreground">{r.d}</p>
+                    <div className="mt-auto pt-6">
+                      <div className="border-t border-border pt-4">
+                        <p className={`text-[12px] font-semibold uppercase tracking-[0.16em] ${ac.text}`}>{t.caps.outputLabel}</p>
+                        <p className="mt-1 text-[15px] font-medium">{r.o}</p>
+                      </div>
+                    </div>
+                  </article>
+                </Tilt3D>
+              </Reveal>
+            );
+          })}
         </div>
         <p className="mt-6 text-[15px] text-muted-foreground">{t.caps.footnote}</p>
       </section>
@@ -126,7 +146,7 @@ function Index() {
         </div>
       </section>
 
-      <ScrollVideo src={filmRise.url} dark />
+      <ScrollVideo src={filmRise.url} dark kicker={t.films.b.k} title={t.films.b.t} />
 
       {/* Method */}
       <section id="method" className="relative isolate overflow-hidden bg-navy text-navy-foreground">
@@ -197,7 +217,7 @@ function Index() {
       <section className="border-y border-border bg-card">
         <div className="container-site py-16 sm:py-24">
           <div className="grid gap-8 lg:grid-cols-12">
-            <Parallax speed={26} className="lg:col-span-5"><h2 className="h2-fluid font-bold">{t.after.title}</h2></Parallax>
+            <Parallax speed={26} className="lg:col-span-5"><Eyebrow tone="sky">{t.after.eyebrow}</Eyebrow><h2 className="h2-fluid mt-4 font-bold">{t.after.title}</h2></Parallax>
             <Parallax speed={-16} className="lg:col-span-6 lg:col-start-7"><p className="text-muted-foreground">{t.after.text}</p></Parallax>
           </div>
           <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
@@ -215,7 +235,7 @@ function Index() {
 
       {/* FAQ */}
       <section id="faq" className="container-site grid gap-10 py-16 sm:py-24 lg:grid-cols-12">
-        <Reveal className="lg:col-span-4"><h2 className="h2-fluid font-bold">{t.faq.title}</h2></Reveal>
+        <Reveal className="lg:col-span-4"><Eyebrow tone="red">{t.faq.eyebrow}</Eyebrow><h2 className="h2-fluid mt-4 font-bold">{t.faq.title}</h2></Reveal>
         <Accordion type="single" collapsible className="lg:col-span-7 lg:col-start-6">
           {t.faq.items.map((f, i) => (
             <AccordionItem key={f.q} value={`q${i}`}>
