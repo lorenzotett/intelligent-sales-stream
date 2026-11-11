@@ -169,3 +169,6 @@
 .ring3d { position: absolute; inset: 0; border-width: 2px; border-style: solid; border-radius: 9999px; animation: ringspin 30s linear infinite; }
 .grid3d { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; transform: perspective(600px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(to top, black, transparent); opacity: .7; }
 .float3d { animation: float3d 7s ease-in-out infinite; }
+.cube3d, .ring3d, .float3d { will-change: transform; }
+a, button { transition: color .2s, background-color .2s, transform .2s, box-shadow .2s; }
+button:active, a:active { transform: scale(.98); }

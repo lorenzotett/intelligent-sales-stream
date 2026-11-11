@@ -68,7 +68,7 @@ function Index() {
       <section id="capabilities" className="container-site scroll-mt-20 py-16 sm:py-24">
         <span id="services" className="block scroll-mt-20" />
         <Eyebrow>{t.caps.eyebrow}</Eyebrow>
-        <h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.caps.title}</h2>
+        <Reveal><h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.caps.title}</h2></Reveal>
         <div className="mt-10 border-t border-border">
           {t.caps.rows.map((r, i) => (
             <Reveal key={r.t}>
@@ -88,7 +88,7 @@ function Index() {
       <section id="method" className="bg-navy text-navy-foreground">
         <div className="container-site py-16 sm:py-24">
           <Eyebrow inverted>{t.method.eyebrow}</Eyebrow>
-          <h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.method.title}</h2>
+          <Reveal><h2 className="h2-fluid mt-4 max-w-3xl font-bold">{t.method.title}</h2></Reveal>
           <ol className="mt-12 grid gap-6 lg:grid-cols-3">
             {t.method.phases.map((p, i) => (
               <Reveal key={p.t} delay={i * 0.06}>
@@ -151,11 +151,11 @@ function Index() {
             <p className="text-muted-foreground lg:col-span-6 lg:col-start-7">{t.after.text}</p>
           </div>
           <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-            {t.after.items.map((it) => (
-              <div key={it.t} className="bg-background p-6">
+            {t.after.items.map((it, i) => (
+              <Reveal key={it.t} delay={i * 0.08} className="bg-background p-6"><div>
                 <h3 className="text-lg font-bold">{it.t}</h3>
                 <p className="mt-2 text-muted-foreground">{it.d}</p>
-              </div>
+              </div></Reveal>
             ))}
           </div>
           <p className="mt-6 max-w-3xl text-sm text-muted-foreground">{t.after.note}</p>
@@ -164,7 +164,7 @@ function Index() {
 
       {/* FAQ */}
       <section id="faq" className="container-site grid gap-10 py-16 sm:py-24 lg:grid-cols-12">
-        <h2 className="h2-fluid font-bold lg:col-span-4">{t.faq.title}</h2>
+        <Reveal className="lg:col-span-4"><h2 className="h2-fluid font-bold">{t.faq.title}</h2></Reveal>
         <Accordion type="single" collapsible className="lg:col-span-7 lg:col-start-6">
           {t.faq.items.map((f, i) => (
             <AccordionItem key={f.q} value={`q${i}`}>
@@ -177,14 +177,14 @@ function Index() {
 
       {/* Closing */}
       <section className="container-site pb-20">
-        <div className="relative overflow-hidden rounded-2xl bg-navy px-6 py-14 text-navy-foreground sm:px-12 sm:py-16">
+        <Reveal><div className="relative overflow-hidden rounded-2xl bg-navy px-6 py-14 text-navy-foreground sm:px-12 sm:py-16">
           <span aria-hidden className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full border-[18px] border-accent-warm/40" />
           <h2 className="h2-fluid relative max-w-2xl font-bold">{t.closing.title}</h2>
           <p className="relative mt-5 max-w-[60ch] text-navy-muted">{t.closing.text}</p>
           <Button asChild className="relative mt-8 h-12 rounded-lg px-6 text-base hover:bg-primary-hover">
             <Link to="/contact">{t.closing.cta} <ArrowRight className="h-4 w-4" /></Link>
           </Button>
-        </div>
+        </div></Reveal>
       </section>
     </PageShell>
   );
