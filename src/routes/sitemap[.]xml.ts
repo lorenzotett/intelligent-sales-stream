@@ -6,6 +6,7 @@ const BASE_URL = "https://cooverly.com";
 const ROUTES = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/approach", changefreq: "monthly", priority: "0.8" },
+  { path: "/method", changefreq: "monthly", priority: "0.8" },
   { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/contact", changefreq: "monthly", priority: "0.8" },
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },

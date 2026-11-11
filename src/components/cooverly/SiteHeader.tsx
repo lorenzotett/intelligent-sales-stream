@@ -15,6 +15,7 @@ export function SiteHeader() {
   ) => [
     <a key="w" href="/#capabilities" onClick={onClick} className="nav-link">{t.nav.what}</a>,
     <Link key="h" to="/approach" onClick={onClick} className="nav-link" activeProps={{ "aria-current": "page" }}>{t.nav.how}</Link>,
+    <Link key="m" to="/method" onClick={onClick} className="nav-link" activeProps={{ "aria-current": "page" }}>{t.nav.methodNav}</Link>,
     <Link key="a" to="/about" onClick={onClick} className="nav-link" activeProps={{ "aria-current": "page" }}>{t.nav.about}</Link>,
     <a key="q" href="/#quiz" onClick={onClick} className="nav-link">{t.nav.quiz}</a>,
   ];

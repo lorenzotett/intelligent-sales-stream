@@ -13,7 +13,7 @@ export const CONTACT = {
 export const WHATSAPP_HREF = `${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappText)}`;
 
 const en = {
-  nav: { what: "What we do", how: "How we work", about: "About", quiz: "Quick check", cta: "Tell us about your project", menu: "Menu", close: "Close menu", home: "Cooverly home" },
+  nav: { methodNav: "Method", what: "What we do", how: "How we work", about: "About", quiz: "Quick check", cta: "Tell us about your project", menu: "Menu", close: "Close menu", home: "Cooverly home" },
   quiz: {
     eyebrow: "Quick check",
     title: "Is your project ready for its first build?",
@@ -160,6 +160,245 @@ const en = {
       { q: "How are ownership and responsibilities defined?", a: "In the applicable agreements: ownership of IP, decision rights and responsibilities are written down before work begins." },
     ],
   },
+  methodPage: {
+    "eyebrow": "The Cooverly method",
+    "title": "From idea to market, one evidence-based step at a time.",
+    "sub": "Seven steps, three phases. Each step has a clear goal, a defined set of activities, a written deliverable and a decision before money moves to the next one.",
+    "phaseNames": [
+      "Validate",
+      "Build & Launch",
+      "Operate & Grow"
+    ],
+    "stepLabel": "Step",
+    "goalLabel": "Goal",
+    "doLabel": "What we do",
+    "toolsLabel": "Methods & tools",
+    "outLabel": "Deliverable",
+    "gateLabel": "Decision gate",
+    "timeLabel": "Indicative duration",
+    "steps": [
+      {
+        "phase": 0,
+        "t": "Discovery & framing",
+        "time": "1–2 weeks",
+        "goal": "Agree on the problem, the ambition and the constraints before anything is built.",
+        "do": [
+          "Stakeholder workshop and goals",
+          "Map of existing assets: customers, data, distribution, team",
+          "List of key assumptions to test",
+          "Success criteria and budget envelope"
+        ],
+        "tools": [
+          "Opportunity canvas",
+          "Assumption map",
+          "Risk register"
+        ],
+        "out": "Venture brief: problem, target, assumptions, success criteria.",
+        "gate": "Is the opportunity worth researching?"
+      },
+      {
+        "phase": 0,
+        "t": "Market research",
+        "time": "2–3 weeks",
+        "goal": "Understand the market, its size and the alternatives customers use today.",
+        "do": [
+          "Market sizing (TAM / SAM / SOM)",
+          "Competitor and substitute analysis",
+          "Pricing benchmarks",
+          "Trends, regulation and entry barriers"
+        ],
+        "tools": [
+          "Desk research",
+          "Competitive matrix",
+          "Search and demand data"
+        ],
+        "out": "Market report with sizing, positioning map and pricing range.",
+        "gate": "Is there room for a differentiated offer?"
+      },
+      {
+        "phase": 0,
+        "t": "Customer validation",
+        "time": "2–4 weeks",
+        "goal": "Test the problem and willingness to pay directly with target customers.",
+        "do": [
+          "15–30 structured customer interviews",
+          "Segment and persona definition",
+          "Landing page or offer test",
+          "Pre-orders, letters of intent or pilot requests"
+        ],
+        "tools": [
+          "Interview script",
+          "Jobs-to-be-done",
+          "Smoke tests"
+        ],
+        "out": "Validation report: evidence per assumption, validated segment.",
+        "gate": "Proceed, adjust or stop."
+      },
+      {
+        "phase": 1,
+        "t": "Business model & offer",
+        "time": "1–2 weeks",
+        "goal": "Design how the venture creates, delivers and captures value.",
+        "do": [
+          "Value proposition and offer packaging",
+          "Pricing and revenue model",
+          "Unit economics and cost assumptions",
+          "Channel and partnership plan"
+        ],
+        "tools": [
+          "Business model canvas",
+          "Unit economics model",
+          "Pricing scenarios"
+        ],
+        "out": "Business model and 12-month financial assumptions.",
+        "gate": "Do the numbers justify an MVP?"
+      },
+      {
+        "phase": 1,
+        "t": "MVP design",
+        "time": "2–3 weeks",
+        "goal": "Define the smallest product that tests the core value with real users.",
+        "do": [
+          "Feature prioritisation (Must / Should / Later)",
+          "User journeys and wireframes",
+          "Clickable prototype and usability tests",
+          "Technical architecture and build plan"
+        ],
+        "tools": [
+          "MoSCoW",
+          "User story map",
+          "Prototype testing"
+        ],
+        "out": "MVP specification, prototype and scoped build plan.",
+        "gate": "Is the scope small enough and clear enough to build?"
+      },
+      {
+        "phase": 1,
+        "t": "MVP build & pilot launch",
+        "time": "6–10 weeks",
+        "goal": "Build the MVP, launch it to a first group of customers and start measuring.",
+        "do": [
+          "Scoped development in short sprints",
+          "Quality checks and analytics setup",
+          "Launch messaging, sales materials and channels",
+          "Pilot with first customers"
+        ],
+        "tools": [
+          "Agile sprints",
+          "Product analytics",
+          "Launch checklist"
+        ],
+        "out": "Live MVP, pilot customers and a metrics dashboard.",
+        "gate": "Are users getting value? What do the numbers say?"
+      },
+      {
+        "phase": 2,
+        "t": "Measure, iterate & scale",
+        "time": "Ongoing",
+        "goal": "Use real data to improve the product, the offer and the growth channels.",
+        "do": [
+          "Weekly priorities and monthly metric reviews",
+          "Acquisition and conversion experiments",
+          "Product iterations based on feedback",
+          "Quarterly roadmap and scaling decisions"
+        ],
+        "tools": [
+          "Build–Measure–Learn loop",
+          "Cohort and funnel analysis",
+          "OKRs"
+        ],
+        "out": "Updated roadmap, decision log and quarterly report.",
+        "gate": "Improve, expand, simplify or stop."
+      }
+    ],
+    "g": {
+      "eyebrow": "Visual examples",
+      "title": "How the method looks in practice.",
+      "note": "Illustrative examples, not data from a real client.",
+      "funnelTitle": "Validation funnel",
+      "funnelSub": "Assumptions are filtered by evidence before anything is built.",
+      "funnel": [
+        [
+          "Assumptions listed",
+          "24"
+        ],
+        [
+          "Tested with customers",
+          "14"
+        ],
+        [
+          "Validated",
+          "6"
+        ],
+        [
+          "Built into the MVP",
+          "4"
+        ]
+      ],
+      "mvpTitle": "MVP scope",
+      "mvpSub": "Only what tests the core value goes into the first version.",
+      "mvp": [
+        [
+          "Must have",
+          "Core flow, payment, onboarding"
+        ],
+        [
+          "Should have",
+          "Notifications, basic reports"
+        ],
+        [
+          "Later",
+          "Integrations, advanced settings, mobile app"
+        ]
+      ],
+      "loopTitle": "Build – Measure – Learn",
+      "loopSub": "After launch, every cycle ends with a decision.",
+      "loop": [
+        "Build",
+        "Measure",
+        "Learn",
+        "Decide"
+      ],
+      "dashTitle": "Pilot dashboard",
+      "dashSub": "The few metrics that decide the next step.",
+      "dash": [
+        [
+          "Activation",
+          "Week 1 → 8"
+        ],
+        [
+          "Retention",
+          "Cohort view"
+        ],
+        [
+          "Conversion",
+          "Trial → paid"
+        ]
+      ]
+    },
+    "pr": {
+      "title": "The principles behind every step",
+      "items": [
+        [
+          "Evidence before investment",
+          "No step is funded on opinion alone."
+        ],
+        [
+          "Small, testable scope",
+          "We build the minimum needed to learn."
+        ],
+        [
+          "Written decisions",
+          "Every gate ends with a documented go, adjust or stop."
+        ]
+      ]
+    },
+    "cta": {
+      "title": "Want to see where your idea stands?",
+      "text": "Tell us about your project and we will tell you which step to start from.",
+      "btn": "Tell us about your project"
+    }
+  },
   films: {
     a: { k: 'Validate', t: 'Every piece in place before you build.' },
     b: { k: 'Build & grow', t: 'One step at a time, each one a decision.' },
@@ -293,7 +532,7 @@ const en = {
 export type SiteCopy = typeof en;
 
 const it: SiteCopy = {
-  nav: { what: "Cosa facciamo", how: "Come lavoriamo", about: "Chi siamo", quiz: "Verifica rapida", cta: "Parliamo del tuo progetto", menu: "Menu", close: "Chiudi menu", home: "Home Cooverly" },
+  nav: { methodNav: "Metodo", what: "Cosa facciamo", how: "Come lavoriamo", about: "Chi siamo", quiz: "Verifica rapida", cta: "Parliamo del tuo progetto", menu: "Menu", close: "Chiudi menu", home: "Home Cooverly" },
   quiz: {
     eyebrow: "Verifica rapida",
     title: "Il tuo progetto è pronto per il primo build?",
@@ -440,6 +679,245 @@ const it: SiteCopy = {
       { q: "Come si definiscono proprietà e responsabilità?", a: "Negli accordi applicabili: proprietà intellettuale, diritti decisionali e responsabilità sono messi per iscritto prima di iniziare." },
     ],
   },
+  methodPage: {
+    "eyebrow": "Il metodo Cooverly",
+    "title": "Dall'idea al mercato, un passo verificato alla volta.",
+    "sub": "Sette step, tre fasi. Ogni step ha un obiettivo chiaro, attività definite, un documento consegnato e una decisione prima di investire nello step successivo.",
+    "phaseNames": [
+      "Validare",
+      "Costruire e lanciare",
+      "Gestire e crescere"
+    ],
+    "stepLabel": "Step",
+    "goalLabel": "Obiettivo",
+    "doLabel": "Cosa facciamo",
+    "toolsLabel": "Metodi e strumenti",
+    "outLabel": "Consegna",
+    "gateLabel": "Punto di decisione",
+    "timeLabel": "Durata indicativa",
+    "steps": [
+      {
+        "phase": 0,
+        "t": "Discovery e inquadramento",
+        "time": "1–2 settimane",
+        "goal": "Allinearsi su problema, ambizione e vincoli prima di costruire qualsiasi cosa.",
+        "do": [
+          "Workshop con i referenti e obiettivi",
+          "Mappa degli asset esistenti: clienti, dati, distribuzione, team",
+          "Elenco delle ipotesi chiave da testare",
+          "Criteri di successo e budget di riferimento"
+        ],
+        "tools": [
+          "Opportunity canvas",
+          "Mappa delle ipotesi",
+          "Registro dei rischi"
+        ],
+        "out": "Venture brief: problema, target, ipotesi, criteri di successo.",
+        "gate": "Vale la pena studiare l'opportunità?"
+      },
+      {
+        "phase": 0,
+        "t": "Ricerca di mercato",
+        "time": "2–3 settimane",
+        "goal": "Capire il mercato, le sue dimensioni e le alternative che i clienti usano oggi.",
+        "do": [
+          "Dimensionamento del mercato (TAM / SAM / SOM)",
+          "Analisi di concorrenti e sostituti",
+          "Benchmark di prezzo",
+          "Trend, normative e barriere d'ingresso"
+        ],
+        "tools": [
+          "Desk research",
+          "Matrice competitiva",
+          "Dati di ricerca e domanda"
+        ],
+        "out": "Report di mercato con dimensionamento, mappa di posizionamento e range di prezzo.",
+        "gate": "C'è spazio per un'offerta differenziata?"
+      },
+      {
+        "phase": 0,
+        "t": "Validazione con i clienti",
+        "time": "2–4 settimane",
+        "goal": "Testare il problema e la disponibilità a pagare direttamente con i clienti target.",
+        "do": [
+          "15–30 interviste strutturate",
+          "Definizione di segmenti e persona",
+          "Test con landing page o offerta",
+          "Preordini, lettere d'intenti o richieste di pilota"
+        ],
+        "tools": [
+          "Traccia di intervista",
+          "Jobs-to-be-done",
+          "Smoke test"
+        ],
+        "out": "Report di validazione: evidenze per ogni ipotesi, segmento validato.",
+        "gate": "Procedere, correggere o fermarsi."
+      },
+      {
+        "phase": 1,
+        "t": "Modello di business e offerta",
+        "time": "1–2 settimane",
+        "goal": "Progettare come il business crea, consegna e cattura valore.",
+        "do": [
+          "Proposta di valore e struttura dell'offerta",
+          "Prezzi e modello di ricavo",
+          "Unit economics e ipotesi di costo",
+          "Piano di canali e partnership"
+        ],
+        "tools": [
+          "Business model canvas",
+          "Modello di unit economics",
+          "Scenari di prezzo"
+        ],
+        "out": "Modello di business e ipotesi finanziarie a 12 mesi.",
+        "gate": "I numeri giustificano un MVP?"
+      },
+      {
+        "phase": 1,
+        "t": "Progettazione MVP",
+        "time": "2–3 settimane",
+        "goal": "Definire il prodotto minimo che testa il valore centrale con utenti reali.",
+        "do": [
+          "Priorità delle funzioni (Must / Should / Later)",
+          "Percorsi utente e wireframe",
+          "Prototipo cliccabile e test di usabilità",
+          "Architettura tecnica e piano di sviluppo"
+        ],
+        "tools": [
+          "MoSCoW",
+          "User story map",
+          "Test del prototipo"
+        ],
+        "out": "Specifica MVP, prototipo e piano di sviluppo con perimetro definito.",
+        "gate": "Il perimetro è abbastanza piccolo e chiaro da costruire?"
+      },
+      {
+        "phase": 1,
+        "t": "Sviluppo MVP e lancio pilota",
+        "time": "6–10 settimane",
+        "goal": "Costruire l'MVP, lanciarlo a un primo gruppo di clienti e iniziare a misurare.",
+        "do": [
+          "Sviluppo in sprint brevi",
+          "Controlli di qualità e analytics",
+          "Messaggi di lancio, materiali di vendita e canali",
+          "Pilota con i primi clienti"
+        ],
+        "tools": [
+          "Sprint agili",
+          "Product analytics",
+          "Checklist di lancio"
+        ],
+        "out": "MVP online, primi clienti pilota e dashboard delle metriche.",
+        "gate": "Gli utenti trovano valore? Cosa dicono i numeri?"
+      },
+      {
+        "phase": 2,
+        "t": "Misurare, iterare e scalare",
+        "time": "Continuativo",
+        "goal": "Usare dati reali per migliorare prodotto, offerta e canali di crescita.",
+        "do": [
+          "Priorità settimanali e revisione mensile delle metriche",
+          "Esperimenti di acquisizione e conversione",
+          "Iterazioni di prodotto dai feedback",
+          "Roadmap trimestrale e decisioni di crescita"
+        ],
+        "tools": [
+          "Ciclo Build–Measure–Learn",
+          "Analisi di coorti e funnel",
+          "OKR"
+        ],
+        "out": "Roadmap aggiornata, registro delle decisioni e report trimestrale.",
+        "gate": "Migliorare, espandere, semplificare o fermarsi."
+      }
+    ],
+    "g": {
+      "eyebrow": "Esempi visivi",
+      "title": "Come appare il metodo nella pratica.",
+      "note": "Esempi illustrativi, non dati di un cliente reale.",
+      "funnelTitle": "Funnel di validazione",
+      "funnelSub": "Le ipotesi vengono filtrate dalle evidenze prima di costruire.",
+      "funnel": [
+        [
+          "Ipotesi elencate",
+          "24"
+        ],
+        [
+          "Testate con i clienti",
+          "14"
+        ],
+        [
+          "Validate",
+          "6"
+        ],
+        [
+          "Incluse nell'MVP",
+          "4"
+        ]
+      ],
+      "mvpTitle": "Perimetro dell'MVP",
+      "mvpSub": "Nella prima versione entra solo ciò che testa il valore centrale.",
+      "mvp": [
+        [
+          "Indispensabile",
+          "Flusso principale, pagamento, onboarding"
+        ],
+        [
+          "Utile",
+          "Notifiche, report di base"
+        ],
+        [
+          "Dopo",
+          "Integrazioni, impostazioni avanzate, app mobile"
+        ]
+      ],
+      "loopTitle": "Costruire – Misurare – Imparare",
+      "loopSub": "Dopo il lancio, ogni ciclo termina con una decisione.",
+      "loop": [
+        "Costruire",
+        "Misurare",
+        "Imparare",
+        "Decidere"
+      ],
+      "dashTitle": "Dashboard del pilota",
+      "dashSub": "Le poche metriche che decidono il passo successivo.",
+      "dash": [
+        [
+          "Attivazione",
+          "Settimana 1 → 8"
+        ],
+        [
+          "Retention",
+          "Vista per coorti"
+        ],
+        [
+          "Conversione",
+          "Prova → pagamento"
+        ]
+      ]
+    },
+    "pr": {
+      "title": "I principi dietro ogni step",
+      "items": [
+        [
+          "Evidenze prima degli investimenti",
+          "Nessuno step viene finanziato solo su opinioni."
+        ],
+        [
+          "Perimetro piccolo e testabile",
+          "Costruiamo il minimo necessario per imparare."
+        ],
+        [
+          "Decisioni scritte",
+          "Ogni punto di decisione termina con un procedere, correggere o fermarsi documentato."
+        ]
+      ]
+    },
+    "cta": {
+      "title": "Vuoi capire a che punto è la tua idea?",
+      "text": "Raccontaci il progetto e ti diremo da quale step partire.",
+      "btn": "Parliamo del tuo progetto"
+    }
+  },
   films: {
     a: { k: 'Validare', t: 'Ogni pezzo al suo posto prima di costruire.' },
     b: { k: 'Costruire e crescere', t: 'Un passo alla volta, ognuno una decisione.' },
@@ -571,7 +1049,7 @@ const it: SiteCopy = {
 };
 
 const es: SiteCopy = {
-  nav: { what: "Qué hacemos", how: "Cómo trabajamos", about: "Sobre nosotros", quiz: "Chequeo rápido", cta: "Cuéntanos tu proyecto", menu: "Menú", close: "Cerrar menú", home: "Inicio Cooverly" },
+  nav: { methodNav: "Método", what: "Qué hacemos", how: "Cómo trabajamos", about: "Sobre nosotros", quiz: "Chequeo rápido", cta: "Cuéntanos tu proyecto", menu: "Menú", close: "Cerrar menú", home: "Inicio Cooverly" },
   quiz: {
     eyebrow: "Chequeo rápido",
     title: "¿Tu proyecto está listo para su primera build?",
@@ -717,6 +1195,245 @@ const es: SiteCopy = {
       { q: "¿Cooverly es un inversor?", a: "No. No invertimos capital ni prometemos financiación. Cualquier acuerdo de participación sería un acuerdo separado y explícito." },
       { q: "¿Cómo se definen la propiedad y las responsabilidades?", a: "En los acuerdos aplicables: propiedad intelectual, derechos de decisión y responsabilidades se ponen por escrito antes de empezar." },
     ],
+  },
+  methodPage: {
+    "eyebrow": "El método Cooverly",
+    "title": "De la idea al mercado, un paso validado cada vez.",
+    "sub": "Siete pasos, tres fases. Cada paso tiene un objetivo claro, actividades definidas, un entregable escrito y una decisión antes de invertir en el siguiente.",
+    "phaseNames": [
+      "Validar",
+      "Construir y lanzar",
+      "Operar y crecer"
+    ],
+    "stepLabel": "Paso",
+    "goalLabel": "Objetivo",
+    "doLabel": "Qué hacemos",
+    "toolsLabel": "Métodos y herramientas",
+    "outLabel": "Entregable",
+    "gateLabel": "Punto de decisión",
+    "timeLabel": "Duración orientativa",
+    "steps": [
+      {
+        "phase": 0,
+        "t": "Descubrimiento y enfoque",
+        "time": "1–2 semanas",
+        "goal": "Acordar el problema, la ambición y las restricciones antes de construir nada.",
+        "do": [
+          "Taller con responsables y objetivos",
+          "Mapa de activos: clientes, datos, distribución, equipo",
+          "Lista de hipótesis clave a probar",
+          "Criterios de éxito y presupuesto de referencia"
+        ],
+        "tools": [
+          "Opportunity canvas",
+          "Mapa de hipótesis",
+          "Registro de riesgos"
+        ],
+        "out": "Venture brief: problema, público, hipótesis, criterios de éxito.",
+        "gate": "¿Merece la pena investigar la oportunidad?"
+      },
+      {
+        "phase": 0,
+        "t": "Investigación de mercado",
+        "time": "2–3 semanas",
+        "goal": "Entender el mercado, su tamaño y las alternativas que usan hoy los clientes.",
+        "do": [
+          "Tamaño de mercado (TAM / SAM / SOM)",
+          "Análisis de competidores y sustitutos",
+          "Referencias de precio",
+          "Tendencias, regulación y barreras de entrada"
+        ],
+        "tools": [
+          "Desk research",
+          "Matriz competitiva",
+          "Datos de búsqueda y demanda"
+        ],
+        "out": "Informe de mercado con tamaño, mapa de posicionamiento y rango de precios.",
+        "gate": "¿Hay espacio para una oferta diferenciada?"
+      },
+      {
+        "phase": 0,
+        "t": "Validación con clientes",
+        "time": "2–4 semanas",
+        "goal": "Probar el problema y la disposición a pagar directamente con clientes objetivo.",
+        "do": [
+          "15–30 entrevistas estructuradas",
+          "Definición de segmentos y personas",
+          "Test con landing page u oferta",
+          "Reservas, cartas de intención o solicitudes de piloto"
+        ],
+        "tools": [
+          "Guion de entrevista",
+          "Jobs-to-be-done",
+          "Smoke tests"
+        ],
+        "out": "Informe de validación: evidencia por hipótesis, segmento validado.",
+        "gate": "Avanzar, ajustar o parar."
+      },
+      {
+        "phase": 1,
+        "t": "Modelo de negocio y oferta",
+        "time": "1–2 semanas",
+        "goal": "Diseñar cómo el negocio crea, entrega y captura valor.",
+        "do": [
+          "Propuesta de valor y estructura de la oferta",
+          "Precios y modelo de ingresos",
+          "Unit economics e hipótesis de coste",
+          "Plan de canales y alianzas"
+        ],
+        "tools": [
+          "Business model canvas",
+          "Modelo de unit economics",
+          "Escenarios de precio"
+        ],
+        "out": "Modelo de negocio e hipótesis financieras a 12 meses.",
+        "gate": "¿Los números justifican un MVP?"
+      },
+      {
+        "phase": 1,
+        "t": "Diseño del MVP",
+        "time": "2–3 semanas",
+        "goal": "Definir el producto mínimo que prueba el valor central con usuarios reales.",
+        "do": [
+          "Priorización de funciones (Must / Should / Later)",
+          "Recorridos de usuario y wireframes",
+          "Prototipo navegable y tests de usabilidad",
+          "Arquitectura técnica y plan de desarrollo"
+        ],
+        "tools": [
+          "MoSCoW",
+          "User story map",
+          "Test de prototipo"
+        ],
+        "out": "Especificación del MVP, prototipo y plan de desarrollo acotado.",
+        "gate": "¿El alcance es lo bastante pequeño y claro para construir?"
+      },
+      {
+        "phase": 1,
+        "t": "Desarrollo del MVP y lanzamiento piloto",
+        "time": "6–10 semanas",
+        "goal": "Construir el MVP, lanzarlo a un primer grupo de clientes y empezar a medir.",
+        "do": [
+          "Desarrollo en sprints cortos",
+          "Controles de calidad y analítica",
+          "Mensajes de lanzamiento, materiales de venta y canales",
+          "Piloto con los primeros clientes"
+        ],
+        "tools": [
+          "Sprints ágiles",
+          "Analítica de producto",
+          "Checklist de lanzamiento"
+        ],
+        "out": "MVP en producción, clientes piloto y panel de métricas.",
+        "gate": "¿Los usuarios obtienen valor? ¿Qué dicen los números?"
+      },
+      {
+        "phase": 2,
+        "t": "Medir, iterar y escalar",
+        "time": "Continuo",
+        "goal": "Usar datos reales para mejorar el producto, la oferta y los canales de crecimiento.",
+        "do": [
+          "Prioridades semanales y revisión mensual de métricas",
+          "Experimentos de adquisición y conversión",
+          "Iteraciones de producto según feedback",
+          "Roadmap trimestral y decisiones de escala"
+        ],
+        "tools": [
+          "Ciclo Build–Measure–Learn",
+          "Análisis de cohortes y embudos",
+          "OKR"
+        ],
+        "out": "Roadmap actualizado, registro de decisiones e informe trimestral.",
+        "gate": "Mejorar, ampliar, simplificar o parar."
+      }
+    ],
+    "g": {
+      "eyebrow": "Ejemplos visuales",
+      "title": "Cómo se ve el método en la práctica.",
+      "note": "Ejemplos ilustrativos, no datos de un cliente real.",
+      "funnelTitle": "Embudo de validación",
+      "funnelSub": "Las hipótesis se filtran con evidencia antes de construir.",
+      "funnel": [
+        [
+          "Hipótesis listadas",
+          "24"
+        ],
+        [
+          "Probadas con clientes",
+          "14"
+        ],
+        [
+          "Validadas",
+          "6"
+        ],
+        [
+          "Incluidas en el MVP",
+          "4"
+        ]
+      ],
+      "mvpTitle": "Alcance del MVP",
+      "mvpSub": "En la primera versión entra solo lo que prueba el valor central.",
+      "mvp": [
+        [
+          "Imprescindible",
+          "Flujo principal, pago, onboarding"
+        ],
+        [
+          "Deseable",
+          "Notificaciones, informes básicos"
+        ],
+        [
+          "Más adelante",
+          "Integraciones, ajustes avanzados, app móvil"
+        ]
+      ],
+      "loopTitle": "Construir – Medir – Aprender",
+      "loopSub": "Tras el lanzamiento, cada ciclo termina con una decisión.",
+      "loop": [
+        "Construir",
+        "Medir",
+        "Aprender",
+        "Decidir"
+      ],
+      "dashTitle": "Panel del piloto",
+      "dashSub": "Las pocas métricas que deciden el siguiente paso.",
+      "dash": [
+        [
+          "Activación",
+          "Semana 1 → 8"
+        ],
+        [
+          "Retención",
+          "Vista por cohortes"
+        ],
+        [
+          "Conversión",
+          "Prueba → pago"
+        ]
+      ]
+    },
+    "pr": {
+      "title": "Los principios detrás de cada paso",
+      "items": [
+        [
+          "Evidencia antes de invertir",
+          "Ningún paso se financia solo con opiniones."
+        ],
+        [
+          "Alcance pequeño y comprobable",
+          "Construimos lo mínimo necesario para aprender."
+        ],
+        [
+          "Decisiones por escrito",
+          "Cada punto de decisión termina con un avanzar, ajustar o parar documentado."
+        ]
+      ]
+    },
+    "cta": {
+      "title": "¿Quieres saber en qué punto está tu idea?",
+      "text": "Cuéntanos tu proyecto y te diremos desde qué paso empezar.",
+      "btn": "Cuéntanos tu proyecto"
+    }
   },
   films: {
     a: { k: 'Validar', t: 'Cada pieza en su sitio antes de construir.' },

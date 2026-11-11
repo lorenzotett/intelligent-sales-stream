@@ -14,6 +14,7 @@ Focus: digital initiatives (software, platforms, new services, new business line
 ## Pages
 - [Home](https://cooverly.com/)
 - [Approach](https://cooverly.com/approach)
+- [Method](https://cooverly.com/method): seven-step method from market research and customer validation to MVP, pilot launch and scaling.
 - [About](https://cooverly.com/about)
 - [Contact](https://cooverly.com/contact)
 
